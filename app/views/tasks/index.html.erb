@@ -4,5 +4,7 @@
   <% @tasks.each do |task| %>
     <%= link_to(image_tag(task.image_path, alt: task.name), tasks_path) %>
     <%= task.name %><br>
+    <%= task.description %><br>
+    <%= task.hours %><br>
   <% end %>
 </div>
