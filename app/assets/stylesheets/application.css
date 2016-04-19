@@ -1,3 +1,12 @@
+.brand-logo {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+
 h1 {
   text-align: center;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
 }
