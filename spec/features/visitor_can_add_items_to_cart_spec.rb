@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Visitor can add tasks to cart" do
   scenario "they visit the index page and add a task" do
+
     create(:city_with_tasks)
     # task = Task.first
 
@@ -11,7 +12,6 @@ RSpec.feature "Visitor can add tasks to cart" do
 
     expect(page).to have_content("Task added!")
     expect(page).to have_content("Cart: 1")
-
     # When I visit any page with an item on it
     # I should see a link or button for "Add to Cart"
     # When I click "Add to cart" for that item
@@ -24,7 +24,7 @@ RSpec.feature "Visitor can add tasks to cart" do
     visit tasks_path
 
     first(".card-action").click_link("Add to Cart")
-# save_and_open_page
+
     click_on("Cart:")
 
     expect(page).to have_current_path("/cart")
@@ -33,9 +33,21 @@ RSpec.feature "Visitor can add tasks to cart" do
     expect(page).to have_content task.hours
     expect(page).to have_css("img[src*='#{task.image_path}']")
   end
-  # And I click a link or button to view cart
-  # And my current path should be "/cart"
-  # And I should see a small image, title, description and price for the item I just added
+
+  scenario "they can see total hours of tasks" do
+    create(:city_with_tasks)
+
+    visit tasks_path
+
+    first(".card-action").click_link("Add to Cart")
+    page.all(".card-action")[1].click_link("Add to Cart")
+
+    click_on("Cart:")
+
+    expect(page).to have_content("Total Hours: 5")
+  end
+
+
   # And there should be a "total" price for the cart that should be the sum of all items in the cart
 
 end

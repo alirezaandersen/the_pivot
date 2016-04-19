@@ -10,11 +10,6 @@ class CartTasksController < ApplicationController
   end
 
   def show
-
-    # @cart.contents = session[:cart]
-    # @cart.contents.map do |task_id, quantity|
-    #   Task.find(task_id)
-    #
-    # @tasks = Task.find()
+    @tasks = @cart.contents.map { |task_id, _quantity| Task.find(task_id) }
   end
 end
