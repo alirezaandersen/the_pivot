@@ -25,5 +25,14 @@ RSpec.describe Cart, type: :model do
 
       expect(cart.total).to eql(3)
     end
+
+    it "can total hours of all tasks" do
+      city = create(:city_with_tasks)
+      cart = Cart.new({})
+      city.tasks.each do |task|
+        cart.add_task(task.id)
+      end
+      expect(cart.total_hours).to eql(11)
+    end
   end
 end
