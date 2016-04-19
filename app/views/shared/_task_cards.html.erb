@@ -13,7 +13,7 @@
           <p><%= task.start_time %></p>
         </div>
         <div class="card-action">
-          <%= link_to "this is a link", tasks_path %>
+          <%= link_to "Add to Cart", cart_tasks_path(task_id: task.id), method: :post %>
         </div>
       </div>
     </div>
