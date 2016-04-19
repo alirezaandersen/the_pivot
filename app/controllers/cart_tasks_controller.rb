@@ -8,4 +8,13 @@ class CartTasksController < ApplicationController
     flash[:notice] = "Task added!"
     redirect_to tasks_path
   end
+
+  def show
+
+    # @cart.contents = session[:cart]
+    # @cart.contents.map do |task_id, quantity|
+    #   Task.find(task_id)
+    #
+    # @tasks = Task.find()
+  end
 end
