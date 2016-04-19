@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record
@@ -24,7 +23,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Use Rails 12Factor for Heroku Error Logging
 gem 'rails_12factor', group: :production
+
+# Use FactoryGirl
+gem 'factory_girl_rails'
+gem 'database_cleaner'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
