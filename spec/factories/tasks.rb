@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :task do
-    name "MyString"
+    sequence :name
     description "MyText"
     date "2016-04-18"
     start_time "2016-04-18 18:58:35"
@@ -8,4 +8,9 @@ FactoryGirl.define do
     volunteer nil
     city nil
   end
+
+  sequence :name do |n|
+    "#{n} Task"
+  end
+
 end
