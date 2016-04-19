@@ -9,7 +9,7 @@
 #     volunteer nil
 #     city nil
 #     image_path
-#     city_id
+#     sequence(:city_id)
 #   end
 #
 #   sequence :name do |n|

@@ -2,27 +2,28 @@ require 'rails_helper'
 
 RSpec.feature "Visitor can view all tasks" do
 
-  def gen_tasks
-    city = City.create(name: "Denver",
-                       state: "CO")
-
-    1.upto(3) do |i|
-      Task.create(name:        "Name #{i}",
-                  description: "Description #{i}",
-                  date:        Date.new,
-                  start_time:  Time.new,
-                  hours:       "#{i}",
-                  image_path:  "https://robohash.org/#{i}",
-                  city_id:     city.id)
-    end
-  end
+  # def gen_tasks
+  #   city = City.create(name: "Denver",
+  #                      state: "CO")
+  #
+  #   1.upto(3) do |i|
+  #     Task.create(name:        "Name #{i}",
+  #                 description: "Description #{i}",
+  #                 date:        Date.new,
+  #                 start_time:  Time.new,
+  #                 hours:       "#{i}",
+  #                 image_path:  "https://robohash.org/#{i}",
+  #                 city_id:     city.id)
+  #   end
+  # end
 
 
   scenario "they see the names of all tasks" do
-    # tasks = create_list(:task, 3)
-
-    gen_tasks
+    create(:city_with_tasks)
     tasks = Task.take(3)
+
+    # gen_tasks
+    # tasks = Task.take(3)
 
     visit tasks_path
 
@@ -43,14 +44,12 @@ RSpec.feature "Visitor can view all tasks" do
   end
 
   scenario "they see tasks by city" do
-    # tasks  = create_list(:task, 3)
-    # cities = create_list(:city, 2)
+    city_one = create(:city_with_tasks)
+    city_two = create(:city_with_tasks)
 
-    gen_tasks
     tasks = Task.take(2)
-    city  = City.first
 
-    visit "/#{city.name}"
+    visit "/#{city_one.name}"
 
     expect(page).to have_content tasks[0].name
     expect(page).to have_content tasks[0].description
