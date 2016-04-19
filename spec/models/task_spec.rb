@@ -12,5 +12,6 @@ RSpec.describe Task, type: :model do
     it { is_expected.to validate_presence_of(:date) }
     it { is_expected.to validate_presence_of(:start_time) }
     it { is_expected.to validate_presence_of(:hours) }
+    it { is_expected.to validate_presence_of(:image_path) }
   end
 end

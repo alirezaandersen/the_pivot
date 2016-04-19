@@ -7,4 +7,5 @@ class Task < ActiveRecord::Base
   validates :date, presence: true
   validates :start_time, presence: true
   validates :hours, presence: true
+  validates :image_path, presence: true
 end

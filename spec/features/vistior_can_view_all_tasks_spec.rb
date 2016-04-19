@@ -6,8 +6,18 @@ RSpec.feature "Visitor can view all tasks" do
 
     visit tasks_path
 
-    expect(page).to have_content "2 Task"
-    expect(page).to have_content "3 Task"
-    expect(page).to have_content "4 Task"
+    expect(page).to have_content tasks[0].name
+    expect(page).to have_css("img[src*='#{tasks[0].image_path}']")
+
+    expect(page).to have_content tasks[1].name
+    expect(page).to have_css("img[src*='#{tasks[1].image_path}']")
+
+    expect(page).to have_content tasks[2].name
+    expect(page).to have_css("img[src*='#{tasks[2].image_path}']")
   end
+
+  # scenario "they see tasks by city" do
+  #   tasks  = create_list(:task, 3)
+  #   cities = create_list(:city, 2)
+  # end
 end
