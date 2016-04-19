@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Visitor can view all tasks" do
 
   scenario "they see the names of all tasks" do
-    #city = create_list(:city_with_tasks, 3)
+    # city = create_list(:city_with_tasks, 1)[0]
     #task = task.create
     #task1, 2, 3 = city.tasks
     create(:city_with_tasks)

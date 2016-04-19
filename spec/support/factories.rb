@@ -3,7 +3,7 @@ FactoryGirl.define do
   factory :task do
     sequence(:name) { |n| "Task #{n}" }
     description
-    date "2016-04-18"
+    date "11/12/2017"
     start_time "2016-04-18 18:58:35"
     hours
     volunteer nil
@@ -41,5 +41,9 @@ FactoryGirl.define do
   sequence :description, ["A", "B", "C"].cycle do |n|
     "#{n} description"
   end
+
+  # sequence :date, ["11/12/2017", "04/15/2018", "12/02/2016"].cycle do |n|
+  #   "#{n}"
+  # end
 
 end

@@ -8,7 +8,7 @@ city_two = City.create(name: "Aurora",
 1.upto(5) do |i|
   Task.create(name:        "Name #{i}",
               description: "Description #{i}",
-              date:        Date.new,
+              date:        "11/04/2016",
               start_time:  Time.new,
               hours:       "#{i}",
               image_path:  "https://robohash.org/#{i}",
@@ -18,7 +18,7 @@ end
 6.upto(10) do |i|
   Task.create(name:        "Name #{i}",
               description: "Description #{i}",
-              date:        Date.new,
+              date:        "01/23/2017",
               start_time:  Time.new,
               hours:       "#{i}",
               image_path:  "https://robohash.org/#{i}",
