@@ -1,7 +1,26 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+city_one = City.create(name: "Denver",
+                       state: "CO")
+
+city_two = City.create(name: "Aurora",
+                       state: "CO")
+
+
+1.upto(5) do |i|
+  Task.create(name:        "Name #{i}",
+              description: "Description #{i}",
+              date:        Date.new,
+              start_time:  Time.new,
+              hours:       "#{i}",
+              image_path:  "https://robohash.org/#{i}",
+              city_id:     city_one.id)
+end
+
+1.upto(5) do |i|
+  Task.create(name:        "Name #{i}",
+              description: "Description #{i}",
+              date:        Date.new,
+              start_time:  Time.new,
+              hours:       "#{i}",
+              image_path:  "https://robohash.org/#{i}",
+              city_id:     city_two.id)
+end

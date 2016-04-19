@@ -1,0 +1,21 @@
+<div class="row">
+  <% @tasks.each do |task| %>
+    <div class="col 4">
+      <div class="card large">
+        <div class="card-image">
+          <img src="<%= task.image_path %>">
+        </div>
+        <div class="card-content">
+          <p><strong><%= task.name %></strong></p>
+          <p><%= task.hours %> Hours</p>
+          <p><%= task.description %></p>
+          <p><%= task.date %></p>
+          <p><%= task.start_time %></p>
+        </div>
+        <div class="card-action">
+          <%= link_to "this is a link", tasks_path %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
