@@ -18,7 +18,12 @@ RSpec.describe Cart, type: :model do
     end
 
     it "can return total number of all added tasks" do
-      
+      cart = Cart.new({"1" => 1})
+
+      cart.add_task(1)
+      cart.add_task(3)
+
+      expect(cart.total).to eql(3)
     end
   end
 end
