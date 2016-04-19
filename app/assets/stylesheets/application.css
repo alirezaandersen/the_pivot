@@ -1,3 +1,11 @@
+.brand-logo {
+  font-family: 'Kaushan Script', cursive;
+}
+
 h1 {
   text-align: center;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
 }
