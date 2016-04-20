@@ -1,5 +1,5 @@
 <%= button_to "View All Tasks", tasks_path, method: :get %>
-
+<%= render partial: "shared/slider" %>
 <% @cities.each do |city| %>
   <%= city.name %> <br>
 <% end %>
