@@ -1,11 +1,20 @@
 <h1>Create Account</h1>
 
-<%= form_for @volunteer do |f| %>
-  <%= f.text_field :first_name, placeholder: "First Name" %>
-  <%= f.text_field :last_name, placeholder: "Last Name" %>
-  <%= f.text_field :username, placeholder: "Username" %>
-  <%= f.text_field :email, placeholder: "Email" %>
-  <%= f.password_field :password, placeholder: "Password" %>
-  <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
-  <%= f.submit "Create Account" %>
-<% end %>
+<div class="row">
+  <form class="col s6 m4">
+    <div class="row">
+      <div class="create_user_form">
+        <%= form_for @volunteer do |f| %>
+          <%= f.text_field :first_name, placeholder: "First Name" %>
+          <%= f.text_field :last_name, placeholder: "Last Name" %>
+          <%= f.text_field :username, placeholder: "Username" %>
+          <%= f.text_field :email, placeholder: "Email" %>
+          <%= f.password_field :password, placeholder: "Password" %>
+          <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
+          
+          <%= f.submit "Create Account" %>
+        <% end %>
+      </div>
+    </div>
+  </form>
+</div>

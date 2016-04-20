@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'volunteers#show'
   get "/cart", to: 'cart_tasks#show'
+
+  get "/login", to: "sessions#new"
+
   get "/:name", to: 'cities#show', as: :city
 
 end

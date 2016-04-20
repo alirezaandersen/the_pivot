@@ -1,4 +1,5 @@
 class VolunteersController < ApplicationController
+
   def new
     @volunteer = Volunteer.new
   end
@@ -6,14 +7,18 @@ class VolunteersController < ApplicationController
   def create
     @volunteer = Volunteer.new(volunteer_params)
     if @volunteer.save
-      #user session
-      flash[:notice] = 
-      redirect_to dashboard_path(@volunteer)
+      session[:volunteer_id] = @volunteer.id
+      flash[:notice] = "Account Created!"
+      redirect_to dashboard_path
     else
+      flash.now[:error] = "Invalid. Please try again."
       render :new
     end
   end
 
+  def show
+    @volunteer = current_volunteer
+  end
 
   private
 
