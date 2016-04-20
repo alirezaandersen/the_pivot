@@ -1,8 +1,7 @@
 class CitiesController < ApplicationController
 
   def show
-    @city = City.includes(:tasks).find_by(name: params[:name])
-    # @city = City.includes(:tasks).find(params[:slug])
+    @city = City.includes(:tasks).find_by(params[:slug])
   end
 
 end
