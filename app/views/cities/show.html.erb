@@ -1,2 +1,2 @@
 <h1>Tasks Available in <%= @city.name %></h1>
-<%=  render partial: "shared/task_cards", :locals => {tasks: @tasks} %>
+<%=  render partial: "shared/task_cards", :locals => {tasks: @city.tasks} %>
