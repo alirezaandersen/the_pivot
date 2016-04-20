@@ -17,7 +17,7 @@ FactoryGirl.define do
 
     factory :city_with_tasks do
       transient do
-        tasks_count 5
+        tasks_count 4
       end
 
       after(:create) do |city, evaluator|
@@ -34,7 +34,7 @@ FactoryGirl.define do
     "#{n}"
   end
 
-  sequence :hours, ["1", "2", "3"].cycle do |n|
+  sequence :hours, ["1", "2"].cycle do |n|
     "#{n}"
   end
 

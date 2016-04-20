@@ -11,16 +11,16 @@ RSpec.describe Cart, type: :model do
     it "can add tasks to cart" do
       cart = Cart.new({"1" => 1})
 
-      cart.add_task(1)
+      cart.add_task(2)
       cart.add_task(3)
 
-      expect(cart.contents).to eql({"1" => 2, "3" => 1})
+      expect(cart.contents).to eql({"1" => 1, "2" => 1, "3" => 1})
     end
 
     it "can return total number of all added tasks" do
       cart = Cart.new({"1" => 1})
 
-      cart.add_task(1)
+      cart.add_task(2)
       cart.add_task(3)
 
       expect(cart.total).to eql(3)
@@ -32,7 +32,7 @@ RSpec.describe Cart, type: :model do
       city.tasks.each do |task|
         cart.add_task(task.id)
       end
-      expect(cart.total_hours).to eql(10)
+      expect(cart.total_hours).to eql(6)
     end
   end
 end

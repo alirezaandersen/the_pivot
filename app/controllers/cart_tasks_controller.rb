@@ -3,9 +3,13 @@ class CartTasksController < ApplicationController
 
   def create
     task = Task.find(params[:task_id])
-    @cart.add_task(task.id)
-    session[:cart]= @cart.contents
-    flash[:notice] = "Task added!"
+    if @cart.has_task?(task.id)
+      flash[:notice] = "Task is already in your Cart!"
+    else
+      @cart.add_task(task.id)
+      session[:cart]= @cart.contents
+      flash[:notice] = "Task added!"
+    end
     redirect_to tasks_path
   end
 

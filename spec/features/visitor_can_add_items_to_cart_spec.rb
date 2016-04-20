@@ -39,6 +39,21 @@ RSpec.feature "Visitor can add tasks to cart" do
 
     click_on("Cart:")
 
-    expect(page).to have_content("Total Hours: 5")
+    expect(page).to have_content("Total Hours: 3")
+  end
+
+  scenario "they cannot add the same task to a cart twice" do
+    create(:city_with_tasks)
+
+    visit tasks_path
+    page.all(".card-action")[0].click_link("Add to Cart")
+    page.all(".card-action")[1].click_link("Add to Cart")
+
+    expect(page).to have_content("Cart: 2")
+
+    page.all(".card-action")[1].click_link("Add to Cart")
+
+    expect(page).to have_content("Cart: 2")
+    expect(page).to have_content("Task is already in your Cart!")
   end
 end
