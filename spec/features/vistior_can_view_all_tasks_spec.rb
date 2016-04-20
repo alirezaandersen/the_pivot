@@ -37,6 +37,5 @@ RSpec.feature "Visitor can view all tasks" do
     city2.tasks.each do |task|
       expect(page).not_to have_content task.name
     end
-
   end
 end
