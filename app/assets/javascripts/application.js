@@ -16,5 +16,5 @@
 //= require materialize-sprockets
 
 $(document).ready(function(){
-  $('.slider').slider();
+  $('.slider').slider({Default: 100});
 });

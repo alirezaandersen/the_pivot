@@ -1,0 +1,17 @@
+<div class="row">
+  <% cities.each do |city| %>
+    <div class="col xs12 x6 m4 l3">
+      <div class="card large">
+        <div class="card-image">
+          <img src="http://bizlifes.net/img/2015/04/1428636048_wee_2014-05-03_lif_036_31493321_i4.jpg">
+        </div>
+        <div class="card-content">
+          <p><strong><%= city.name %></strong></p>
+        </div>
+        <div class="card-action">
+          <%= link_to "Details", city_path(city.id) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
