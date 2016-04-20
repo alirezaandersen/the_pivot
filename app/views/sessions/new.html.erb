@@ -2,20 +2,17 @@
 
 
 <div class="row">
-  <form class="col s6 m4">
-    <div class="row">
-      <div class="create_user_form">
-        <%= form_for(:session, url: login_path) do |f| %>
-          <%= f.text_field :username, placeholder: "Username" %>
-          <%= f.password_field :password, placeholder: "Password" %>
-          
-          <div class="login-signup">
-            <%= f.submit "LOGIN" %>
-            or
-            <%= link_to "SIGN UP", new_volunteer_path %>
-          </div>
-        <% end %>
+  <div class="create_user_form">
+    <%= form_for(:session, url: login_path) do |f| %>
+      <%= f.text_field :username, placeholder: "Username" %>
+      <%= f.password_field :password, placeholder: "Password" %>
+
+      <div class="login-signup">
+        <%= f.submit "LOGIN" %>
+        or
+        <%= link_to "SIGN UP", new_volunteer_path %>
       </div>
-    </div>
-  </form>
+      
+    <% end %>
+  </div>
 </div>

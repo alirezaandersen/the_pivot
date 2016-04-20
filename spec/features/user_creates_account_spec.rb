@@ -25,9 +25,37 @@ RSpec.feature "User creates account" do
     end
 
     expect(page).to have_current_path('/dashboard')
-    # expect(page).to have_link('Logout')
-    # expect(page).not_to have_link('Login')
     expect(page).to have_content("Bob")
     expect(page).to have_content("bob@gmail.com")
+  end
+
+  scenario "they can logout after logging in" do
+    volunteer = create(:volunteer)
+
+    visit tasks_path
+
+    click_on("LOGIN")
+    expect(page).to have_current_path('/login')
+
+    fill_in "Username", with: volunteer.username
+    fill_in "Password", with: volunteer.password
+    click_button("LOGIN")
+
+    within(".flash-notice") do
+      expect(page).to have_content("Logged in as #{volunteer.username}")
+    end
+
+    expect(page).to have_current_path('/dashboard')
+    expect(page).to have_content(volunteer.first_name)
+    expect(page).to have_content(volunteer.email)
+
+    expect(page).to have_link('LOGOUT')
+    expect(page).to_not have_link('LOGIN')
+
+    click_on("LOGOUT")
+
+    within(".flash-warning") do
+      expect(page).to have_content("Logged out!")
+    end
   end
 end

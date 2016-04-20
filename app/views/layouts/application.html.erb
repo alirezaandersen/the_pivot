@@ -20,14 +20,6 @@
 
   <%= render partial: "shared/navbar" %>
 
-  <!-- <% if current_volunteer %>
-    <p>Hello,
-      <%#= current_volunteer.first_name %>!
-    </p>
-  <% else %>
-    sup
-  <% end %> -->
-
   <div class="container">
     <% flash.each do |type, message| %>
       <%= content_tag :div, message, class:"flash-#{type}" %>

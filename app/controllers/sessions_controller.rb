@@ -15,4 +15,11 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    session.clear
+    flash[:warning] = "Logged out!"
+    redirect_to tasks_path
+    # change redirect!
+  end
+
 end
