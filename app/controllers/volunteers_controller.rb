@@ -8,7 +8,7 @@ class VolunteersController < ApplicationController
     @volunteer = Volunteer.new(volunteer_params)
     if @volunteer.save
       session[:volunteer_id] = @volunteer.id
-      flash[:notice] = "Account Created!"
+      flash[:notice] = "Account Created! Logged in as #{@volunteer.username}"
       redirect_to dashboard_path
     else
       flash.now[:error] = "Invalid. Please try again."

@@ -20,11 +20,11 @@ RSpec.feature "User creates account" do
 
     click_on("Create Account")
 
-    expect(page).to have_current_path('/dashboard')
-
     within(".flash-notice") do
-      expect(page).to have_content("Account Created!")
+      expect(page).to have_content("Logged in as bobthebuilder")
     end
+
+    expect(page).to have_current_path('/dashboard')
     # expect(page).to have_link('Logout')
     # expect(page).not_to have_link('Login')
     expect(page).to have_content("Bob")
