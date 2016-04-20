@@ -16,4 +16,12 @@ class CartTasksController < ApplicationController
   def show
     @tasks = @cart.contents.map { |task_id, _quantity| Task.find(task_id) }
   end
+
+  def destroy
+    task = Task.find(params[:id])
+    @cart.remove_task(task.id)
+    session[:cart]= @cart.contents
+    flash[:notice] = "Task removed!"
+    redirect_to '/cart'
+  end
 end

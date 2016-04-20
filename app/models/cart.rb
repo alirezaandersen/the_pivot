@@ -13,6 +13,10 @@ class Cart
     contents[task_id.to_s] = 1
   end
 
+  def remove_task(task_id)
+    contents.delete(task_id.to_s)
+  end
+
   def total_hours
     tasks = contents.map {|key, value| Task.find(key)}
     tasks.reduce(0) { |sum, task| sum += task.hours }

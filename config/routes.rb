@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
 
   resources :tasks, only: [:index]
-  resources :cart_tasks, only: [:create]
+  resources :cart_tasks, only: [:create, :destroy]
   get "/cart", to: 'cart_tasks#show'
   get "/:name", to: 'cities#show', as: :city
   # resources :cities, only:[:show], param: :name, as
-
 end
