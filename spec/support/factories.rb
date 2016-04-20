@@ -3,7 +3,7 @@ FactoryGirl.define do
   factory :task do
     sequence(:name) { |n| "Task #{n}" }
     description
-    date "2016-04-18"
+    date "11/12/2017"
     start_time "2016-04-18 18:58:35"
     hours
     volunteer nil
@@ -17,7 +17,7 @@ FactoryGirl.define do
 
     factory :city_with_tasks do
       transient do
-        tasks_count 5
+        tasks_count 4
       end
 
       after(:create) do |city, evaluator|
@@ -34,12 +34,16 @@ FactoryGirl.define do
     "#{n}"
   end
 
-  sequence :hours, ["1", "2", "3"].cycle do |n|
+  sequence :hours, ["1", "2"].cycle do |n|
     "#{n}"
   end
 
   sequence :description, ["A", "B", "C"].cycle do |n|
     "#{n} description"
   end
+
+  # sequence :date, ["11/12/2017", "04/15/2018", "12/02/2016"].cycle do |n|
+  #   "#{n}"
+  # end
 
 end
