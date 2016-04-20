@@ -27,9 +27,9 @@ RSpec.feature "Visitor can view landing page" do
   scenario "the see photo carousel on landing" do
     visit root_path
 
-    expect(page).to have_css "img[src*='#{some_cool_image}']"
-    expect(page).to have_css "img[src*='#{some_cool_image}']"
-    expect(page).to have_css "img[src*='#{some_cool_image}']"
-    expect(page).to have_css "img[src*='#{some_cool_image}']"
+    within(".slides") do
+      expect(page).to have_xpath "//img[@src=\'http://lorempixel.com/580/250/nature/1\']"
+      expect(page).to have_xpath "//img[@src=\'http://lorempixel.com/580/250/nature/2\']"
+    end
   end
 end

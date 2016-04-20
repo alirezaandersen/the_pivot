@@ -40,7 +40,7 @@ group :development, :test do
   gem 'mocha'
   gem 'shoulda'
   gem 'materialize-sass'
-  
+    
 end
 
 group :development do
