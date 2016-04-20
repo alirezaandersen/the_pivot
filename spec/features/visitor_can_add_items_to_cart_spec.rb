@@ -72,5 +72,6 @@ RSpec.feature "Visitor can add tasks to cart" do
 
     expect(page).to have_content("Total Hours: 2")
     expect(page).not_to have_content(task.name)
+
   end
 end
