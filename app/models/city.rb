@@ -4,14 +4,14 @@ class City < ActiveRecord::Base
   validates :name, presence: true
   validates :state, presence: true
 
-  # before_save :set_slug
-  #
-  # def set_slug
-  #   self.slug = name.parameterize
-  # end
-  #
-  # def to_param
-  #   slug
-  # end
+  before_save :set_slug
+
+  def set_slug
+    self.slug = name.parameterize
+  end
+
+  def to_param
+    slug
+  end
 
 end
