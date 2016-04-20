@@ -3,6 +3,11 @@ require 'rails_helper'
 RSpec.feature "User creates account" do
   scenario "they create a new account" do
     visit tasks_path
+    
+    click_on("LOGIN")
+    expect(page).to have_current_path('/login')
+    expect(page).to have_link('SIGN UP')
+
     click_on("SIGN UP")
 
     expect(page).to have_current_path(new_volunteer_path)
@@ -11,7 +16,7 @@ RSpec.feature "User creates account" do
     fill_in "Username", with: "bobthebuilder"
     fill_in "Password", with: "password"
     fill_in "Confirm Password", with: "password"
-    fill_in "email", with: "bob@gmail.com"
+    fill_in "Email", with: "bob@gmail.com"
 
     click_on("Create Account")
 
