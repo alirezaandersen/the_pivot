@@ -56,4 +56,21 @@ RSpec.feature "Visitor can add tasks to cart" do
     expect(page).to have_content("Cart: 2")
     expect(page).to have_content("Task is already in your Cart!")
   end
+
+  scenario "they can remove an item from the cart" do
+    create(:city_with_tasks)
+    task = Task.all.first
+
+    visit tasks_path
+    page.all(".card-action")[0].click_link("Add to Cart")
+    page.all(".card-action")[1].click_link("Add to Cart")
+
+    click_on("Cart:")
+    expect(page).to have_content("Total Hours: 4")
+
+    page.all(".card-action")[0].click_link("Remove from Cart")
+
+    expect(page).to have_content("Total Hours: 2")
+    expect(page).not_to have_content(task.name)
+  end
 end
