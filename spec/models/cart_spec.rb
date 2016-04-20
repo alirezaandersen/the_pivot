@@ -32,7 +32,7 @@ RSpec.describe Cart, type: :model do
       city.tasks.each do |task|
         cart.add_task(task.id)
       end
-      expect(cart.total_hours).to eql(11)
+      expect(cart.total_hours).to eql(10)
     end
   end
 end
