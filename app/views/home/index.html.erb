@@ -1,0 +1,5 @@
+<%= button_to "View All Tasks", tasks_path, method: :get %>
+
+<% @cities.each do |city| %>
+  <%= city.name %> <br>
+<% end %>
