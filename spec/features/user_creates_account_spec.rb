@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.feature "User creates account" do
   scenario "they create a new account" do
-    skip
     visit tasks_path
     click_on("Sign Up")
 
