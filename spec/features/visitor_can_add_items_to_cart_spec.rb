@@ -60,6 +60,7 @@ RSpec.feature "Visitor can add tasks to cart" do
   scenario "they can remove an item from the cart" do
     create(:city_with_tasks)
     task = Task.all.first
+    message = "Successfully removed #{task.name} from your cart."
 
     visit tasks_path
     page.all(".card-action")[0].click_link("Add to Cart")
@@ -71,6 +72,16 @@ RSpec.feature "Visitor can add tasks to cart" do
     page.all(".card-action")[0].click_link("Remove from Cart")
 
     expect(page).to have_content("Total Hours: 1")
-    expect(page).not_to have_content(task.name)
+    within(".card-content") do
+      expect(page).not_to have_content("#{task.name}")
+    end
+    within(".flash-notice") do
+      expect(page).to have_content(message)
+
+      expect(page).to have_link("#{task.name}")
+    end
+
+    click_link("#{task.name}")
+    expect(page).to have_current_path(task_path(task))
   end
 end
