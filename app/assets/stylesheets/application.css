@@ -10,6 +10,10 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+.flash-notice {
+  text-align: center;
+}
+
 /*slider*/
 /*.slider .indicators .indicator-item {
   background-color: #666666;

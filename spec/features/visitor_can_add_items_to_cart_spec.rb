@@ -75,7 +75,7 @@ RSpec.feature "Visitor can add tasks to cart" do
     within(".card-content") do
       expect(page).not_to have_content("#{task.name}")
     end
-
+# save_and_open_page
     within(".flash-notice") do
       expect(page).to have_content(message)
       # expect(".card-content"[:color]).to match(/color: green/)
