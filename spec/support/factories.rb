@@ -1,5 +1,14 @@
 FactoryGirl.define do
 
+  factory :volunteer do
+    first_name "basic"
+    last_name "user"
+    username "user"
+    email "fake@gmail.com"
+    password "password"
+    password_confirmation "password"
+  end
+
   factory :task do
     sequence(:name) { |n| "Task #{n}" }
     description
@@ -41,9 +50,5 @@ FactoryGirl.define do
   sequence :description, ["A", "B", "C"].cycle do |n|
     "#{n} description"
   end
-
-  # sequence :date, ["11/12/2017", "04/15/2018", "12/02/2016"].cycle do |n|
-  #   "#{n}"
-  # end
 
 end

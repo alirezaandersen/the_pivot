@@ -1,10 +1,3 @@
-<!-- <ul id="dropdown1" class="dropdown-content">
-  <li><a href="#!">one</a></li>
-  <li><a href="#!">two</a></li>
-  <li class="divider"></li>
-  <li><a href="#!">three</a></li>
-</ul> -->
-
 <nav>
   <div class="nav-wrapper teal lighten-1">
     <a href="#" class="brand-logo center">Habitask</a>
@@ -13,7 +6,7 @@
       <li><a class="waves-effect waves-light btn">CATEGORIES</a></li>
     </ul>
     <ul class="right hide-on-med-and-down">
-      <li><a href="tasks">SIGN UP</a></li>
+      <li><%= render partial: 'shared/login_logout' %></li>
       <li><%= link_to "Cart: #{@cart.total}", cart_path %></li>
     </ul>
   </div>
