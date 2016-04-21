@@ -34,5 +34,16 @@ RSpec.describe Cart, type: :model do
       end
       expect(cart.total_hours).to eql(6)
     end
+
+    it "can remove a task from the cart" do
+      city = create(:city_with_tasks)
+      cart = Cart.new({})
+      city.tasks.each do |task|
+        cart.add_task(task.id)
+      end
+      expect(cart.total_hours).to eql(6)
+      cart.remove_task(city.tasks.first.id)
+      expect(cart.total_hours).to eql(4)
+    end
   end
 end

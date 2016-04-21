@@ -29,6 +29,7 @@ gem 'rails_12factor', group: :production
 # Use FactoryGirl
 gem 'factory_girl_rails'
 gem 'database_cleaner'
+gem 'materialize-sass'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -38,6 +39,8 @@ group :development, :test do
   gem 'launchy'
   gem 'mocha'
   gem 'shoulda'
+  gem 'materialize-sass'
+    
 end
 
 group :development do

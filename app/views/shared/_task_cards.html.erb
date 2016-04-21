@@ -13,7 +13,11 @@
           <p><%= task.start_time %></p>
         </div>
         <div class="card-action">
-          <%= link_to "Add to Cart", cart_tasks_path(task_id: task.id), method: :post %>
+          <% if method == :post %>
+            <%= link_to "Add to Cart", cart_tasks_path(task_id: task.id), method: method %>
+          <% else %>
+            <%= link_to "Remove from Cart", cart_task_path(task.id), method: method %>
+          <% end %>
         </div>
       </div>
     </div>
