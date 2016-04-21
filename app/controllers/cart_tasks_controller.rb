@@ -19,9 +19,10 @@ class CartTasksController < ApplicationController
 
   def destroy
     task = Task.find(params[:id])
+    link = "<a href=\"/tasks/#{task.id}\">#{task.name}</a>"
     @cart.remove_task(task.id)
     session[:cart]= @cart.contents
-    flash[:notice] = "Task removed!"
+    flash[:notice] = "Successfully removed #{link} from your cart."
     redirect_to '/cart'
   end
 end

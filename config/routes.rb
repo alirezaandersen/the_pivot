@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
-  resources :tasks, only: [:index]
+  resources :tasks, only: [:index, :show]
   resources :cart_tasks, only: [:create, :destroy]
   resources :volunteers, only: [:create, :new]
 
