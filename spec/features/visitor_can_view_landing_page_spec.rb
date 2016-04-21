@@ -28,8 +28,8 @@ RSpec.feature "Visitor can view landing page" do
     visit root_path
 
     within(".slides") do
-      expect(page).to have_xpath "//img[@src=\'http://lorempixel.com/580/250/nature/1\']"
-      expect(page).to have_xpath "//img[@src=\'http://lorempixel.com/580/250/nature/2\']"
+      expect(page).to have_xpath "//img[@src=\'http://www.newyorker.com/wp-content/uploads/2014/08/Stokes-Hello-Kitty2-1200.jpg\']"
+      expect(page).to have_xpath "//img[@src=\'https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg\']"
     end
   end
 end
