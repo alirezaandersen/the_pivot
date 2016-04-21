@@ -75,10 +75,9 @@ RSpec.feature "Visitor can add tasks to cart" do
     within(".card-content") do
       expect(page).not_to have_content("#{task.name}")
     end
-# save_and_open_page
     within(".flash-notice") do
       expect(page).to have_content(message)
-      # expect(".card-content"[:color]).to match(/color: green/)
+
       expect(page).to have_link("#{task.name}")
     end
 
@@ -86,8 +85,3 @@ RSpec.feature "Visitor can add tasks to cart" do
     expect(page).to have_current_path(task_path(task))
   end
 end
-
-# And I should see a message styled in green
-# And the message should say "Successfully removed SOME_ITEM from your cart."
-# And the title "SOME_ITEM" should be a link to that item in case the user wants to add it back
-# And I should not see the item listed in cart
