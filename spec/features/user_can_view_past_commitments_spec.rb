@@ -1,32 +1,23 @@
 require 'rails_helper'
 
-# Background: An existing user that has multiple orders
-#       As an Authenticated User
-#       When I visit "/commitments"
-#       Then I should see all commitments belonging to me and no other orders
-
-RSpec.feature do "User can view past commitments" do
+RSpec.feature "User can view past commitments" do
   scenario "they can visit their past commitments page" do
-    # create commitments -- assign volunteer_id to tasks
     volunteer = create(:volunteer_with_tasks)
-    login_user(volunteer)
+    first_task = volunteer.tasks.first.name
+    last_task = volunteer.tasks.last.name
 
-    visit commitments_path(user)
+    login_volunteer(volunteer)
 
-    expect(page).to have_content(volunteer.tasks.first.name)
-    expect(page).to have_content(volunteer.tasks.last.name)
-  end
+    visit commitments_path(volunteer)
 
-  scenario "they cannot view past commitments belonging to another user" do
-    # create second user
-    #expect page to now show commitment info belonging to second user
+    expect(page).to have_content(first_task)
+    expect(page).to have_content(last_task)
   end
 
   def login_volunteer(volunteer)
     visit login_path
-
     fill_in "Username", with: volunteer.username
     fill_in "Password", with: volunteer.password
-    click_on("LOGIN")
+    click_button("LOGIN")
   end
 end

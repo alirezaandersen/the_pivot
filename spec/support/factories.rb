@@ -3,26 +3,49 @@ FactoryGirl.define do
   factory :volunteer do
     first_name "basic"
     last_name "user"
-    username "user"
-    email "fake@gmail.com"
+    sequence(:username) { |n| "#{n}_user" }
+    sequence(:email) { |n| "#{n}fake@gmail.fake" }
     password "password"
     password_confirmation "password"
+
+      factory :volunteer_with_tasks do
+        transient do
+          tasks_count 2
+        end
+
+        after(:create) do |volunteer, evaluator|
+          create_list(:task, evaluator.tasks_count, volunteer: volunteer)
+        end
+      end
   end
 
   factory :task do
-    sequence(:name) { |n| "Task #{n}" }
-    description
-    date "11/12/2017"
+    volunteer
     start_time "2016-04-18 18:58:35"
-    hours
-    volunteer nil
+    date "11/12/2017"
+
+    sequence(:name) { |n| "Task #{n}" }
+
+    sequence :description, ["A", "B", "C"].cycle do |n|
+      "#{n} description"
+    end
+
+    sequence :hours, ["1", "2"].cycle do |n|
+      "#{n}"
+    end
+
     sequence(:image_path) { |n| "https://robohash.org/#{n}" }
     city
   end
 
   factory :city do
-    name
-    state
+    sequence :name, ["denver", "aurora", "turingopolis"].cycle do |n|
+      "#{n}"
+    end
+
+    sequence :state, ["CO", "NY", "CA"].cycle do |n|
+      "#{n}"
+    end
 
     factory :city_with_tasks do
       transient do
@@ -34,21 +57,4 @@ FactoryGirl.define do
       end
     end
   end
-
-  sequence :name, ["denver", "aurora", "turingopolis"].cycle do |n|
-    "#{n}"
-  end
-
-  sequence :state, ["CO", "NY", "CA"].cycle do |n|
-    "#{n}"
-  end
-
-  sequence :hours, ["1", "2"].cycle do |n|
-    "#{n}"
-  end
-
-  sequence :description, ["A", "B", "C"].cycle do |n|
-    "#{n} description"
-  end
-
 end
