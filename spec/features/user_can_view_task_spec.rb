@@ -19,11 +19,10 @@ RSpec.feature "User can view task" do
 
     visit task_path(task)
 
+    expect(page).to have_content("#{task.name} in #{city.name}")
     expect(page).to have_content(task.description)
     expect(page).to have_content(task.start_time)
     expect(page).to have_content(task.date)
-    expect(page).to have_content(task.image_path)
-
-    expect(page).to have_content("#{task.name} in #{city.name}")
+    expect(page).to have_xpath("//img[@src='#{task.image_path}']")
   end
 end

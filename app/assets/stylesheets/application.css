@@ -14,6 +14,10 @@ body {
   text-align: center;
 }
 
+#text-box {
+  margin-top: 45px;
+}
+
 /*slider*/
 /*.slider .indicators .indicator-item {
   background-color: #666666;
