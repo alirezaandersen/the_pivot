@@ -1,9 +1,10 @@
 <h1>Welcome to your Cart</h1>
+  <div class="checkout-button">
+    <% if current_volunteer %>
+    <%= button_to "Checkout", cart_path, method: :get, class:"slider-btn waves-effect waves-light btn"%>
+    <% else %>
+    <%= button_to "Login or Create Account to Checkout", login_path, method: :get, class:"slider-btn waves-effect waves-light btn" %>
+    <% end %>
+  </div>
 <h3>Total Hours: <%= @cart.total_hours %></h3>
-
 <%= render partial: "shared/task_cards", locals: {tasks: @tasks, method: :delete } %>
-<% if current_volunteer %>
-  <%= button_to "Checkout", cart_path, method: :get %>
-<% else %>
-  <%= link_to "Login or Create Account to Checkout", login_path %>
-<% end %>
