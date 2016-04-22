@@ -65,13 +65,13 @@ RSpec.feature "Visitor can add tasks to cart" do
     visit tasks_path
     page.all(".card-action")[0].click_link("Add to Cart")
     page.all(".card-action")[1].click_link("Add to Cart")
-
     click_on("Cart:")
+
     expect(page).to have_content("Total Hours: 3")
 
     page.all(".card-action")[0].click_link("Remove from Cart")
 
-    expect(page).to have_content("Total Hours: 1")
+    expect(page).to have_content("Total Hours: 2")
     within(".card-content") do
       expect(page).not_to have_content("#{task.name}")
     end

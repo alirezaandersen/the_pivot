@@ -16,11 +16,23 @@ RSpec.feature "Visitor can view all tasks" do
   end
 
   scenario "they see tasks by city" do
-    city = create(:city_with_tasks)
+    city1, city2 = create_list(:city_with_tasks, 2)
 
-    visit "/#{city.name}"
+    visit "/denver"
+    expect(page).to have_content city1.name
 
-    city.tasks.each do |task|
+    visit "/#{city1.name}"
+    expect(page).to have_content city1.name
+    city1.tasks.each do |task|
+      expect(page).to have_content task.name
+      expect(page).to have_content task.description
+      expect(page).to have_content task.hours
+      expect(page).to have_css("img[src*='#{task.image_path}']")
+    end
+
+    visit "/#{city2.name}"
+    expect(page).to have_content city2.name
+    city2.tasks.each do |task|
       expect(page).to have_content task.name
       expect(page).to have_content task.description
       expect(page).to have_content task.hours
