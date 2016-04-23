@@ -1,7 +1,7 @@
 class VolunteerTasks
   def self.associate_tasks(session, volunteer)
-    session.each do |k, v|
-      Task.find(k).update_attributes(volunteer_id: volunteer.id)
+    session.each do |task_id, _v|
+      Task.find(task_id).update_attributes(volunteer_id: volunteer.id)
     end
   end
 end
