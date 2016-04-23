@@ -1,51 +1,51 @@
 require 'rails_helper'
 
 RSpec.feature "User can checkout tasks" do
-  scenario "they can checkout tasks " do
+  scenario "they can checkout tasks" do
+    volunteer = create(:volunteer)
     create(:city_with_tasks)
 
     visit tasks_path
 
+    expect(page).to have_content("Cart: 0")
+    expect(page).to have_content("LOGIN")
+
     page.all(".card-action")[0].click_link("Add to Cart")
     page.all(".card-action")[1].click_link("Add to Cart")
 
-    click_on("Cart:")
+    click_on("Cart: 2")
 
+    expect(page).to have_current_path("/cart")
+    expect(page).to_not contain_exactly("Checkout")
     click_button("Login or Create Account to Checkout")
 
-    click_on("SIGN UP")
+    login_volunteer(volunteer)
 
-    expect(page).to have_current_path(new_volunteer_path)
-    fill_in "First Name", with: "Bob"
-    fill_in "Last Name", with: "Builder"
-    fill_in "Username", with: "bobthebuilder"
-    fill_in "Password", with: "password"
-    fill_in "Confirm Password", with: "password"
-    fill_in "Email", with: "bob@gmail.com"
+    expect(page).to have_current_path("/cart")
+    expect(page).to have_content("LOGOUT")
 
-    click_on("Create Account")
-
-    click_on("Cart:")
+    expect(page).to have_content("Task 1")
+    expect(page).to have_content("Task 2")
 
     click_on("Checkout")
 
-    expect(page).to have_current_path("/orders")
+    expect(page).to have_current_path("/commitments")
 
     within(".flash-notice") do
       expect(page).to have_content("Order was successfully placed")
+      # need to rephrase
+    end
+
+    within(".commitment-table") do
+      expect(page).to have_content("Task 1")
+      expect(page).to have_content("Task 2")
     end
   end
-end
 
-# Background: An existing user and a cart with items
-#       As a visitor
-#       When I add items to my cart
-#       And I visit "/cart"
-#       And I click "Login or Register to Checkout"
-#       Then I should be required to login
-#       When I am logged in I should be taken back to my cart
-#       And when I click "Checkout"
-#       Then the order should be placed
-#       And my current page should be "/orders"
-#       And I should see a message "Order was successfully placed"
-#       And I should see the order I just placed in a table
+  def login_volunteer(volunteer)
+    visit login_path
+    fill_in "Username", with: volunteer.username
+    fill_in "Password", with: volunteer.password
+    click_button("LOGIN")
+  end
+end

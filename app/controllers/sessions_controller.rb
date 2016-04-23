@@ -8,7 +8,14 @@ class SessionsController < ApplicationController
     if @volunteer && @volunteer.authenticate(params[:session][:password])
       session[:volunteer_id] = @volunteer.id
       flash[:notice] = "Logged in as #{@volunteer.username}"
-      redirect_to dashboard_path
+
+      # byebug
+      if session[:cart].nil?
+        redirect_to dashboard_path
+      else
+        redirect_to cart_path
+      end
+
     else
       flash.now[:error] = "Invalid. Please try again."
       render :new
