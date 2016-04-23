@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :cart_tasks, only: [:create, :destroy]
   resources :volunteers, only: [:create, :new]
 
-
   get '/dashboard', to: 'volunteers#show'
   get "/cart", to: 'cart_tasks#show'
   get '/commitments', to: 'volunteer_tasks#show', as: :commitments

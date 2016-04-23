@@ -1,0 +1,27 @@
+<h1>Commitments</h1>
+
+<div class="commitment-table">
+  <table class="highlight">
+    <thead>
+      <tr>
+        <th data-field="name">Name</th>
+        <th data-field="date">Date</th>
+        <th data-field="start_time">Start Time</th>
+        <th data-field="hours">Hours</th>
+        <th data-field="city_id">City</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @volunteer_tasks.each do |task| %>
+        <tr>
+          <td><%= task.name %></td>
+          <td><%= task.date %></td>
+          <td><%= task.display_time %></td>
+          <td><%= task.hours %></td>
+          <td><%= task.city_id %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

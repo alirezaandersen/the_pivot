@@ -4,8 +4,6 @@ class VolunteerTasksController < ApplicationController
   end
 
   def create
-byebug
-
     redirect_to :show
   end
 end
