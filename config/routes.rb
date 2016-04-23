@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get "/:name", to: 'cities#show', as: :city
 
   namespace :admin do
-    get '/dashboard', to: 'admin/volunteers#show'
+    get '/dashboard', to: 'volunteers#show'
   end
 
 end
