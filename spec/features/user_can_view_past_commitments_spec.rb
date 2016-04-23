@@ -46,8 +46,6 @@ RSpec.feature "User can view past commitments" do
       expect(page).to have_content(viewable_2.display_time)
       expect(page).to have_content(viewable_2.hours)
       expect(page).to have_content(viewable_2.city_id)
-
-      expect(page).to_not have_content(non_viewable_1.name)
       expect(page).to_not have_content(non_viewable_2.name)
     end
   end
