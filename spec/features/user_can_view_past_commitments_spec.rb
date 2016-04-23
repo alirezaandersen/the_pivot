@@ -56,28 +56,26 @@ RSpec.feature "User can view past commitments" do
     first_task, last_task = volunteer.tasks
 
     login_volunteer(volunteer)
+
+    cart_checkout
+
     visit commitments_path(volunteer)
 
     within(page.all("#task-status")[0]) do
-      expect(page).to have_content("Pledged")
+      expect(page).to have_content("pledged")
+    end
+
+    save_and_open_page
+    within(page.all("#task-pledge-date")[0]) do
+      expect(page).to have_content("#{first_task.pledge_date}")
     end
 
     page.all(".commitment-table")[0].click_link("#{first_task.name}")
 
     expect(page).to have_current_path(task_path(first_task))
 
-    # need to update status upon checkout
-    expect(page).to have_content("Status: Pledged")
-
+    expect(page).to have_content("Status: pledged")
     expect(page).to have_content("#{first_task.hours}")
-    # expect(page).to have_content(# date/time commitment was submitted)
-      # add pledge_time column to table
-      # at checkout, or whenever volunteer is associated with task, update both volunteer_id and pledge_time attributes
-
-    # expect(page).to have_content(# completed or cancelled)
-
-    # expect(page).to have_content (when completed or cancelled)
-
   end
 
   def login_volunteer(volunteer)
@@ -85,5 +83,13 @@ RSpec.feature "User can view past commitments" do
     fill_in "Username", with: volunteer.username
     fill_in "Password", with: volunteer.password
     click_button("LOGIN")
+  end
+
+  def cart_checkout
+    visit tasks_path
+    page.all(".card-action")[0].click_link("Add to Cart")
+    page.all(".card-action")[1].click_link("Add to Cart")
+    click_on("Cart: 2")
+    click_on("Checkout")
   end
 end

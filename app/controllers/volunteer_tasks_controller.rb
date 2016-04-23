@@ -6,9 +6,8 @@ class VolunteerTasksController < ApplicationController
 
   def create
     VolunteerTasks.associate_tasks(session[:cart], current_volunteer)
-    flash[:notice] = "Order was successfully placed"
+    flash[:notice] = "Commitment was successfully placed"
     session[:cart] = {}
-
     redirect_to commitments_path
   end
 end

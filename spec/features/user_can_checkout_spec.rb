@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "User can checkout tasks" do
-  xscenario "they can checkout tasks" do
+  scenario "they can checkout tasks" do
     volunteer = create(:volunteer)
     create(:city_with_tasks)
 
@@ -32,8 +32,7 @@ RSpec.feature "User can checkout tasks" do
     expect(page).to have_current_path("/commitments")
 
     within(".flash-notice") do
-      expect(page).to have_content("Order was successfully placed")
-      # need to rephrase
+      expect(page).to have_content("Commitment was successfully placed")
     end
 
     within(".commitment-table") do
