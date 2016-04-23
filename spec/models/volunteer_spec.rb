@@ -9,4 +9,8 @@ RSpec.describe Volunteer, type: :model do
     it { is_expected.to validate_presence_of(:email) }
     it { is_expected.to validate_uniqueness_of(:email) }
   end
+
+  context "asssociations" do
+    it { should have_many(:tasks) }
+  end
 end

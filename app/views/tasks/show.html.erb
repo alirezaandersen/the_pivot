@@ -7,13 +7,14 @@
     <div class="card-panel teal lighten-2", id="text-box">
       <h4>Details</h4>
       <p><b>Date:</b> <%= @task.date %></p>
-      <p><b>Time:</b> <%= @task.start_time %></p>
+      <p><b>Time:</b> <%= @task.display_time %></p>
       <p><b>Time Commitment:</b> <%= @task.hours %> hour(s)</p>
       <p><b>Description:</b> <%= @task.description %></p>
+      <%= button_to "Add to Cart", cart_tasks_path(task_id: @task.id) %>
       <% if @task.status == "retired" %>
         <h5>Task Retired </h5>
       <% else %>
-      <%= button_to "Add to Cart", cart_tasks_path(task_id: @task.id) %>
+        <%= button_to "Add to Cart", cart_tasks_path(task_id: @task.id) %>
       <% end %>
     </div>
   </div>
