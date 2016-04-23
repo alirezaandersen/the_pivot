@@ -7,7 +7,7 @@ class CartTasksController < ApplicationController
       flash[:notice] = "Task is already in your Cart!"
     else
       @cart.add_task(task.id)
-      session[:cart]= @cart.contents
+      session[:cart] = @cart.contents
       flash[:notice] = "Task added!"
     end
     redirect_to tasks_path
@@ -20,9 +20,9 @@ class CartTasksController < ApplicationController
   def destroy
     task = Task.find(params[:id])
     link = "<a href=\"/tasks/#{task.id}\">#{task.name}</a>"
+    session[:cart] = @cart.contents
     @cart.remove_task(task.id)
-    session[:cart]= @cart.contents
     flash[:notice] = "Successfully removed #{link} from your cart."
-    redirect_to '/cart'
+    redirect_to cart_path
   end
 end
