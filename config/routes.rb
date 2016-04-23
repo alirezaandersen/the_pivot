@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'volunteers#show'
   get "/cart", to: 'cart_tasks#show'
   get '/commitments', to: 'volunteer_tasks#show', as: :commitments
+  post '/commitments', to: 'volunteer_tasks#create'
 
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
