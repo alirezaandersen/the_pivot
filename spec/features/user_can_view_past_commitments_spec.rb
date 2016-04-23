@@ -51,6 +51,31 @@ RSpec.feature "User can view past commitments" do
     end
   end
 
+  scenario "they can view details of an individual committed task" do
+    volunteer = create(:volunteer_with_tasks)
+    first_task, last_task = volunteer.tasks
+
+    login_volunteer(volunteer)
+    visit commitments_path(volunteer)
+
+    within(page.all("#task-status")[0]) do
+      expect(page).to have_content("Pledged")
+    end
+
+    page.all(".commitment-table")[0].click_link("#{first_task.name}")
+
+    expect(page).to have_current_path(task_path(first_task))
+
+    expect(page).to have_content("Status: Pledged")
+
+
+    expect(page).to have_content("#{first_task.hours}") 
+    #expect(page).to have_content(# date/time commitment was submitted)
+    # expect(page).to have_content(# completed or cancelled)
+    # expect(page).to have_content (when completed or cancelled)
+
+  end
+
   def login_volunteer(volunteer)
     visit login_path
     fill_in "Username", with: volunteer.username

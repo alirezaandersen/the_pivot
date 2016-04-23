@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
       session[:volunteer_id] = @volunteer.id
       flash[:notice] = "Logged in as #{@volunteer.username}"
 
-      # byebug
       if session[:cart].nil?
         redirect_to dashboard_path
       else

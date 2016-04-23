@@ -1,10 +1,11 @@
 <h1>Commitments</h1>
 
 <div class="commitment-table">
-  <table class="highlight">
+  <table class="highlight bordered">
     <thead>
       <tr>
         <th data-field="name">Name</th>
+        <th data-field="status">Status</th>
         <th data-field="date">Date</th>
         <th data-field="start_time">Start Time</th>
         <th data-field="hours">Hours</th>
@@ -15,7 +16,8 @@
     <tbody>
       <% @volunteer_tasks.each do |task| %>
         <tr>
-          <td><%= task.name %></td>
+          <td><%= link_to task.name, task_path(task) %></td>
+          <td id="task-status"><%= task.status %></td>
           <td><%= task.date %></td>
           <td><%= task.display_time %></td>
           <td><%= task.hours %></td>

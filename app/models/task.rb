@@ -11,6 +11,8 @@ class Task < ActiveRecord::Base
   validates :image_path, presence: true
   validates :city_id, presence: true
 
+  enum status: %w(active retired pledged pending cancelled completed)
+
   def display_time
     self.start_time.strftime('%l:%M %p')
   end
