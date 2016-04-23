@@ -51,7 +51,7 @@ RSpec.feature "User can view past commitments" do
     end
   end
 
-  scenario "they can view details of an individual committed task" do
+  scenario "they can view details of an individual pledged task" do
     volunteer = create(:volunteer_with_tasks)
     first_task, last_task = volunteer.tasks
 
@@ -65,7 +65,6 @@ RSpec.feature "User can view past commitments" do
       expect(page).to have_content("pledged")
     end
 
-    save_and_open_page
     within(page.all("#task-pledge-date")[0]) do
       expect(page).to have_content("#{first_task.pledge_date}")
     end
