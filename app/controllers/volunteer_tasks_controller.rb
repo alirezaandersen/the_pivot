@@ -5,17 +5,10 @@ class VolunteerTasksController < ApplicationController
   end
 
   def create
-    session[:cart].each do |k, v|
-      Task.find(k).update_attributes(volunteer_id: current_volunteer.id)
-    end
+    VolunteerTasks.associate_tasks(session[:cart], current_volunteer)
     flash[:notice] = "Order was successfully placed"
     session[:cart] = {}
+
     redirect_to commitments_path
-
-
-    # checkout process
-    # destroy cart session
-
-    # redirect_to :show
   end
 end
