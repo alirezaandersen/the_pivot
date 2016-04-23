@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "User can view past commitments" do
   scenario "they can visit their past commitments page" do
-    skip
+
     volunteer = create(:volunteer_with_tasks)
     first_task, last_task = volunteer.tasks
 
