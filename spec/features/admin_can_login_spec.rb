@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Admin can login" do
   scenario "they can login and see admin/dashoboard page" do
-    admin = Volunteer.create(first_name: "admin",
+    admin = Volunteer.create(first_name: "John",
                              last_name: "Last",
                              username: "admin",
                              email: "admin@me.com",
@@ -16,5 +16,8 @@ RSpec.feature "Admin can login" do
     click_button("LOGIN")
 
     expect(page).to have_current_path(admin_dashboard_path)
+
+    expect(page).to have_content("Welcome John")
+
   end
 end

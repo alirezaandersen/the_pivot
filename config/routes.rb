@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/dashboard', to: 'volunteers#show'
+    patch '/dashboard', to: 'volunteers#update'
+    get '/edit', to: 'volunteers#edit'
   end
 
 end
