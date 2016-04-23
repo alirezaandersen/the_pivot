@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :tasks, only: [:index, :show]
   resources :cart_tasks, only: [:create, :destroy]
-  resources :volunteers, only: [:create, :new]
+  resources :volunteers, only: [:create, :new, :edit]
 
   get '/dashboard', to: 'volunteers#show'
   get "/cart", to: 'cart_tasks#show'

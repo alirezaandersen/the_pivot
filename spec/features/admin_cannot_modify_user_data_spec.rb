@@ -32,4 +32,31 @@ RSpec.feature "Admin can modify account data" do
     expect(page).to have_content("Welcome Bob")
     expect(page).to have_content("Your Account Has Been Updated")
   end
+
+  scenario "admin cannot modify other users account data" do
+    volunteer = Volunteer.create(first_name: "Michael",
+                     last_name: "Ldfsdf",
+                     username: "gdsfdin",
+                     email: "fgdsfdn@me.com",
+                     password: "password"
+                                 )
+
+    admin = Volunteer.create(first_name: "admin",
+                             last_name: "Last",
+                             username: "admin",
+                             email: "admin@me.com",
+                             password: "password",
+                             role: 1
+                             )
+    visit login_path
+
+    fill_in "Username", with: admin.username
+    fill_in "Password", with: admin.password
+    click_button("LOGIN")
+
+    visit "/volunteers/#{volunteer.id}/edit"
+
+
+    expect(page).to have_content("The page you were looking for doesn't exist (404)")
+  end
 end

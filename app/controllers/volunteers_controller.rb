@@ -20,6 +20,10 @@ class VolunteersController < ApplicationController
     @volunteer = current_volunteer
   end
 
+  def edit
+    render file: '/public/404'
+  end
+
   private
 
   def volunteer_params
