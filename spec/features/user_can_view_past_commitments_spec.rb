@@ -66,12 +66,16 @@ RSpec.feature "User can view past commitments" do
 
     expect(page).to have_current_path(task_path(first_task))
 
+    # need to update status upon checkout
     expect(page).to have_content("Status: Pledged")
 
+    expect(page).to have_content("#{first_task.hours}")
+    # expect(page).to have_content(# date/time commitment was submitted)
+      # add pledge_time column to table
+      # at checkout, or whenever volunteer is associated with task, update both volunteer_id and pledge_time attributes
 
-    expect(page).to have_content("#{first_task.hours}") 
-    #expect(page).to have_content(# date/time commitment was submitted)
     # expect(page).to have_content(# completed or cancelled)
+
     # expect(page).to have_content (when completed or cancelled)
 
   end
