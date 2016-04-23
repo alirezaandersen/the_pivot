@@ -40,6 +40,8 @@ RSpec.feature "User can checkout tasks" do
       expect(page).to have_content("Task 1")
       expect(page).to have_content("Task 2")
     end
+
+    expect(page).to have_content("Cart: 0")
   end
 
   def login_volunteer(volunteer)

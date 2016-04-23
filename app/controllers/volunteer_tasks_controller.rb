@@ -5,11 +5,10 @@ class VolunteerTasksController < ApplicationController
   end
 
   def create
+    VolunteerTasks.associate_tasks(session[:cart], current_volunteer)
+    flash[:notice] = "Order was successfully placed"
+    session[:cart] = {}
 
-                                  
-    # checkout process
-    # destroy cart session
-
-    # redirect_to :show
+    redirect_to commitments_path
   end
 end

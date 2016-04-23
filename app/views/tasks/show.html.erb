@@ -1,9 +1,9 @@
 <h1><%= @task.name %> in <%= @task.city.name %></h1>
 <div class="row">
-  <div class="col s12 m4 l3">
+  <div class="col s12 m4 l4">
     <img src="<%= @task.image_path %>">
   </div>
-  <div class="col m12 l8">
+  <div class="col s12 m6 l7">
     <div class="card-panel teal lighten-2", id="text-box">
       <h4>Details</h4>
       <p><b>Date:</b> <%= @task.date %></p>
@@ -14,7 +14,7 @@
       <% if @task.status == "retired" %>
         <h5>Task Retired</h5>
       <% else %>
-        <%= button_to "Add to Cart", cart_tasks_path(task_id: @task.id) %>
+        <%= button_to "Add to Cart", cart_tasks_path(task_id: @task.id), class:"slider-btn waves-effect waves-light btn teal lighten-3" %>
       <% end %>
     </div>
   </div>
