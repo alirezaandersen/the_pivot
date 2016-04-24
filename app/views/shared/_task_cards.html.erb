@@ -1,17 +1,21 @@
 <div class="row">
   <% tasks.each do |task| %>
     <div class="col xs12 x6 m4 l3">
-      <div class="card large">
+      <div class="card medium">
         <div class="card-image">
-            <%= link_to(image_tag(task.image_path, alt: task.image_path), task_path(task)) %>
+          <%= link_to(image_tag(task.image_path, alt: task.image_path), task_path(task)) %>
         </div>
         <div class="card-content">
-          <p><b>Task: </b><%= task.name %></p>
-          <p><b>Hours: </b><%= task.hours %></p>
-          <p><b>Location: </b><%= task.city.name %></p>
-          <p><b>Description: </b><%= task.description %></p>
-          <p><b>Date: </b><%= task.date %></p>
-          <p><b>Start time: </b><%= task.display_time %></p>
+          <span class="card-title activator grey-text text-darken-4"><%= link_to task.name, task_path(task) %><i class="material-icons right">more_vert</i></span>
+          <p><%= task.city.name %>, <%= task.city.state %></p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Task Details<i class="material-icons right">close</i></span>
+          <p><%= task.date %></p>
+          <span class="start_time_plus_hours">
+            About <%= task.hours %> Hour(s), starting at <%= task.display_time %>
+          </span>
+          <p><%= task.description %></p>
         </div>
         <div class="card-action">
           <% if method == :post %>

@@ -1,13 +1,29 @@
 <nav>
   <div class="nav-wrapper teal lighten-1">
-    <a href="/root_path" class="brand-logo center">Habitask</a>
-    <ul id="nav-mobile" class="left hide-on-med-and-down">
-      <li><a href="tasks"><i class="material-icons">list</i></a></li>
-      <li><a class="waves-effect waves-light btn">CATEGORIES</a></li>
+    <a href="/" class="brand-logo center">Habitask</a>
+    <a href="#" data-activates="mobile" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+
+    <ul class="left hide-on-med-and-down">
+      <li><%= render partial: 'shared/volunteer_commitments' %></li>
+      <li><a class="dropdown-button" href="#!" data-activates="cities-dropdown">BY CITY<i class="material-icons right">arrow_drop_down</i></a></li>
     </ul>
-    <ul class="right hide-on-med-and-down">
+
+    <ul class="main-resources right hide-on-med-and-down">
       <li><%= render partial: 'shared/login_logout' %></li>
       <li><%= link_to "Cart: #{@cart.total}", cart_path %></li>
     </ul>
+
+    <ul class="side-nav" id="mobile">
+      <li><%= render partial: 'shared/login_logout' %></li>
+      <li><%= link_to "Cart: #{@cart.total}", cart_path %></li>
+      <li><%= link_to "All Tasks", tasks_path %></li>
+    </ul>
   </div>
 </nav>
+
+<!-- Dropdown Structure -->
+<ul id="cities-dropdown" class="dropdown-content">
+  <% @cities.each do |city| %>
+    <li><%= link_to city.name.upcase, city_path(city) %></li>
+  <% end %>
+</ul>

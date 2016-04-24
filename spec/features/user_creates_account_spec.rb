@@ -4,7 +4,10 @@ RSpec.feature "User creates account" do
   scenario "they create a new account" do
     visit tasks_path
 
-    click_on("LOGIN")
+    within(".main-resources") do
+      click_link("LOGIN")
+    end
+
     expect(page).to have_current_path('/login')
     expect(page).to have_link('SIGN UP')
 
@@ -34,7 +37,10 @@ RSpec.feature "User creates account" do
 
     visit tasks_path
 
-    click_on("LOGIN")
+    within(".main-resources") do
+      click_link("LOGIN")
+    end
+
     expect(page).to have_current_path('/login')
 
     fill_in "Username", with: volunteer.username
@@ -49,12 +55,14 @@ RSpec.feature "User creates account" do
     expect(page).to have_content(volunteer.first_name)
     expect(page).to have_content(volunteer.email)
 
-    expect(page).to have_link('LOGOUT')
-    expect(page).to_not have_link('LOGIN')
+    within(".main-resources") do
+      expect(page).to have_link('LOGOUT')
+      expect(page).to_not have_link('LOGIN')
 
-    click_on("LOGOUT")
+      click_link("LOGOUT")
+    end
 
-    within(".flash-warning") do
+    within(".flash-notice") do
       expect(page).to have_content("Logged out!")
     end
   end

@@ -85,7 +85,11 @@ RSpec.feature "User can view past commitments" do
     visit tasks_path
     page.all(".card-action")[0].click_link("Add to Cart")
     page.all(".card-action")[1].click_link("Add to Cart")
-    click_on("Cart: 2")
+
+    within(".main-resources") do
+      click_on("Cart: 2")
+    end
+
     click_on("Checkout")
   end
 end
