@@ -1,9 +1,13 @@
 class VolunteerTasksController < ApplicationController
 
   def show
-    @upcoming_tasks  = current_volunteer.tasks.where(status: 2)
-    @pending_tasks   = current_volunteer.tasks.where(status: 3)
-    @completed_tasks = current_volunteer.tasks.where(status: 5)
+    if current_volunteer.nil?
+      render file: '/public/404'
+    else
+      @upcoming_tasks  = current_volunteer.tasks.where(status: 2)
+      @pending_tasks   = current_volunteer.tasks.where(status: 3)
+      @completed_tasks = current_volunteer.tasks.where(status: 5)
+    end
   end
 
   def create

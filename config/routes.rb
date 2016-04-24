@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :tasks, only: [:index, :show]
   resources :cart_tasks, only: [:create, :destroy]
-  resources :volunteers, only: [:create, :new]
+  resources :volunteers, only: [:create, :new, :edit]
 
   get '/dashboard', to: 'volunteers#show'
   get "/cart", to: 'cart_tasks#show'
@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/dashboard', to: 'volunteers#show'
+    patch '/dashboard', to: 'volunteers#update'
+    get '/edit', to: 'volunteers#edit'
   end
 
 end

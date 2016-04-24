@@ -6,11 +6,12 @@
             <%= link_to(image_tag(task.image_path, alt: task.image_path), task_path(task)) %>
         </div>
         <div class="card-content">
-          <p><strong><%= task.name %></strong></p>
-          <p><%= task.hours %> Hours</p>
-          <p><%= task.description %></p>
-          <p><%= task.date %></p>
-          <p><%= task.display_time %></p>
+          <p><b>Task: </b><%= task.name %></p>
+          <p><b>Hours: </b><%= task.hours %></p>
+          <p><b>Location: </b><%= task.city.name %></p>
+          <p><b>Description: </b><%= task.description %></p>
+          <p><b>Date: </b><%= task.date %></p>
+          <p><b>Start time: </b><%= task.display_time %></p>
         </div>
         <div class="card-action">
           <% if method == :post %>
