@@ -17,6 +17,7 @@ class VolunteersController < ApplicationController
   end
 
   def show
+    render file: '/public/404' if current_volunteer.nil?
     @volunteer = current_volunteer
   end
 

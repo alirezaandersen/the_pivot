@@ -1,7 +1,11 @@
 class VolunteerTasksController < ApplicationController
 
   def show
-    @volunteer_tasks = current_volunteer.tasks
+    if current_volunteer.nil?
+      render file: '/public/404'
+    else
+      @volunteer_tasks = current_volunteer.tasks
+    end
   end
 
   def create
