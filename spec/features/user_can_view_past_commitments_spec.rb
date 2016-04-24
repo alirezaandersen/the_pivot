@@ -2,15 +2,13 @@ require 'rails_helper'
 
 RSpec.feature "User can view past commitments" do
   scenario "they can visit their past commitments page" do
-
     volunteer = create(:volunteer_with_tasks)
     first_task, last_task = volunteer.tasks
 
     login_volunteer(volunteer)
+    cart_checkout
 
-    visit commitments_path(volunteer)
-
-    within(".commitment-table") do
+    within(".upcoming-table") do
       expect(page).to have_content(first_task.name)
       expect(page).to have_content(first_task.date)
       expect(page).to have_content(first_task.display_time)
@@ -32,10 +30,9 @@ RSpec.feature "User can view past commitments" do
     non_viewable_1, non_viewable_2 = not_in_session_volunteer.tasks
 
     login_volunteer(in_session_volunteer)
+    cart_checkout
 
-    visit commitments_path(in_session_volunteer)
-
-    within(".commitment-table") do
+    within(".upcoming-table") do
       expect(page).to have_content(viewable_1.name)
       expect(page).to have_content(viewable_1.date)
       expect(page).to have_content(viewable_1.display_time)
@@ -69,7 +66,7 @@ RSpec.feature "User can view past commitments" do
       expect(page).to have_content("#{first_task.pledge_date}")
     end
 
-    page.all(".commitment-table")[0].click_link("#{first_task.name}")
+    page.all(".upcoming-table")[0].click_link("#{first_task.name}")
 
     expect(page).to have_current_path(task_path(first_task))
 

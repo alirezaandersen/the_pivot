@@ -1,7 +1,9 @@
 class VolunteerTasksController < ApplicationController
 
   def show
-    @volunteer_tasks = current_volunteer.tasks
+    @upcoming_tasks  = current_volunteer.tasks.where(status: 2)
+    @pending_tasks   = current_volunteer.tasks.where(status: 3)
+    @completed_tasks = current_volunteer.tasks.where(status: 5)
   end
 
   def create

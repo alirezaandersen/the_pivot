@@ -35,7 +35,7 @@ RSpec.feature "User can checkout tasks" do
       expect(page).to have_content("Commitment was successfully placed")
     end
 
-    within(".commitment-table") do
+    within(".upcoming-table") do
       expect(page).to have_content("Task 1")
       expect(page).to have_content("Task 2")
     end
