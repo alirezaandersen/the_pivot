@@ -6,14 +6,20 @@ RSpec.feature "Visitor can view landing page" do
 
     visit root_path
 
-    expect(page).to have_button "View All Tasks"
+    within(".first-slide") do
+      expect(page).to have_content "Get Started"
+    end
+
     cities.each do |city|
       expect(page).to have_content city.name
     end
 
-    click_button "View All Tasks"
+    within(".first-slide") do
+      click_link "Get Started"
+    end
 
     expect(page).to have_current_path tasks_path
+
     cities.each do |city|
       city.tasks.each do |task|
         expect(page).to have_content task.name
