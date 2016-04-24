@@ -62,7 +62,7 @@ RSpec.feature "User creates account" do
       click_link("LOGOUT")
     end
 
-    within(".flash-warning") do
+    within(".flash-notice") do
       expect(page).to have_content("Logged out!")
     end
   end
