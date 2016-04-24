@@ -78,9 +78,13 @@ RSpec.feature "Visitor can add tasks to cart" do
     page.all(".card-action")[0].click_link("Remove from Cart")
 
     expect(page).to have_content("Total Hours: 2")
+
+    save_and_open_page
+
     within(".card-content") do
       expect(page).not_to have_content("#{task.name}")
     end
+
     within(".flash-notice") do
       expect(page).to have_content(message)
 
