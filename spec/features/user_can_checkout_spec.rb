@@ -7,13 +7,17 @@ RSpec.feature "User can checkout tasks" do
 
     visit tasks_path
 
-    expect(page).to have_content("Cart: 0")
-    expect(page).to have_content("LOGIN")
+    within(".main-resources") do
+      expect(page).to have_content("Cart: 0")
+      expect(page).to have_content("LOGIN")
+    end
 
     page.all(".card-action")[0].click_link("Add to Cart")
     page.all(".card-action")[1].click_link("Add to Cart")
 
-    click_on("Cart: 2")
+    within(".main-resources") do
+      click_on("Cart: 2")
+    end
 
     expect(page).to have_current_path("/cart")
     expect(page).to_not contain_exactly("Checkout")
@@ -21,9 +25,11 @@ RSpec.feature "User can checkout tasks" do
 
     login_volunteer(volunteer)
 
-    expect(page).to have_current_path("/cart")
-    expect(page).to have_content("LOGOUT")
+    within(".main-resources") do
+      expect(page).to have_content("LOGOUT")
+    end
 
+    expect(page).to have_current_path("/cart")
     expect(page).to have_content("Task 1")
     expect(page).to have_content("Task 2")
 

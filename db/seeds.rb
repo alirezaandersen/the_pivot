@@ -5,7 +5,7 @@ city_two = City.create(name: "Aurora",
                        state: "CO")
 
 
-1.upto(5) do |i|
+1.upto(4) do |i|
   Task.create(name:        "Name #{i}",
               description: "Description #{i}",
               date:        "11/04/2016",
@@ -15,7 +15,7 @@ city_two = City.create(name: "Aurora",
               city_id:     city_one.id)
 end
 
-6.upto(10) do |i|
+5.upto(9) do |i|
   Task.create(name:        "Name #{i}",
               description: "Description #{i}",
               date:        "01/23/2017",
