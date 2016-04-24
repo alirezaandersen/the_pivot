@@ -9,7 +9,9 @@ RSpec.feature "Visitor can view cart but not checkout" do
 
     first(".card-action").click_link("Add to Cart")
 
-    click_link("Cart: 1")
+    within(".main-resources") do
+      click_link("Cart: 1")
+    end
 
     expect(page).to_not contain_exactly("Checkout")
     expect(page).to have_current_path("/cart")
@@ -37,7 +39,10 @@ RSpec.feature "Visitor can view cart but not checkout" do
       expect(page).to have_content("Logged in as bobthebuilder")
     end
 
-    click_on "Cart:"
+    within(".main-resources") do
+      click_link("Cart: 1")
+    end
+
     expect(page).to have_current_path(cart_path)
     expect(page).to have_current_path("/cart")
     expect(page).to have_content task.name
@@ -45,11 +50,14 @@ RSpec.feature "Visitor can view cart but not checkout" do
     expect(page).to have_content task.hours
 
     expect(page).to have_button("Checkout")
-    expect(page).to have_link("LOGOUT")
-    expect(page).to_not have_link("LOGIN")
     expect(page).to_not have_button("Login or Create Account to Checkout")
 
-    click_link "LOGOUT"
+    within(".main-resources") do
+      expect(page).to have_link("LOGOUT")
+      expect(page).to_not have_link("LOGIN")
+
+      click_link "LOGOUT"
+    end
 
     expect(page).to have_current_path(root_path)
     expect(page).to have_link("LOGIN")

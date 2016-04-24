@@ -20,7 +20,9 @@ RSpec.feature "Visitor can add tasks to cart" do
 
     first(".card-action").click_link("Add to Cart")
 
-    click_on("Cart:")
+    within(".main-resources") do
+      click_link("Cart:")
+    end
 
     expect(page).to have_current_path("/cart")
     expect(page).to have_content task.name
@@ -37,8 +39,9 @@ RSpec.feature "Visitor can add tasks to cart" do
     first(".card-action").click_link("Add to Cart")
     page.all(".card-action")[1].click_link("Add to Cart")
 
-    click_on("Cart:")
-
+    within(".main-resources") do
+      click_link("Cart:")
+    end
     expect(page).to have_content("Total Hours: 3")
   end
 
@@ -65,7 +68,10 @@ RSpec.feature "Visitor can add tasks to cart" do
     visit tasks_path
     page.all(".card-action")[0].click_link("Add to Cart")
     page.all(".card-action")[1].click_link("Add to Cart")
-    click_on("Cart:")
+
+    within('.main-resources') do
+      click_on("Cart:")
+    end
 
     expect(page).to have_content("Total Hours: 3")
 
