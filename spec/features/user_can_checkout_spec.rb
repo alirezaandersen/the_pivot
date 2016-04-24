@@ -32,7 +32,7 @@ RSpec.feature "User can checkout tasks" do
     expect(page).to have_current_path("/commitments")
 
     within(".flash-notice") do
-      expect(page).to have_content("Commitment was successfully placed")
+      expect(page).to have_content("You're Committed!")
     end
 
     within(".upcoming-table") do
