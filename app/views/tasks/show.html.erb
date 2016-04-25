@@ -9,14 +9,12 @@
       <p><b>Date:</b> <%= @task.date %></p>
       <p><b>Time:</b> <%= @task.display_time %></p>
       <p><b>Time Commitment:</b> <%= @task.hours %> hour(s)</p>
-      <p><b>Status:</b> <%= @task.status %></p>
       <p><b>Description:</b> <%= @task.description %></p>
-      <% if @task.retired? %>
-        <h5>Task Retired</h5>
-      <% elsif @task.active? %>
+      <p><b>Status: </b><%= @task.status %></p>
+      <% if @task.active? %>
         <%= button_to "Add to Cart", cart_tasks_path(task_id: @task.id), class:"slider-btn waves-effect waves-light btn teal lighten-3" %>
       <% else %>
-        <p><b>Status: <%= @task.status %></b></p>
+        <%= button_to "Back to Commitments", commitments_path, class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :get %>
       <% end %>
     </div>
   </div>
