@@ -1,94 +1,12 @@
 <h1>Commitments</h1>
 
-<h4>Upcoming Tasks</h4>
 <div class="upcoming-table">
-  <table class="highlight bordered">
-    <thead>
-      <tr>
-        <th data-field="name">Name</th>
-        <th data-field="status">Status</th>
-        <th data-field="pledge_date">Pledged On</th>
-        <th data-field="date">Scheduled Date</th>
-        <th data-field="start_time">Start Time</th>
-        <th data-field="hours">Hours</th>
-        <th data-field="city_id">City</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @upcoming_tasks.each do |task| %>
-        <tr>
-          <td><%= link_to task.name, task_path(task) %></td>
-          <td id="task-status"><%= task.status %></td>
-          <td id="task-pledge-date"><%= task.pledge_date %></td>
-          <td><%= task.date %></td>
-          <td><%= task.display_time %></td>
-          <td><%= task.hours %></td>
-          <td><%= task.city_id %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div><br>
+  <h4>Upcoming Tasks</h4>
+  <%= render partial: "task_table", locals: {tasks: @upcoming_tasks} %>
+</div>
 
 <h4>Pending Tasks</h4>
-<div class="pending-table">
-  <table class="highlight bordered">
-    <thead>
-      <tr>
-        <th data-field="name">Name</th>
-        <th data-field="status">Status</th>
-        <th data-field="pledge_date">Pledged On</th>
-        <th data-field="date">Scheduled Date</th>
-        <th data-field="start_time">Start Time</th>
-        <th data-field="hours">Hours</th>
-        <th data-field="city_id">City</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @pending_tasks.each do |task| %>
-        <tr>
-          <td><%= link_to task.name, task_path(task) %></td>
-          <td id="task-status"><%= task.status %></td>
-          <td id="task-pledge-date"><%= task.pledge_date %></td>
-          <td><%= task.date %></td>
-          <td><%= task.display_time %></td>
-          <td><%= task.hours %></td>
-          <td><%= task.city_id %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div><br>
+<%= render partial: "task_table", locals: {tasks: @pending_tasks} %>
 
 <h4>Completed Tasks</h4>
-<div class="completed-table">
-  <table class="highlight bordered">
-    <thead>
-      <tr>
-        <th data-field="name">Name</th>
-        <th data-field="status">Status</th>
-        <th data-field="pledge_date">Pledged On</th>
-        <th data-field="date">Scheduled Date</th>
-        <th data-field="start_time">Start Time</th>
-        <th data-field="hours">Hours</th>
-        <th data-field="city_id">City</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @completed_tasks.each do |task| %>
-        <tr>
-          <td><%= link_to task.name, task_path(task) %></td>
-          <td id="task-status"><%= task.status %></td>
-          <td id="task-pledge-date"><%= task.pledge_date %></td>
-          <td><%= task.date %></td>
-          <td><%= task.display_time %></td>
-          <td><%= task.hours %></td>
-          <td><%= task.city_id %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div><br>
+<%= render partial: "task_table", locals: {tasks: @completed_tasks} %>
