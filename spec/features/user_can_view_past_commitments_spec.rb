@@ -21,6 +21,7 @@ RSpec.feature "User can view past commitments" do
       expect(page).to have_content(last_task.hours)
       expect(page).to have_content(last_task.city_id)
     end
+
   end
 
   scenario "they can only see their own commitments" do
@@ -72,6 +73,26 @@ RSpec.feature "User can view past commitments" do
 
     expect(page).to have_content("Status: pledged")
     expect(page).to have_content("#{first_task.hours}")
+  end
+
+  scenario "they can navigate back to commitments page" do
+    volunteer = create(:volunteer_with_tasks)
+    first_task, last_task = volunteer.tasks
+
+    login_volunteer(volunteer)
+
+    cart_checkout
+
+    visit commitments_path(volunteer)
+
+    page.all(".upcoming-table")[0].click_link("#{first_task.name}")
+
+    expect(page).to have_current_path(task_path(first_task))
+    expect(page).to have_button("Back to Commitments")
+
+    click_button("Back to Commitments")
+
+    expect(page).to have_current_path(commitments_path)
   end
 
   def login_volunteer(volunteer)

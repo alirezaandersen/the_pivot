@@ -7,8 +7,7 @@ RSpec.feature "User can view retired items" do
     task.update_attributes(status: "retired")
 
     visit task_path(task)
-
-    expect(page).to have_content("Task Retired")
+    expect(page).to have_content("retired")
     expect(page).to_not have_content("Add to Cart")
   end
 end

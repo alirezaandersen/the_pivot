@@ -4,7 +4,7 @@ class VolunteerTasks
     session.each do |task_id, _v|
       task = Task.find(task_id)
       task.update_attributes(volunteer_id: volunteer.id, pledge_date: Date.today)
-      task.pledged!
+      task.pledged!      
     end
   end
 end
