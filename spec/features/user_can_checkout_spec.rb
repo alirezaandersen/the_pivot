@@ -4,7 +4,7 @@ RSpec.feature "User can checkout tasks" do
   scenario "they can checkout tasks" do
     volunteer = create(:volunteer)
     create(:city_with_tasks)
-
+    
     visit tasks_path
 
     within(".main-resources") do
