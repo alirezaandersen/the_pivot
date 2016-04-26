@@ -15,4 +15,9 @@ class Task < ActiveRecord::Base
   def display_time
     self.start_time.strftime('%l:%M %p')
   end
+
+  def format_address
+    address&.gsub(/\W+/, "+")
+  end
+
 end

@@ -1,0 +1,10 @@
+<h1>Create a new Task</h1>
+<%= form_for @task do |f| %>
+<%= f.text_field :name, placeholder: "Name" %>
+<%= f.text_field :description, placeholder: "Description" %>
+<%= f.text_field :date, placeholder: "Date" %>
+<%= f.text_field :start_time, placeholder: "Start Time" %>
+<%= f.text_field :hours, placeholder: "Hours" %>
+<%= f.text_field :city_id, placeholder: "City" %>
+<%= f.submit "Create this Task!" %>
+<% end %>
