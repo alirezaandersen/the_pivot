@@ -19,4 +19,8 @@ class City < ActiveRecord::Base
     addresses.join("|")
   end
 
+  def name_and_state
+  "#{name}, #{state}"
+end
+
 end

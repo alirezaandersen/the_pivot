@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'volunteers#show'
     patch '/dashboard', to: 'volunteers#update'
     get '/edit', to: 'volunteers#edit'
-    resources :tasks, only: [:new]
+    resources :tasks, only: [:new, :create]
   end
 
 end
