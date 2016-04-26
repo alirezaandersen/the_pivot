@@ -14,4 +14,13 @@ class City < ActiveRecord::Base
     slug
   end
 
+  def to_map
+    addresses = tasks.map {|task| task.format_address }.compact
+    addresses.join("|")
+  end
+
+  def name_and_state
+  "#{name}, #{state}"
+end
+
 end

@@ -24,7 +24,8 @@ Volunteer.create(first_name: "super",
               start_time:  Time.new,
               hours:       "#{i}",
               image_path:  "https://robohash.org/#{i}",
-              city_id:     city_two.id)
+              city_id:     city_two.id,
+              address:     "1270#{i * 3} E Mississippi Ave, Aurora, CO 80012")
 
   Task.create(name:        "Name #{i}",
               description: "Description #{i}",
@@ -32,5 +33,6 @@ Volunteer.create(first_name: "super",
               start_time:  Time.new,
               hours:       "#{i}",
               image_path:  "https://robohash.org/#{i}",
-              city_id:     city_one.id)
+              city_id:     city_one.id,
+              address:     "15#{i * 10} Blake St. Denver, CO 80204")
 end
