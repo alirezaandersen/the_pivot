@@ -8,12 +8,11 @@ RSpec.describe Commitment, type: :model do
       session = { task_1.id.to_s => 1, task_2.id.to_s => 1 }
       Commitment.associate_tasks(session, volunteer)
 
-      updated_task_1, updated_task_2 = volunteer.tasks
-      expect(updated_task_1.status).to eq("pledged")
-      expect(updated_task_2.status).to eq("pledged")
+      expect(volunteer.commitments[0].task.status).to eq("pledged")
+      expect(volunteer.commitments[1].task.status).to eq("pledged")
 
-      expect(updated_task_1.volunteer_id).to eq(volunteer.id)
-      expect(updated_task_2.volunteer_id).to eq(volunteer.id)
+      expect(volunteer.commitments[0].volunteer_id).to eq(volunteer.id)
+      expect(volunteer.commitments[1].volunteer_id).to eq(volunteer.id)
     end
   end
 end

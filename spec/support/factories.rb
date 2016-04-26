@@ -13,15 +13,15 @@ FactoryGirl.define do
     password "password"
     password_confirmation "password"
 
-    factory :volunteer_with_tasks do
-      transient do
-        tasks_count 4
-      end
-
-      after(:create) do |volunteer, evaluator|
-        create_list(:task, evaluator.task_count, volunteer: volunteer)
-      end
-    end
+    # factory :volunteer_with_tasks do
+    #   transient do
+    #     tasks_count 4
+    #   end
+    #
+    #   after(:create) do |volunteer, evaluator|
+    #     create_list(:task, evaluator.tasks_count, volunteer: volunteer)
+    #   end
+    # end
   end
 
   factory :task do
