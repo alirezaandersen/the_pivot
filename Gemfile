@@ -22,6 +22,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+gem 'figaro'
 
 # Use Rails 12Factor for Heroku Error Logging
 gem 'rails_12factor', group: :production
@@ -40,7 +41,7 @@ group :development, :test do
   gem 'mocha'
   gem 'shoulda'
   gem 'materialize-sass'
-    
+
 end
 
 group :development do
