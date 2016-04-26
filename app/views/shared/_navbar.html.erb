@@ -14,14 +14,10 @@
       <li><%= link_to "Cart: #{@cart.total}", cart_path %></li>
     </ul>
 
-    <ul class="side-nav" id="mobile">
+    <ul class="side-nav show-on-medium" id="mobile">
       <li><%= link_to "CART: #{@cart.total}", cart_path %></li>
       <li><%= render partial: 'shared/login_logout' %></li>
       <li><%= link_to "ALL TASKS", tasks_path %></li>
-      <!-- <div class="mobile-dropdowns">
-        <li><%= render partial: 'shared/volunteer_commitments' %></li>
-        <li><a class="dropdown-button" href="#!" data-activates="cities-dropdown">BY CITY<i class="material-icons right">arrow_drop_down</i></a></li>
-      </div> -->
     </ul>
   </div>
 </nav>
