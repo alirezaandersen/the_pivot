@@ -66,16 +66,6 @@ tasks = [
   "50 S Peoria St, Aurora, CO 80012"]
   ]
 
-
-
-# Task.create!(name: tasks[1][0],
-#     description: tasks[1][1],
-#     date: tasks[1][2],
-#     start_time: tasks[1][3],
-#     hours: tasks[1][4],
-#     image_path: tasks[1][5],
-#     city_id: tasks[1][6])
-
 tasks.each do |task|
   Task.create(name: task[0],
       description: task[1],
@@ -84,23 +74,5 @@ tasks.each do |task|
       hours: task[6],
       image_path: task[7],
       city_id: task[8])
-      # address: task[6]
+      # address: task[9]
 end
-
-# 1.upto(4) do |i|
-#   Task.create(name:        tasks[0][i],
-#               description: "Description #{i}",
-#               date:        "11/04/2016",
-#               start_time:  Time.new,
-#               hours:       "#{i}",
-#               image_path:  "https://robohash.org/#{i}",
-#               city_id:     city_two.id)
-#
-#   Task.create(name:        "Name #{i}",
-#               description: "Description #{i}",
-#               date:        "11/04/2016",
-#               start_time:  Time.new,
-#               hours:       "#{i}",
-#               image_path:  "https://robohash.org/#{i}",
-#               city_id:     city_one.id)
-# end
