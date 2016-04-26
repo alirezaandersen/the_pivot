@@ -37,3 +37,8 @@ a:link {
   text-align: center;
   margin-top: 40px;
 }
+
+.mobile-dropdowns {
+  /*background-color: teal;*/
+  color: black;
+}
