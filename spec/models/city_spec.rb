@@ -4,22 +4,8 @@ RSpec.describe City, type: :model do
   context "#to_map" do
     it "formats string for map" do
       city = create(:city_with_tasks)
-      task =  Task.create(name: "Name",
-                    description: "Description",
-                    date:        "11/04/2016",
-                    start_time:  "3:00 PM",
-                    hours:       3,
-                    city_id:      city.id,
-                    address:  "942 Hazel Court, Denver, CO 80204")
-      task =  Task.create(name: "Name",
-                    description: "Description",
-                    date:        "11/04/2016",
-                    start_time:  "3:00 PM",
-                    hours:       3,
-                    city_id:      city.id,
-                    address:  "1510 Blake St. Denver, CO 80202")
 
-      expect(city.to_map).to eql("942+Hazel+Court+Denver+CO+80204%7C1510+Blake+St+Denver+CO+80202")
+      expect(city.to_map).to eql("107+Main+Street+Denver+CO+10204%7C106+Main+Street+Denver+CO+10204%7C105+Main+Street+Denver+CO+10204%7C104+Main+Street+Denver+CO+10204")
     end
   end
 end
