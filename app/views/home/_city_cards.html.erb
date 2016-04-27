@@ -3,13 +3,13 @@
     <div class="col xs12 x6 m4 l3">
       <div class="card small">
         <div class="card-image">
-          <img src="http://bizlifes.net/img/2015/04/1428636048_wee_2014-05-03_lif_036_31493321_i4.jpg">
+          <img src="<%= city.image_path %>" >
         </div>
         <div class="card-content">
           <span class="card-title grey-text text-darken-4"><%= city.name %>, <%= city.state %></span>
         </div>
         <div class="card-action">
-          <%= link_to "ALL TASKS", city_path(city) %>
+          <%= link_to "TASKS", city_path(city) %>
         </div>
       </div>
     </div>
