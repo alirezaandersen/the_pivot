@@ -60,7 +60,6 @@ RSpec.feature "Visitor can add tasks to cart" do
   end
 
   scenario "they can remove an item from the cart" do
-    skip
     create(:city_with_tasks)
     task = Task.all.first
     message = "Successfully removed #{task.name} from your cart."

@@ -36,7 +36,6 @@ RSpec.describe Cart, type: :model do
     end
 
     it "can remove a task from the cart" do
-      skip
       city = create(:city_with_tasks)
       cart = Cart.new({})
       city.tasks.each do |task|
