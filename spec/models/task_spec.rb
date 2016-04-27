@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Task, type: :model do
   context 'associations' do
-    it { should belong_to(:volunteer) }
+    it { should have_many(:commitments) }
+    it { should have_many(:volunteers).through(:commitments) }
     it { should belong_to(:city) }
   end
 

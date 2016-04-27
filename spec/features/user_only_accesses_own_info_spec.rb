@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "User only accesses own information" do
   scenario "visitors cannot access users information" do
-    volunteer = create(:volunteer_with_tasks)
+    volunteer = create(:volunteer)
 
     visit dashboard_path
     expect(page).to have_content("The page you were looking for doesn't exist (404)")
@@ -21,7 +21,7 @@ RSpec.feature "User only accesses own information" do
   end
 
   scenario "authenticated user cannot access others information" do
-    volunteer1, volunteer2 = create_list(:volunteer_with_tasks, 2)
+    volunteer1, volunteer2 = create_list(:volunteer, 2)
 
     visit login_path
 

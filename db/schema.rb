@@ -24,13 +24,20 @@ ActiveRecord::Schema.define(version: 20160427000541) do
     t.string   "slug"
   end
 
+  create_table "commitments", force: :cascade do |t|
+    t.integer "volunteer_id"
+    t.integer "task_id"
+  end
+
+  add_index "commitments", ["task_id"], name: "index_commitments_on_task_id", using: :btree
+  add_index "commitments", ["volunteer_id"], name: "index_commitments_on_volunteer_id", using: :btree
+
   create_table "tasks", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.date     "date"
     t.time     "start_time"
     t.integer  "hours"
-    t.integer  "volunteer_id"
     t.integer  "city_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
@@ -44,7 +51,6 @@ ActiveRecord::Schema.define(version: 20160427000541) do
   end
 
   add_index "tasks", ["city_id"], name: "index_tasks_on_city_id", using: :btree
-  add_index "tasks", ["volunteer_id"], name: "index_tasks_on_volunteer_id", using: :btree
 
   create_table "volunteers", force: :cascade do |t|
     t.string   "first_name"
@@ -58,6 +64,7 @@ ActiveRecord::Schema.define(version: 20160427000541) do
     t.datetime "updated_at",                        null: false
   end
 
+  add_foreign_key "commitments", "tasks"
+  add_foreign_key "commitments", "volunteers"
   add_foreign_key "tasks", "cities"
-  add_foreign_key "tasks", "volunteers"
 end

@@ -8,7 +8,7 @@ RSpec.feature "User cannot view admin dashboard" do
   end
 
   scenario "logged in user receives a 404 error when visiting admin dashboard" do
-    volunteer = create(:volunteer_with_tasks)
+    volunteer = create(:volunteer)
     login_volunteer(volunteer)
     visit "admin/dashboard"
 
