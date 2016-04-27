@@ -28,7 +28,7 @@ FactoryGirl.define do
       "#{n}"
     end
 
-    sequence(:zip_code) { |n| "#{n}0204" }
+    zip_code "10204"
 
     sequence(:address) { |n| "#{n} Main Street" }
 
