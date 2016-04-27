@@ -39,9 +39,3 @@ RSpec.feature "User only accesses own information" do
     expect(page).to have_content("The page you were looking for doesn't exist (404)")
   end
 end
-#
-# Background: An authenticated user and the ability to add an admin user
-#       As an Authenticated User
-#       I cannot view another user's private data (current or past orders, etc)
-#       I cannot view the administrator screens or use admin functionality
-#       I cannot make myself an admin
