@@ -17,16 +17,15 @@ class Task < ActiveRecord::Base
     self.start_time.strftime('%l:%M %p')
   end
 
-  def pledged
-    # byebug
+  def self.pledged
     where(status: 2)
   end
 
-  def pending
+  def self.pending
     where(status: 3)
   end
 
-  def completed
+  def self.completed
     where(status: 5)
   end
 

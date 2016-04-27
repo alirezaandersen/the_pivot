@@ -11,7 +11,7 @@
       <p><b>Time Commitment:</b> <%= @task.hours %> hour(s)</p>
       <p><b>Description:</b> <%= @task.description %></p>
       <p><b>Status: </b><%= @task.status %></p>
-      <% if @task.status == "retired" %>
+      <% if @task.retired? %>
         <p><b>You cannot check out a retired Task.</b></p>
       <% elsif @task.active? %>
         <%= button_to "Add to Cart", cart_tasks_path(task_id: @task.id), class:"slider-btn waves-effect waves-light btn teal lighten-3" %>

@@ -25,7 +25,6 @@ RSpec.feature "User can view past commitments" do
   end
 
   scenario "they can only see their own commitments" do
-    # in_session_volunteer, not_in_session_volunteer = create_list(:volunteer_with_tasks, 2)
     in_session_volunteer     = temp_helper
     not_in_session_volunteer = temp_helper
 

@@ -48,7 +48,7 @@ tasks = [
   "Come to the famous Arvada coast to help pick up trash and things. There are many things on this beach, so we better clean it up. There’s a lot of stuff out there. We’re gonna go out, pick it up, get it off the beach and enjoy the beach.",
   2017, 05, 30, "4:00 PM", 6,  "https://robohash.org/fhdkdjs", city_one.id,
   "14200 E Alameda Ave, Aurora, CO 80012"],
-  ["Paint the Saint Matthews Hall",
+  ["Paint Saint Matthews",
   "Greetings! our church needs painted. Do you want to come help paint this church? We’ve got the supplies. All you need to do is show up! We have a lot of stuff to do like take care of things, and cut the wood, and paint the church, and feed the hungry after we paint the church. come on by!",
   2016, 04, 30, "1:00 PM", 7, "https://robohash.org/fhd", city_one.id,
   "170 S Chambers Rd, Aurora, CO 80017"],
@@ -74,5 +74,5 @@ tasks.each do |task|
       hours: task[6],
       image_path: task[7],
       city_id: task[8])
-      # address: task[9]
+      # address: task[10]
 end
