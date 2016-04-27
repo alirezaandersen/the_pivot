@@ -70,7 +70,7 @@ tasks.each do |task|
     date: Date.new(task[2], task[3], task[4]),
     start_time: task[5],
     hours: task[6],
-    image: File.new("#{Rails.root}/app/assets/images/#{task[7]}"),
+    image: File.open("#{Rails.root}/app/assets/images/#{task[7]}"),
     city_id: task[8],
     address: task[9])
   end
