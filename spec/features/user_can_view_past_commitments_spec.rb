@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "User can view past commitments" do
   scenario "they can visit their past commitments page" do
-    volunteer = create(:volunteer_with_tasks)
+    volunteer = temp_helper
     first_task, last_task = volunteer.tasks
 
     login_volunteer(volunteer)
@@ -25,7 +25,9 @@ RSpec.feature "User can view past commitments" do
   end
 
   scenario "they can only see their own commitments" do
-    in_session_volunteer, not_in_session_volunteer = create_list(:volunteer_with_tasks, 2)
+    # in_session_volunteer, not_in_session_volunteer = create_list(:volunteer_with_tasks, 2)
+    in_session_volunteer     = temp_helper
+    not_in_session_volunteer = temp_helper
 
     viewable_1, viewable_2 = in_session_volunteer.tasks
     non_viewable_1, non_viewable_2 = not_in_session_volunteer.tasks
@@ -50,12 +52,14 @@ RSpec.feature "User can view past commitments" do
   end
 
   scenario "they can view details of an individual pledged task" do
-    volunteer = create(:volunteer_with_tasks)
-    first_task, last_task = volunteer.tasks
+    volunteer = create(:volunteer)
+    tasks = create_list(:task, 2)
 
     login_volunteer(volunteer)
 
     cart_checkout
+
+    first_task, last_task = volunteer.tasks
 
     visit commitments_path(volunteer)
 
@@ -76,12 +80,14 @@ RSpec.feature "User can view past commitments" do
   end
 
   scenario "they can navigate back to commitments page" do
-    volunteer = create(:volunteer_with_tasks)
-    first_task, last_task = volunteer.tasks
+    volunteer = create(:volunteer)
+    tasks = create_list(:task, 2)
 
     login_volunteer(volunteer)
 
     cart_checkout
+
+    first_task, last_task = volunteer.tasks
 
     visit commitments_path(volunteer)
 
@@ -112,5 +118,12 @@ RSpec.feature "User can view past commitments" do
     end
 
     click_on("Checkout")
+  end
+
+  def temp_helper
+    volunteer = create(:volunteer)
+    tasks = create_list(:task, 2)
+    volunteer.tasks << tasks
+    volunteer
   end
 end

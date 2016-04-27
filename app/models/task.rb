@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
-  belongs_to :volunteer
+  has_many :commitments
+  has_many :volunteers, through: :commitments
   belongs_to :city
 
   validates :name, presence: true

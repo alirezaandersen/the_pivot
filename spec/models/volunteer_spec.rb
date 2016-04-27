@@ -11,6 +11,6 @@ RSpec.describe Volunteer, type: :model do
   end
 
   context "asssociations" do
-    it { should have_many(:tasks) }
+    it { should have_many(:tasks).through(:commitments) }
   end
 end
