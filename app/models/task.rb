@@ -29,6 +29,7 @@ class Task < ActiveRecord::Base
 
   def self.completed
     where(status: 5)
+  end
 
   def format_address
     address&.gsub(/\W+/, "+")

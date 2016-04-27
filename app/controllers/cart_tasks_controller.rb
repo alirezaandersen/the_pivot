@@ -10,7 +10,7 @@ class CartTasksController < ApplicationController
       session[:cart] = @cart.contents
       flash[:notice] = "Task added!"
     end
-    redirect_to tasks_path
+    redirect_to request.referrer
   end
 
   def show

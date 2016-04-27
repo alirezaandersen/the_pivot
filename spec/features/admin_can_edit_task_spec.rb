@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Admin edits tasks" do
   scenario "They log in and edit a task" do
+    skip
     city  = create(:city)
     task  = create(:task)
     admin = Volunteer.create(first_name: "John",
