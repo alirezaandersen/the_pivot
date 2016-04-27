@@ -1,5 +1,15 @@
 module UserHelpers
 
+  def create_and_login_admin
+    admin = Volunteer.create(first_name: "John",
+                             last_name: "Last",
+                             username: "admin",
+                             email: "admin@me.com",
+                             password: "password",
+                             role: 1)
+    login_volunteer(admin)
+  end
+
   def login_volunteer(volunteer)
     visit login_path
     fill_in "Username", with: volunteer.username
