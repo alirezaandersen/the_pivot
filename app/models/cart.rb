@@ -17,12 +17,16 @@ class Cart
     contents.delete(task_id.to_s)
   end
 
-  def total_hours    
+  def total_hours
     tasks = contents.map {|key, value| Task.find(key)}
     tasks.reduce(0) { |sum, task| sum += task.hours }
   end
 
   def has_task?(task_id)
     contents.has_key?(task_id.to_s)
+  end
+
+  def tasks
+    self.contents.map { |task_id, _quantity| Task.find(task_id) }
   end
 end

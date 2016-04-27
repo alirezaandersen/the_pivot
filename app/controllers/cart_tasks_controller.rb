@@ -14,7 +14,7 @@ class CartTasksController < ApplicationController
   end
 
   def show
-    @tasks = @cart.contents.map { |task_id, _quantity| Task.find(task_id) }
+    @tasks = @cart.tasks
   end
 
   def destroy
