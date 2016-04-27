@@ -63,7 +63,7 @@ tasks = [
     "1101 S Washington St, Denver, CO 80013"]
   ]
 
-tasks.each do |task|
+created_tasks = tasks.map do |task|
   Task.create(
     name: task[0],
     description: task[1],
@@ -74,3 +74,5 @@ tasks.each do |task|
     city_id: task[8],
     address: task[9])
   end
+
+created_tasks.last.retired!
