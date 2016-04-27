@@ -17,6 +17,7 @@ class Admin::TasksController < Admin::BaseController
   end
 
   def edit
+    @task = Task.find(params[:id])
   end
 
   def update

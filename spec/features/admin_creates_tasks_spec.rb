@@ -24,8 +24,7 @@ RSpec.feature "Admin creates tasks" do
     fill_in "Start Time", with: "5:00 PM"
     fill_in "Hours", with: 3
     select("#{city.name_and_state}", from: 'task_city_id')
-
-    # paperclip? how do we test for attaching an image
+    attach_file("task[image]", './app/assets/images/full_placeholder.png')
 
     click_button("Create this Task!")
 
@@ -33,6 +32,7 @@ RSpec.feature "Admin creates tasks" do
     expect(page).to have_content("Task Created!")
 
     visit tasks_path
+
     expect(page).to have_content("New Task")
   end
 end
