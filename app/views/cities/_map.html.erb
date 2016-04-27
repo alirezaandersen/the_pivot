@@ -1,0 +1,5 @@
+<div id="map">
+  <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @city.name+@city.state %>&zoom=13&size=600x300&maptype=roadmap
+&markers=<%= @city.to_map %>
+&key=<%=ENV['google_map_key']%>">
+</div>

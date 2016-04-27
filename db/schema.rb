@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425223801) do
+ActiveRecord::Schema.define(version: 20160427000541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,11 +39,15 @@ ActiveRecord::Schema.define(version: 20160425223801) do
     t.time     "start_time"
     t.integer  "hours"
     t.integer  "city_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.text     "image_path"
-    t.integer  "status",      default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "status",             default: 0
     t.date     "pledge_date"
+    t.string   "address"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "tasks", ["city_id"], name: "index_tasks_on_city_id", using: :btree

@@ -4,7 +4,9 @@ RSpec.feature "User can checkout tasks" do
   scenario "they can checkout tasks" do
     volunteer = create(:volunteer)
     create(:city_with_tasks)
-    
+
+    task_1, task_2 = Task.all.take(2)
+
     visit tasks_path
 
     within(".main-resources") do
@@ -30,8 +32,8 @@ RSpec.feature "User can checkout tasks" do
     end
 
     expect(page).to have_current_path("/cart")
-    expect(page).to have_content("Task 1")
-    expect(page).to have_content("Task 2")
+    expect(page).to have_content("#{task_1.name}")
+    expect(page).to have_content("#{task_2.name}")
 
     click_on("Checkout")
 
@@ -42,8 +44,8 @@ RSpec.feature "User can checkout tasks" do
     end
 
     within(".upcoming-table") do
-      expect(page).to have_content("Task 1")
-      expect(page).to have_content("Task 2")
+      expect(page).to have_content("#{task_1.name}")
+      expect(page).to have_content("#{task_2.name}")
     end
 
     expect(page).to have_content("Cart: 0")

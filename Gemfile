@@ -22,6 +22,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+gem 'figaro'
 
 # Use Rails 12Factor for Heroku Error Logging
 gem 'rails_12factor', group: :production
@@ -31,6 +32,10 @@ gem 'factory_girl_rails'
 gem 'database_cleaner'
 gem 'materialize-sass'
 
+# Use Paperclip for file uploads
+gem "paperclip", "~> 5.0.0.beta1"
+gem 'aws-sdk', '< 2.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -39,7 +44,6 @@ group :development, :test do
   gem 'launchy'
   gem 'mocha'
   gem 'shoulda'
-  gem 'materialize-sass'
 
 end
 

@@ -43,7 +43,7 @@ RSpec.describe Cart, type: :model do
       end
       expect(cart.total_hours).to eql(6)
       cart.remove_task(city.tasks.first.id)
-      expect(cart.total_hours).to eql(5)
+      expect(cart.total_hours).to eql(4)
     end
   end
 end
