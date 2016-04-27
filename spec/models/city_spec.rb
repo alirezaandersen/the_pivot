@@ -9,7 +9,6 @@ RSpec.describe City, type: :model do
                     date:        "11/04/2016",
                     start_time:  "3:00 PM",
                     hours:       3,
-                    image_path:  "https://robohash.org/3",
                     city_id:      city.id,
                     address:  "942 Hazel Court, Denver, CO 80204")
       task =  Task.create(name: "Name",
@@ -17,7 +16,6 @@ RSpec.describe City, type: :model do
                     date:        "11/04/2016",
                     start_time:  "3:00 PM",
                     hours:       3,
-                    image_path:  "https://robohash.org/3",
                     city_id:      city.id,
                     address:  "1510 Blake St. Denver, CO 80202")
 

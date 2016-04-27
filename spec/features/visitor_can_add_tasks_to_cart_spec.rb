@@ -28,7 +28,6 @@ RSpec.feature "Visitor can add tasks to cart" do
     expect(page).to have_content task.name
     expect(page).to have_content task.description
     expect(page).to have_content task.hours
-    expect(page).to have_css("img[src*='#{task.image_path}']")
   end
 
   scenario "they can see total hours of tasks" do
@@ -77,7 +76,7 @@ RSpec.feature "Visitor can add tasks to cart" do
 
     page.all(".card-action")[0].click_link("Remove from Cart")
 
-    expect(page).to have_content("Total Hours: 2")
+    expect(page).to have_content("Total Hours: 1")
 
     within(".card-content") do
       expect(page).not_to have_content("#{task.name}")

@@ -1,6 +1,6 @@
 <h1>Create New Task</h1>
 
-<%= form_for @task, url: {controller: 'admin/tasks', action: 'create'} do |f| %>
+<%= form_for @task, url: { controller: 'admin/tasks', action: 'create' } do |f| %>
   <%= f.text_field :name, placeholder: "Name" %>
   <%= f.text_field :description, placeholder: "Description" %>
   <%= f.text_field :date, placeholder: "Date" %>

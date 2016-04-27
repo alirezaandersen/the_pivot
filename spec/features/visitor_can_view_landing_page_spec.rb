@@ -25,7 +25,6 @@ RSpec.feature "Visitor can view landing page" do
         expect(page).to have_content task.name
         expect(page).to have_content task.description
         expect(page).to have_content task.hours
-        expect(page).to have_css "img[src*='#{task.image_path}']"
       end
     end
   end
