@@ -24,11 +24,11 @@ RSpec.feature "Admin creates tasks" do
     fill_in "Start Time", with: "5:00 PM"
     fill_in "Hours", with: 3
     select("#{city.name_and_state}", from: 'task_city_id')
-    attach_file("task[image]", './app/assets/images/full_placeholder.png')
+    attach_file("task[image]", 'app/assets/images/full_placeholder.png')
 
-    click_button("Create this Task!")
+    click_button("Create this Task")
 
-    expect(page).to have_current_path(city_path(city))
+    expect(page).to have_current_path(task_path(1))
     expect(page).to have_content("Task Created!")
 
     visit tasks_path

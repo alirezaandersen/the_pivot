@@ -1,4 +1,5 @@
 class Admin::TasksController < Admin::BaseController
+  before_action :set_task, only: [:edit, :update]
 
   def new
     @task = Task.new
@@ -8,20 +9,18 @@ class Admin::TasksController < Admin::BaseController
     @task = Task.new(task_params)
     if @task.save
       flash[:notice] = "Task Created!"
-      redirect_to city_path(@task.city)
+      redirect_to @task
     else
-      byebug
       flash[:notice] = "Invalid! Try Again"
       render :new
     end
   end
 
   def edit
-    @task = Task.find(params[:id])
   end
 
   def update
-    if @task.update(task_params)
+    if @task.update_attributes(task_params)
       flash[:notice] = "Task Updated!"
       redirect_to task_path(@task.id)
     else
@@ -37,7 +36,7 @@ class Admin::TasksController < Admin::BaseController
                                  :hours, :city_id, :address, :image)
   end
 
-  def image_params
-    params.require(:image)
+  def set_task
+    @task = Task.find(params[:id])
   end
 end
