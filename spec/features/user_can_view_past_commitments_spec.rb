@@ -25,6 +25,7 @@ RSpec.feature "User can view past commitments" do
   end
 
   scenario "they can only see their own commitments" do
+    in_session_volunteer     = temp_helper
     not_in_session_volunteer = temp_helper
 
     viewable_1, viewable_2 = in_session_volunteer.tasks

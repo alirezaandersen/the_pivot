@@ -8,10 +8,10 @@
 /.bundle
 
 # Ignore all logfiles and tempfiles.
-/.byebug_history
 /log/*
 !/log/.keep
 /tmp
+.byebug_history
 
 # Ignore application configuration
 /config/application.yml

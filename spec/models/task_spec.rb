@@ -16,6 +16,31 @@ RSpec.describe Task, type: :model do
     it { is_expected.to validate_presence_of(:city_id) }
   end
 
+  context "status helper methods" do
+    it "shows status pledged" do
+      task_one, task_two, task_three = create_list(:task, 3)
+      task_two.pledged!
+
+      expect(Task.pledged).to include(task_two)
+    end
+
+    it "shows status pending" do
+      task_one, task_two, task_three = create_list(:task, 3)
+      task_three.pending!
+
+      expect(Task.pending).to include(task_three)
+    end
+
+    it "shows status completed" do
+      task_one, task_two, task_three = create_list(:task, 3)
+      task_one.completed!
+
+      expect(Task.completed).to include(task_one)
+    end
+
+
+  end
+
   context 'format address' do
     it 'formats address' do
     city = create(:city_with_tasks)
@@ -30,5 +55,4 @@ RSpec.describe Task, type: :model do
     expect(task.format_address).to eql("942+Hazel+Court+Denver+CO+80204")
     end
   end
-
 end
