@@ -47,7 +47,7 @@ tasks = [
     2016, 06, 24, "1:00 AM", 12, "mainst.jpg", city_one.id,
     "100 W 14th Ave Pkwy, Denver, CO 80204"],
   ["Clean the Platte",
-    "The platte is a very dirty river. It’s a smelly place, with lots of stinky stuff. Lets change that! We can go in there, and get all the smelly stuff out of there. When do you want to do it? We will do it all the time, if we could. but we can’t, so we are going to meet next sunday.",
+    "The Platte is a very dirty river. It’s a smelly place, with lots of stinky stuff. Lets change that! We can go in there, and get all the smelly stuff out of there. When do you want to do it? We will do it all the time, if we could. but we can’t, so we are going to meet next sunday.",
     2016, 04, 11, "3:00 PM", 3, "platte.jpg", city_one.id,
     "2000 Elitch Cir, Denver, CO 80204"],
   ["Teach Shoe Tying",
