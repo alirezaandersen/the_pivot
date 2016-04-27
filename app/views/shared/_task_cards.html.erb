@@ -3,7 +3,7 @@
     <div class="col xs12 x6 m4 l3">
       <div class="card medium">
         <div class="card-image">
-          <%= link_to(image_tag(task.image_path, alt: task.image_path), task_path(task)) %>
+          <%= link_to( image_tag(task.image.url(:medium), alt: "Task Image"), task_path(task) ) %>
         </div>
         <div class="card-content">
           <span class="card-title activator grey-text text-darken-4"><%= link_to task.name, task_path(task) %><i class="material-icons right">more_vert</i></span>

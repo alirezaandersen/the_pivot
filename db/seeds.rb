@@ -17,7 +17,6 @@ Volunteer.create(first_name: "super",
                  email:      "fake_account@yahoo.com",
                  role:       1)
 
-
 tasks = [
   ["Build a Community Garden",
   "Weeding, prepare soil, plant seedlings. Get together with your community. Make great things happen. No previous experience needed.",

@@ -8,7 +8,7 @@ RSpec.feature "User can view task" do
 
     visit tasks_path
 
-    first(:link, task.image_path).click
+    first(:link, task.name).click
 
     expect(page).to have_current_path(task_path(task))
   end
@@ -23,6 +23,5 @@ RSpec.feature "User can view task" do
     expect(page).to have_content(task.description)
     expect(page).to have_content(task.display_time)
     expect(page).to have_content(task.date)
-    expect(page).to have_xpath("//img[@src='#{task.image_path}']")
   end
 end
