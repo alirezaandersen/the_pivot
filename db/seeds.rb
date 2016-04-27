@@ -1,8 +1,17 @@
 city_one = City.create(name: "Denver",
-                       state: "CO")
+                       state: "CO",
+                       image_path: "http://www.justrenttoown.com/blog/wp-content/uploads/2015/04/denvercity.jpg")
 
 city_two = City.create(name: "Aurora",
-                       state: "CO")
+                       state: "CO",
+                       image_path: "https://s3.amazonaws.com/external_clips/attachments/30218/original/aurora.jpg?1414099418")
+
+city_three = City.create(name: "Boulder",
+                        state: "CO",
+                        image_path: "http://workbright.com/wp-content/uploads/2015/11/Boulder.jpg")
+city_four = City.create(name: "Golden",
+                        state: "CO",
+                        image_path: "https://s3.amazonaws.com/gs-waymarking-images/048c46ec-cf99-4355-badd-476d34f246c3.JPG")
 
 Volunteer.create(first_name: "basic",
                  last_name:  "user",
