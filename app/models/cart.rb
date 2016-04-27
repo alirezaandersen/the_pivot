@@ -29,4 +29,5 @@ class Cart
   def tasks
     self.contents.map { |task_id, _quantity| Task.find(task_id) }
   end
+
 end
