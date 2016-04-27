@@ -5,11 +5,9 @@ Rails.application.routes.draw do
   resources :cart_tasks, only: [:create, :destroy]
   resources :volunteers, only: [:create, :new, :edit]
 
-  # resources :commitments, only: [:show, :create]
-
   get '/dashboard', to: 'volunteers#show'
   get "/cart", to: 'cart_tasks#show'
-  
+
   get '/commitments', to: 'commitments#show', as: :commitments
   post '/commitments', to: 'commitments#create'
 
@@ -18,7 +16,6 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   get "/:name", to: 'cities#show', as: :city
-  # get "/:slug", to: 'cities#show', as: :city
 
   namespace :admin do
     get '/dashboard', to: 'volunteers#show'
