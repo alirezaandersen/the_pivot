@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.feature "User cannot view admin dashboard" do
+  include UserHelpers
+
   scenario "visitor recieves a 404 error when visiting admin dashboard" do
     visit "admin/dashboard"
 
@@ -13,12 +15,5 @@ RSpec.feature "User cannot view admin dashboard" do
     visit "admin/dashboard"
 
     expect(page).to have_content("The page you were looking for doesn't exist (404)")
-  end
-
-  def login_volunteer(volunteer)
-    visit login_path
-    fill_in "Username", with: volunteer.username
-    fill_in "Password", with: volunteer.password
-    click_button("LOGIN")
   end
 end

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.feature "User can checkout tasks" do
+  include UserHelpers
+
   scenario "they can checkout tasks" do
     volunteer = create(:volunteer)
     create(:city_with_tasks)
@@ -58,12 +60,5 @@ RSpec.feature "User can checkout tasks" do
     page.all(".card-action")[0].click_link("Add to Cart")
 
     expect(page).to have_current_path(city_path(city))
-  end
-
-  def login_volunteer(volunteer)
-    visit login_path
-    fill_in "Username", with: volunteer.username
-    fill_in "Password", with: volunteer.password
-    click_button("LOGIN")
   end
 end
