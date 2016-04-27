@@ -1,6 +1,6 @@
 class Task < ActiveRecord::Base
-  # has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
-  # validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   belongs_to :volunteer
   belongs_to :city
@@ -10,7 +10,6 @@ class Task < ActiveRecord::Base
   validates :date, presence: true
   validates :start_time, presence: true
   validates :hours, presence: true
-  # validates :image_path
   validates :city_id, presence: true
 
   enum status: %w(active retired pledged pending cancelled completed)

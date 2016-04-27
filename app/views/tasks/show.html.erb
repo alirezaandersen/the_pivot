@@ -1,7 +1,7 @@
 <h1><%= @task.name %> in <%= @task.city.name %></h1>
 <div class="row">
   <div class="col s12 m4 l4">
-    <img src="<%= @task.image_path %>">
+    <%= image_tag @task.image.url(:medium), alt: "Tag Image" %>
   </div>
   <div class="col s12 m6 l7">
     <div class="card-panel teal lighten-2", id="text-box">

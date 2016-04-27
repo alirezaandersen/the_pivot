@@ -6,11 +6,8 @@
   <%= f.text_field :date, placeholder: "Date" %>
   <%= f.text_field :start_time, placeholder: "Start Time" %>
   <%= f.text_field :hours, placeholder: "Hours" %>
-
-  <!-- drop down of cities -->
+  <%= f.text_field :address, placeholder: "Street Address" %>
   <%= f.collection_select :city_id, City.all, :id, :name_and_state, { prompt: "Choose your City" }, class: "browser-default" %>
-
-  <!-- paperclip -->
   <%= f.file_field :image %>
 
   <%= f.submit "Create this Task!" %>
