@@ -13,6 +13,8 @@ class Task < ActiveRecord::Base
   validates :start_time, presence: true
   validates :hours, presence: true
   validates :city_id, presence: true
+  validates :address, presence: true
+  validates :zip_code, presence: true
 
   enum status: %w(active retired pledged pending cancelled completed)
 
@@ -33,7 +35,8 @@ class Task < ActiveRecord::Base
   end
 
   def format_address
-    address&.gsub(/\W+/, "+")
+    compiled = "#{address}, #{city.name_and_state} #{zip_code}" unless address.nil?
+    compiled&.gsub(/\W+/, "+")
   end
 
 end

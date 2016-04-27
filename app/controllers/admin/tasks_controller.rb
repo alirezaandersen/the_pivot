@@ -33,7 +33,7 @@ class Admin::TasksController < Admin::BaseController
 
   def task_params
     params.require(:task).permit(:name, :description, :date, :start_time,
-                                 :hours, :city_id, :address, :image)
+                                 :hours, :city_id, :address, :zip_code, :image)
   end
 
   def set_task

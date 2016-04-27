@@ -5,7 +5,8 @@
   <%= f.text_field :date, placeholder: "Date" %>
   <%= f.text_field :start_time, placeholder: "Start Time" %>
   <%= f.text_field :hours, placeholder: "Hours" %>
-  <%= f.text_field :address, placeholder: "Street Address" %>
+  <%= f.text_field :address, placeholder: "Street Address (e.g., 1234 Main Street)" %>
+  <%= f.text_field :zip_code, placeholder: "Zip Code (e.g., 80204)" %>
   <%= f.collection_select :city_id, City.all, :id, :name_and_state, { prompt: "Choose your City" }, class: "browser-default" %>
   <%= f.file_field :image %>
 
