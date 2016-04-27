@@ -1,19 +1,12 @@
 require 'rails_helper'
 
 RSpec.feature "Admin creates tasks" do
+  include UserHelpers
+
   scenario "They log in and create a task" do
     city  = create(:city)
-    admin = Volunteer.create(first_name: "John",
-                             last_name: "Last",
-                             username: "admin",
-                             email: "admin@me.com",
-                             password: "password",
-                             role: 1)
-    visit login_path
 
-    fill_in "Username", with: admin.username
-    fill_in "Password", with: admin.password
-    click_button("LOGIN")
+    create_and_login_admin
 
     click_link("Create a New Task")
 
