@@ -16,4 +16,18 @@ class Task < ActiveRecord::Base
   def display_time
     self.start_time.strftime('%l:%M %p')
   end
+
+  def pledged
+    # byebug
+    where(status: 2)
+  end
+
+  def pending
+    where(status: 3)
+  end
+
+  def completed
+    where(status: 5)
+  end
+
 end

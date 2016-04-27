@@ -4,11 +4,11 @@ class CommitmentsController < ApplicationController
     if current_volunteer.nil?
       render file: '/public/404'
     else
-      @upcoming_tasks  = current_volunteer.tasks.where(status: 2)
+      @upcoming_tasks  = current_volunteer.tasks.pledged
       # @upcoming_tasks  = current_volunteer.tasks.pending
 
-      @pending_tasks   = current_volunteer.tasks.where(status: 3)
-      @completed_tasks = current_volunteer.tasks.where(status: 5)
+      @pending_tasks   = current_volunteer.tasks.pending
+      @completed_tasks = current_volunteer.tasks.completed
     end
   end
 
