@@ -27,6 +27,7 @@ RSpec.feature "User creates account" do
       expect(page).to have_content("Logged in as bobthebuilder")
     end
 
+    visit dashboard_path
     expect(page).to have_current_path('/dashboard')
     expect(page).to have_content("Bob")
     expect(page).to have_content("bob@gmail.com")
@@ -65,5 +66,30 @@ RSpec.feature "User creates account" do
     within(".flash-notice") do
       expect(page).to have_content("Logged out!")
     end
+  end
+
+  scenario "they create account from cart and are redirect_to cart" do
+    create(:city_with_tasks)
+    visit tasks_path
+
+    page.all(".card-action")[0].click_link("Add to Cart")
+
+    visit cart_path
+    click_on("Login or Create Account to Checkout")
+
+    expect(page).to have_current_path('/login')
+
+    click_on("SIGN UP")
+
+    fill_in "First Name", with: "Bob"
+    fill_in "Last Name", with: "Builder"
+    fill_in "Username", with: "bobthebuilder"
+    fill_in "Password", with: "password"
+    fill_in "Confirm Password", with: "password"
+    fill_in "Email", with: "bob@gmail.com"
+
+    click_on("Create Account")
+
+    expect(page).to have_current_path(cart_path)
   end
 end

@@ -51,6 +51,15 @@ RSpec.feature "User can checkout tasks" do
     expect(page).to have_content("Cart: 0")
   end
 
+  scenario "user gets redirected to city_path when adding item to cart" do
+    city = create(:city_with_tasks)
+
+    visit city_path(city)
+    page.all(".card-action")[0].click_link("Add to Cart")
+
+    expect(page).to have_current_path(city_path(city))
+  end
+
   def login_volunteer(volunteer)
     visit login_path
     fill_in "Username", with: volunteer.username
