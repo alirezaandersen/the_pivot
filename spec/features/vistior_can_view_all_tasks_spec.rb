@@ -11,7 +11,6 @@ RSpec.feature "Visitor can view all tasks" do
       expect(page).to have_content task.name
       expect(page).to have_content task.description
       expect(page).to have_content task.hours
-      expect(page).to have_css("img[src*='#{task.image_path}']")
     end
   end
 
@@ -27,7 +26,6 @@ RSpec.feature "Visitor can view all tasks" do
       expect(page).to have_content task.name
       expect(page).to have_content task.description
       expect(page).to have_content task.hours
-      expect(page).to have_css("img[src*='#{task.image_path}']")
     end
 
     visit "/#{city2.name.upcase}"
@@ -39,7 +37,6 @@ RSpec.feature "Visitor can view all tasks" do
       expect(page).to have_content task.name
       expect(page).to have_content task.description
       expect(page).to have_content task.hours
-      expect(page).to have_css("img[src*='#{task.image_path}']")
     end
 
   end

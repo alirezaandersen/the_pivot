@@ -37,5 +37,6 @@ RSpec.feature "Admin edits tasks" do
       expect(page).to have_content("Hours: 15")
       expect(page).to have_content("#{city.name_and_state}")
     end
+  end
 
 end

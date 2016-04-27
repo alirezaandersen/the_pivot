@@ -5,19 +5,19 @@ class Admin::TasksController < Admin::BaseController
   end
 
   def create
-    byebug
     @task = Task.new(task_params)
-    byebug
     if @task.save
       flash[:notice] = "Task Created!"
       redirect_to city_path(@task.city)
     else
+      byebug
       flash[:notice] = "Invalid! Try Again"
       render :new
     end
   end
 
   def edit
+    @task = Task.find(params[:id])
   end
 
   def update
@@ -34,7 +34,7 @@ class Admin::TasksController < Admin::BaseController
 
   def task_params
     params.require(:task).permit(:name, :description, :date, :start_time,
-                                 :hours, :city_id, :image)
+                                 :hours, :city_id, :address, :image)
   end
 
   def image_params

@@ -34,7 +34,6 @@ FactoryGirl.define do
       "#{n}"
     end
 
-    sequence(:image_path) { |n| "https://robohash.org/#{n}" }
     city
   end
 

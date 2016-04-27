@@ -88,9 +88,9 @@ RSpec.feature "User can view past commitments" do
     page.all(".upcoming-table")[0].click_link("#{first_task.name}")
 
     expect(page).to have_current_path(task_path(first_task))
-    expect(page).to have_button("Back to Commitments")
+    expect(page).to have_link("Back to Commitments")
 
-    click_button("Back to Commitments")
+    click_link("Back to Commitments")
 
     expect(page).to have_current_path(commitments_path)
   end
