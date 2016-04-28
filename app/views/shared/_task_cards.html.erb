@@ -18,7 +18,9 @@
           <p><%= task.description %></p>
         </div>
         <div class="card-action">
-          <% if method == :post %>
+          <% if !(task.pledged? || task.active?) %>
+            <p><b>This task is <%= task.status %></b></p>
+          <% elsif method == :post %>
             <%= link_to "Add to Cart", cart_tasks_path(task_id: task.id), method: method %>
           <% else %>
             <%= link_to "Remove from Cart", cart_task_path(task.id), method: method %>
