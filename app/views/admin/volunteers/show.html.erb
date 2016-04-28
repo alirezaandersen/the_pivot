@@ -1,4 +1,7 @@
 <h1>Welcome <%= @admin.first_name %></h1>
-<h3>email: <%= @admin.email %></h3>
-<%= button_to "Edit your account info", admin_edit_path, method: :get, class:"slider-btn waves-effect waves-light btn teal lighten-3" %><br>
-<%= link_to "Create a New Task",  new_admin_task_path, class:"slider-btn waves-effect waves-light btn teal lighten-3" %>
+
+<div class="dashboard">
+  <h3>email: <%= @admin.email %></h3>
+  <%= button_to "Edit your account info", admin_edit_path, method: :get, class:"slider-btn waves-effect waves-light btn teal lighten-2" %><br>
+  <%= link_to "Create a New Task",  new_admin_task_path, class:"slider-btn waves-effect waves-light btn teal lighten-2" %>
+</div>

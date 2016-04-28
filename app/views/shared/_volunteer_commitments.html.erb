@@ -4,6 +4,12 @@
 
 <!-- Dropdown Structure -->
 <ul id="volunteer-dropdown" class="dropdown-content">
-  <li><%= link_to "MY DASHBOARD", dashboard_path %></li>
-  <li><%= link_to "MY COMMITMENTS", commitments_path %></li>
+  <% if current_volunteer && current_volunteer.admin? %>
+    <li><%= link_to "CREATE NEW TASK", new_admin_task_path %></li>
+    <li><%= link_to "EDIT ACCOUNT INFO", admin_edit_path(current_volunteer)%>
+    <li><%= link_to "MY DASHBOARD", admin_dashboard_path %></li>
+  <% else %>
+    <li><%= link_to "MY DASHBOARD", dashboard_path %></li>
+    <li><%= link_to "MY COMMITMENTS", commitments_path %></li>
+  <% end %>
 </ul>
