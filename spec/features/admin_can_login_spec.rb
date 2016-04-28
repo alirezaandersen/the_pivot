@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.feature "Admin can login" do
   include UserHelpers
-  
   scenario "they can login and see admin/dashoboard page" do
     create_and_login_admin
 

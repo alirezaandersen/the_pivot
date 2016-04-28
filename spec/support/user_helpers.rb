@@ -1,5 +1,4 @@
 module UserHelpers
-
   def create_and_login_admin
     admin = Volunteer.create(first_name: "John",
                              last_name: "Last",
