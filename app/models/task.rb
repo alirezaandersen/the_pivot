@@ -1,6 +1,7 @@
 class Task < ActiveRecord::Base
-  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "#{Rails.root}/app/assets/images/full_placeholder.png"
+  has_attached_file :image, styles: { medium: "300x300>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  before_save :set_default_image
 
   has_many :commitments
   has_many :volunteers, through: :commitments
@@ -40,6 +41,10 @@ class Task < ActiveRecord::Base
 
   def link
     "<a href=\"/tasks/#{id}\">#{name}</a>"
+  end
+
+  def set_default_image
+    self.update_attributes(image: File.open("#{Rails.root}/app/assets/images/full_placeholder.png")) if self.image_file_name.nil?
   end
 
 end

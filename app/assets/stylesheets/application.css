@@ -19,10 +19,15 @@ a:link {
   color: white;
 }
 
-#text-box {
-  margin-top: 45px;
-  margin-left: 10px;
+.task-image {
+  margin-top: 50px;
+  width: 100%;
 }
+
+#text-box {
+  margin-top: 50px;
+}
+
 
 .slider .indicators {
   bottom: 60px;
@@ -44,4 +49,8 @@ a:link {
 
 .mobile-dropdowns {
   color: black;
+}
+
+.dashboard {
+  text-align: center;
 }
