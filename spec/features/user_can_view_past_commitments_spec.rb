@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.feature "User can view past commitments" do
+  include UserHelpers
+
   scenario "they can visit their past commitments page" do
     volunteer = temp_helper
     first_task, last_task = volunteer.tasks
@@ -98,31 +100,5 @@ RSpec.feature "User can view past commitments" do
     click_link("Back to Commitments")
 
     expect(page).to have_current_path(commitments_path)
-  end
-
-  def login_volunteer(volunteer)
-    visit login_path
-    fill_in "Username", with: volunteer.username
-    fill_in "Password", with: volunteer.password
-    click_button("LOGIN")
-  end
-
-  def cart_checkout
-    visit tasks_path
-    page.all(".card-action")[0].click_link("Add to Cart")
-    page.all(".card-action")[1].click_link("Add to Cart")
-
-    within(".main-resources") do
-      click_on("Cart: 2")
-    end
-
-    click_on("Checkout")
-  end
-
-  def temp_helper
-    volunteer = create(:volunteer)
-    tasks = create_list(:task, 2)
-    volunteer.tasks << tasks
-    volunteer
   end
 end
