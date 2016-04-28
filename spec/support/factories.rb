@@ -28,11 +28,15 @@ FactoryGirl.define do
       "#{n}"
     end
 
+    zip_code "10204"
+
+    sequence(:address) { |n| "#{n} Main Street" }
+
     city
   end
 
   factory :city do
-    sequence :name, ["denver", "aurora", "turingopolis"].cycle do |n|
+    sequence :name, ["Denver", "Aurora", "Turingopolis"].cycle do |n|
       "#{n}"
     end
 
