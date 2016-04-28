@@ -35,7 +35,7 @@ class Task < ActiveRecord::Base
 
   def format_address
     compiled = "#{address}, #{city.name_and_state} #{zip_code}" unless address.nil?
-    compiled&.gsub(/\W+/, "+")
+    compiled.gsub(/\W+/, "+")
   end
 
   def link
