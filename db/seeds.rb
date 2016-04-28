@@ -93,8 +93,11 @@ created_tasks = tasks.map do |task|
     zip_code: task[10])
   end
 
+Volunteer.first.tasks << created_tasks[-3]
+Volunteer.first.tasks << created_tasks[-5]
+
 created_tasks[-1].retired!
 created_tasks[-2].pledged!
-created_tasks[-3].completed!
 created_tasks[-4].cancelled!
+created_tasks[-3].completed!
 created_tasks[-5].pending!
