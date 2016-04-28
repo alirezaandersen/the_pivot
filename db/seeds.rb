@@ -80,15 +80,24 @@ tasks = [
     "1447 Pearl St.", "80302"]
   ]
 
-tasks.each do |task|
+created_tasks = tasks.map do |task|
   Task.create(
     name: task[0],
     description: task[1],
     date: Date.new(task[2], task[3], task[4]),
     start_time: task[5],
     hours: task[6],
-    image: File.new("#{Rails.root}/app/assets/images/#{task[7]}"),
+    image: File.open("#{Rails.root}/app/assets/images/#{task[7]}"),
     city_id: task[8],
     address: task[9],
     zip_code: task[10])
   end
+
+Volunteer.first.tasks << created_tasks[-3]
+Volunteer.first.tasks << created_tasks[-5]
+
+created_tasks[-1].retired!
+created_tasks[-2].pledged!
+created_tasks[-4].cancelled!
+created_tasks[-3].completed!
+created_tasks[-5].pending!
