@@ -33,8 +33,8 @@ gem 'database_cleaner'
 gem 'materialize-sass'
 
 # Use Paperclip for file uploads
-gem "paperclip", "~> 5.0.0.beta1"
-gem 'aws-sdk', '~> 2'
+gem "paperclip"
+gem 'aws-sdk', '< 2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
