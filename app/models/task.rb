@@ -46,5 +46,4 @@ class Task < ActiveRecord::Base
   def set_default_image
     self.update_attributes(image: File.open("#{Rails.root}/app/assets/images/full_placeholder.png")) if self.image_file_name.nil?
   end
-
 end
