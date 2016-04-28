@@ -18,7 +18,6 @@ class Cart
   end
 
   def total_hours
-    tasks = contents.map {|key, value| Task.find(key)}
     tasks.reduce(0) { |sum, task| sum += task.hours }
   end
 
@@ -29,4 +28,5 @@ class Cart
   def tasks
     self.contents.map { |task_id, _quantity| Task.find(task_id) }
   end
+
 end

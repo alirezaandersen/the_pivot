@@ -1,20 +1,13 @@
 require 'rails_helper'
 
 RSpec.feature "Admin edits tasks" do
+  include UserHelpers
+
   scenario "They log in and edit a task" do
     city  = create(:city)
     task  = create(:task)
-    admin = Volunteer.create(first_name: "John",
-                             last_name:  "Last",
-                             username:   "admin",
-                             email:      "admin@me.com",
-                             password:   "password",
-                             role:       1)
-    visit login_path
 
-    fill_in "Username", with: admin.username
-    fill_in "Password", with: admin.password
-    click_button("LOGIN")
+    create_and_login_admin
 
     visit task_path(task.id)
 
@@ -39,5 +32,4 @@ RSpec.feature "Admin edits tasks" do
       expect(page).to have_content("Time Commitment: 15")
     end
   end
-
 end

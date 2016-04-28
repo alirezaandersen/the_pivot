@@ -38,4 +38,8 @@ class Task < ActiveRecord::Base
     compiled&.gsub(/\W+/, "+")
   end
 
+  def link
+    "<a href=\"/tasks/#{id}\">#{name}</a>"
+  end
+
 end
