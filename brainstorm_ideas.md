@@ -78,7 +78,7 @@ As a business admin, I should be able to:
 
 ### Ziba Admin
 
-As a ziba admin, I should be able to:
+As a Ziba admin, I should be able to:
 
 * Approve or decline the creation of new companies
 * Take a company offline / online
@@ -89,4 +89,4 @@ As a ziba admin, I should be able to:
  - pending companies - buttons: approve/deny
  - link to company show page with status (approved/denied)
 
- need 4 roles (default: job seeker; basic company admin; head company admin; zeba admin)
+ need 4 roles (default: job seeker; basic company admin; head company admin; Ziba admin)
