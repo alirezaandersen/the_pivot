@@ -14,7 +14,7 @@
 		<type label="Single precision" length="0" sql="FLOAT" quote=""/>
 		<type label="Double precision" length="0" sql="DOUBLE" re="DOUBLE" quote=""/>
 	</group>
-​
+
 	<group label="Character" color="rgb(255,200,200)">
 		<type label="Char" length="1" sql="CHAR" quote="'"/>
 		<type label="Varchar" length="1" sql="VARCHAR" quote="'"/>
@@ -23,7 +23,7 @@
 		<type label="Varbinary" length="1" sql="VARBINARY" quote="'"/>
 		<type label="BLOB" length="0" sql="BLOB" re="BLOB" quote="'"/>
 	</group>
-​
+
 	<group label="Date &amp; Time" color="rgb(200,255,200)">
 		<type label="Date" length="0" sql="DATE" quote="'"/>
 		<type label="Time" length="0" sql="TIME" quote="'"/>
@@ -37,7 +37,7 @@
 		<type label="SET" length="1" sql="SET" quote=""/>
 		<type label="Bit" length="0" sql="bit" quote=""/>
 	</group>
-</datatypes><table x="137" y="50" name="users">
+</datatypes><table x="165" y="103" name="users">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -67,7 +67,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="642" y="176" name="jobs">
+<table x="588" y="49" name="jobs">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -87,15 +87,24 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="job_locations" row="id" />
 </row>
-<row name="id_requirements" null="1" autoincrement="0">
+<row name="education" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="years_of_experience" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="requirements" row="id" />
+<default>NULL</default></row>
+<row name="department" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="id_companies" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="companies" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="150" y="338" name="companies">
+<table x="396" y="248" name="companies">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -121,7 +130,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="405" y="43" name="user_jobs">
+<table x="399" y="54" name="user_jobs">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -143,7 +152,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="836" y="272" name="job_locations">
+<table x="598" y="340" name="job_locations">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -152,39 +161,6 @@
 <default>NULL</default></row>
 <row name="state" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
-<default>NULL</default></row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="399" y="235" name="departments">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="name" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="id_companies" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="companies" row="id" />
-</row>
-<row name="id_jobs" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="jobs" row="id" />
-</row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="404" y="413" name="requirements">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="education" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>NULL</default></row>
-<row name="years_of_experience" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
