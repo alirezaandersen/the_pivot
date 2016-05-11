@@ -95,7 +95,7 @@ RSpec.feature "Visitor log in" do
     fill_in "Email", with: " "
     fill_in "Password", with: user.password
     fill_in "Confirm Password", with: user.password
-    # byebug
+
     click_on "CREATE ACCOUNT"
 
     expect(page).to have_content("Invalid. Please try again.")

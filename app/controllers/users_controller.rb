@@ -12,7 +12,6 @@ class UsersController < ApplicationController
       redirect_to dashboard_path
     else
       flash.now[:error] = "Invalid. Please try again."
-      # byebug
       render :new
     end
   end
