@@ -4,15 +4,15 @@
   <div class="col s6 offset-s3">
     <div class="create_user_form">
       <%= form_for(:session, url: login_path) do |f| %>
-        <%= f.text_field :username, placeholder: "Username" %>
+        <%= f.text_field :email, placeholder: "Email" %>
         <%= f.password_field :password, placeholder: "Password" %>
 
         <span class="login-signup">
           <%= f.submit "LOGIN", class:"slider-btn waves-effect waves-light btn" %>
           or
-          <%= link_to "SIGN UP", new_volunteer_path, class:"slider-btn waves-effect waves-light btn"%>
+          <%= link_to "REGISTER", new_user_path, class:"slider-btn waves-effect waves-light btn"%>
         </span>
-        
+
       <% end %>
     </div>
   </div>
