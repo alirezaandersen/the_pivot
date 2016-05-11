@@ -54,3 +54,9 @@ a:link {
 .dashboard {
   text-align: center;
 }
+
+.job-show-container {
+  background: url(http://sports.cbsimg.net/images/visual/whatshot/nike_nba_061015.jpg) no-repeat center center;
+  background-size: cover;
+  height: 600px;
+}

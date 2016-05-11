@@ -1,27 +1,30 @@
-<h1><%= @task.name %> in <%= @task.city.name %></h1>
+<h1><%= @job.title %> at <%= @job.company.name %></h1>
+<div class="job-show-container">
 
-<div class="row">
-  <div class="col s12 l6">
-    <%= image_tag @task.image.url(:original), alt: "Tag Image", class: "task-image" %>
-  </div>
-  <div class="col s12 l6">
-    <div class="card-panel teal lighten-2" id="text-box">
-      <h4>Details</h4>
-      <p><b>Date:</b> <%= @task.date %></p>
-      <p><b>Time:</b> <%= @task.display_time %></p>
-      <p><b>Time Commitment:</b> <%= @task.hours %> hour(s)</p>
-      <p><b>Description:</b> <%= @task.description %></p>
-      <p><b>Status: </b><%= @task.status %></p>
+  <div class="row">
+    <div class="col s12 l6">
+      <!-- <%#= image_tag @task.image.url(:original), alt: "Tag Image", class: "task-image" %> -->
+      <%= @job.company.logo %>
+    </div>
+    <div class="col s12 l6">
+      <div class="card-panel teal lighten-2" id="job-text-box">
+        <h4>Opportunity Details</h4>
+        <p><b>Company:</b> <%= @job.company.name %> </p>
+        <p><b>Job Title:</b> <%= @job.title %> </p>
+        <p><b>Location:</b> <%= @job.city.name_and_state %> </p>
+        <br>
+        <h4>Requirements</h4>
+        <p><b>Education:</b> <%= @job.education %> </p>
+        <p><b>Years of Experience:</b> <%= @job.years_of_experience %> year(s) </p>
+        <p><b>Department:</b> <%= @job.department %></p>
+        <p><b>Salary:</b> <%= @job.salary %> USD</p>
+        <p><b>Description:</b> <%= @job.description %></p>
 
-      <% if !(@task.pledged? || @task.active?) %>
-        <p><b>This task is <%= @task.status %></b></p>
-      <% elsif current_volunteer && current_volunteer.admin? %>
-        <%= link_to "Edit Task", edit_admin_task_path(@task), class:"slider-btn waves-effect waves-light btn teal lighten-3" %>
-      <% elsif current_volunteer && current_volunteer.tasks.include?(@task) %>
-        <%= link_to "Back to Commitments", commitments_path, class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :get %>
-      <% else %>
-        <%= button_to "Add to Cart", cart_tasks_path(task_id: @task.id), class:"slider-btn waves-effect waves-light btn teal lighten-3" %>
-      <% end %>
+          <%= link_to "APPLY", login_path, class:"slider-btn waves-effect waves-light btn teal lighten-3" %>
+          <%= link_to "FAVORITES", favorites_path, class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :get %>
+
+      </div>
     </div>
   </div>
+
 </div>
