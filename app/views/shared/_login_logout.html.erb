@@ -1,4 +1,4 @@
-<% if current_volunteer %>
+<% if current_user %>
   <%= link_to "LOGOUT", logout_path, method: :delete %>
 <% else %>
   <%= link_to "LOGIN/REGISTER", login_path %>

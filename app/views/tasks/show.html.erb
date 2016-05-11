@@ -15,9 +15,9 @@
 
       <% if !(@task.pledged? || @task.active?) %>
         <p><b>This task is <%= @task.status %></b></p>
-      <% elsif current_volunteer && current_volunteer.admin? %>
+      <% elsif current_user && current_user.admin? %>
         <%= link_to "Edit Task", edit_admin_task_path(@task), class:"slider-btn waves-effect waves-light btn teal lighten-3" %>
-      <% elsif current_volunteer && current_volunteer.tasks.include?(@task) %>
+      <% elsif current_user && current_user.tasks.include?(@task) %>
         <%= link_to "Back to Commitments", commitments_path, class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :get %>
       <% else %>
         <%= button_to "Add to Cart", cart_tasks_path(task_id: @task.id), class:"slider-btn waves-effect waves-light btn teal lighten-3" %>
