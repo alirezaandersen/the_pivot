@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :jobs, only: [:index]
-  resources :companies, only: [:index]
+  resources :companies, only: [:index, :show]
   resources :users, only: [:new, :create]
 
   get    "/dashboard", to: "users#show"
@@ -11,6 +11,4 @@ Rails.application.routes.draw do
   post   "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   get    "/favorites", to: 'users_jobs#show', as: :favorites
-
-
 end
