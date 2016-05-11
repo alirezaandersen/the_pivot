@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :jobs, only: [:index]
+  get '/jobs/:title', to: 'jobs#show', as: :job
+
   resources :companies, only: [:index, :show]
   resources :users, only: [:new, :create]
 
