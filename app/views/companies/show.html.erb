@@ -1,3 +1,11 @@
-<h1>Tasks Available in <%= @city.name %></h1>
-<%= render partial: "map" %>
-<%=  render partial: "shared/task_cards", locals: {tasks: @city.tasks, method: :post} %>
+<div class="container">
+  <h1> <%= @company.name %> </h1>
+  <%= @company.description %>
+  <div class="row">
+    <%= image_tag(@company.logo, id: "img_preview") %>
+  </div>
+
+  About Us
+
+  Available Jobs
+</div>

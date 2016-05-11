@@ -24,6 +24,5 @@ RSpec.feature "Vistor sees all companies" do
     expect(page).to have_xpath("//img[contains(@src, \"#{nike.logo}\")]")
     expect(page).to have_xpath("//img[contains(@src, \"#{louis_vuitton.logo}\")]")
     expect(page).to have_xpath("//img[contains(@src, \"#{spotify.logo}\")]")
-    save_and_open_page
   end
 end
