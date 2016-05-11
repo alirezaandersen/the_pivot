@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160427214154) do
+ActiveRecord::Schema.define(version: 20160510225758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,51 +22,66 @@ ActiveRecord::Schema.define(version: 20160427214154) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "slug"
-    t.string   "image_path"
   end
 
-  create_table "commitments", force: :cascade do |t|
-    t.integer "volunteer_id"
-    t.integer "task_id"
-  end
-
-  add_index "commitments", ["task_id"], name: "index_commitments_on_task_id", using: :btree
-  add_index "commitments", ["volunteer_id"], name: "index_commitments_on_volunteer_id", using: :btree
-
-  create_table "tasks", force: :cascade do |t|
+  create_table "companies", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.date     "date"
-    t.time     "start_time"
-    t.integer  "hours"
-    t.integer  "city_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "status",             default: 0
-    t.date     "pledge_date"
-    t.string   "address"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.string   "zip_code"
+    t.text     "logo"
+    t.text     "url"
+    t.integer  "size"
+    t.string   "industry"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "tasks", ["city_id"], name: "index_tasks_on_city_id", using: :btree
+  create_table "jobs", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "years_of_experience"
+    t.integer  "city_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "status",              default: 0
+    t.string   "education"
+    t.string   "department"
+    t.integer  "salary"
+    t.string   "job_type"
+    t.integer  "company_id"
+  end
 
-  create_table "volunteers", force: :cascade do |t|
+  add_index "jobs", ["city_id"], name: "index_jobs_on_city_id", using: :btree
+  add_index "jobs", ["company_id"], name: "index_jobs_on_company_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "username"
     t.string   "password_digest"
     t.string   "password_confirmation"
     t.string   "email"
     t.integer  "role",                  default: 0
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.integer  "company_id"
   end
 
-  add_foreign_key "commitments", "tasks"
-  add_foreign_key "commitments", "volunteers"
-  add_foreign_key "tasks", "cities"
+  add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
+
+  create_table "users_jobs", force: :cascade do |t|
+    t.string   "status"
+    t.text     "resume"
+    t.integer  "user_id"
+    t.integer  "job_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "users_jobs", ["job_id"], name: "index_users_jobs_on_job_id", using: :btree
+  add_index "users_jobs", ["user_id"], name: "index_users_jobs_on_user_id", using: :btree
+
+  add_foreign_key "jobs", "cities"
+  add_foreign_key "jobs", "companies"
+  add_foreign_key "users", "companies"
+  add_foreign_key "users_jobs", "jobs"
+  add_foreign_key "users_jobs", "users"
 end
