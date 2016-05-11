@@ -1,10 +1,10 @@
-# FactoryGirl.define do
-#
-#   factory :commitment do
-#     task
-#     volunteer
-#   end
-#
+FactoryGirl.define do
+
+  factory :users_jobs do
+    job
+    user
+  end
+
 #   factory :volunteer do
 #     first_name "basic"
 #     last_name "user"
@@ -14,44 +14,46 @@
 #     password_confirmation "password"
 #   end
 #
-#   factory :task do
-#     start_time "2016-04-18 18:58:35"
-#     date "11/12/2017"
-#
-#     sequence(:name) { |n| "Task #{n}" }
-#
-#     sequence :description, ["A", "B", "C"].cycle do |n|
-#       "#{n} description"
-#     end
-#
-#     sequence :hours, ["1", "2"].cycle do |n|
-#       "#{n}"
-#     end
-#
-#     zip_code "10204"
-#
-#     sequence(:address) { |n| "#{n} Main Street" }
-#
-#     city
-#   end
-#
-#   factory :city do
-#     sequence :name, %w(Denver Aurora Turingopolis).cycle do |n|
-#       "#{n}"
-#     end
-#
-#     sequence :state, ["CO", "NY", "CA"].cycle do |n|
-#       "#{n}"
-#     end
-#
-#     factory :city_with_tasks do
-#       transient do
-#         tasks_count 4
-#       end
-#
-#       after(:create) do |city, evaluator|
-#         create_list(:task, evaluator.tasks_count, city: city)
-#       end
-#     end
-#   end
-# end
+  factory :job do
+    sequence(:title) { |n| "Job #{n}" }
+
+    sequence :description, ["A", "B", "C"].cycle do |n|
+      "#{n} description"
+    end
+
+    sequence :years_of_experience, ["1", "2"].cycle do |n|
+      "#{n}"
+    end
+
+    sequence :department, %w("Engineering", "Sales", "Customer Success").cycle do |n|
+      "#{n}"
+    end
+
+    city
+    status 0
+    education "Bachelor"
+    salary 75000
+    job_type "Full-time"
+    company
+  end
+
+  factory :city do
+    sequence :name, %w(Denver Aurora Turingopolis).cycle do |n|
+      "#{n}"
+    end
+
+    sequence :state, ["CO", "NY", "CA"].cycle do |n|
+      "#{n}"
+    end
+
+    factory :city_with_jobs do
+      transient do
+        jobs_count 4
+      end
+
+      after(:create) do |city, evaluator|
+        create_list(:job, evaluator.jobs_count, city: city)
+      end
+    end
+  end
+end

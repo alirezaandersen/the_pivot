@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
-  resources :jobs, only: [:index]
+  resources :jobs, only: [:index, :show]
   resources :companies, only: [:index]
 
   get "/login", to: "sessions#new"

@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :company do
-    name "MyString"
+    name "Fake Company"
     description "MyText"
-    logo "MyText"
+    logo "Placeholder for company logo"
     url "MyText"
     size 1
     industry "MyString"

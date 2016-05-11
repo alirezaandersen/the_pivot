@@ -1,5 +1,5 @@
 class City < ActiveRecord::Base
-  has_many :tasks
+  has_many :jobs
 
   validates :name, presence: true
   validates :state, presence: true
@@ -14,13 +14,13 @@ class City < ActiveRecord::Base
     slug
   end
 
-  def to_map
-    addresses = tasks.map {|task| task.format_address }.compact
-    addresses.join("%7C")
-  end
+  # def to_map
+  #   addresses = tasks.map {|task| task.format_address }.compact
+  #   addresses.join("%7C")
+  # end
 
   def name_and_state
-  "#{name}, #{state}"
-end
+    "#{name}, #{state}"
+  end
 
 end
