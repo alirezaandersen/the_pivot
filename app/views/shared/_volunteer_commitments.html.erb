@@ -1,12 +1,12 @@
-<% if current_volunteer %>
-    <li><a class="dropdown-button" href="#!" data-activates="volunteer-dropdown"><%= current_volunteer.username.upcase %><i class="material-icons right">arrow_drop_down</i></a></li>
+<% if current_user %>
+    <li><a class="dropdown-button" href="#!" data-activates="volunteer-dropdown"><%= current_user.username.upcase %><i class="material-icons right">arrow_drop_down</i></a></li>
 <% end %>
 
 <!-- Dropdown Structure -->
 <ul id="volunteer-dropdown" class="dropdown-content">
-  <% if current_volunteer && current_volunteer.admin? %>
+  <% if current_user && current_user.admin? %>
     <li><%= link_to "CREATE NEW TASK", new_admin_task_path %></li>
-    <li><%= link_to "EDIT ACCOUNT INFO", admin_edit_path(current_volunteer)%>
+    <li><%= link_to "EDIT ACCOUNT INFO", admin_edit_path(current_user)%>
     <li><%= link_to "MY DASHBOARD", admin_dashboard_path %></li>
   <% else %>
     <li><%= link_to "MY DASHBOARD", dashboard_path %></li>
