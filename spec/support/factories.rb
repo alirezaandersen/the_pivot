@@ -1,19 +1,36 @@
 FactoryGirl.define do
 
-  factory :users_jobs do
-    job
-    user
+  factory :user do
+    first_name
+    last_name
+    email
+    password "password"
+    role
   end
 
-#   factory :volunteer do
-#     first_name "basic"
-#     last_name "user"
-#     sequence(:username) { |n| "#{n}_user" }
-#     sequence(:email) { |n| "#{n}fake@gmail.fake" }
-#     password "password"
-#     password_confirmation "password"
-#   end
-#
+  sequence :first_name do |fn|
+    "#{fn}"
+  end
+
+  sequence :last_name do |ln|
+    "#{ln}"
+  end
+
+  sequence :email do |e|
+    "#{e}@gmail.com"
+  end
+
+  sequence :role do |r|
+    r = 0
+  end
+
+  factory :users_job do
+    status "MyString"
+    resume "MyText"
+    user
+    job
+  end
+
   factory :job do
     sequence(:title) { |n| "Job #{n}" }
 
@@ -55,5 +72,14 @@ FactoryGirl.define do
         create_list(:job, evaluator.jobs_count, city: city)
       end
     end
+  end
+
+  factory :company do
+    name "NIKE"
+    description "Making the flyest shoes that sneaker heads get hyped about."
+    logo "http://static.businessinsider.com/image/53d29d5c6bb3f7a80617ada8/image.jpg"
+    url "http://www.nike.com/us/en_us/"
+    size 1
+    industry "Footwear"
   end
 end
