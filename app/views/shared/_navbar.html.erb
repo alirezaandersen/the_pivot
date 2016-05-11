@@ -1,23 +1,23 @@
 <nav>
   <div class="nav-wrapper teal lighten-1">
-    <a href="/" class="brand-logo center">Habitask</a>
+    <a href="/" class="brand-logo center">ZIBA</a>
     <a href="#" data-activates="mobile" class="button-collapse show-on-medium"><i class="material-icons">menu</i></a>
 
     <ul class="left hide-on-med-and-down">
-      <li><%= link_to "COMPANIES", jobs_path %>
+      <li><%= link_to "COMPANIES", companies_path %>
       <li><%= link_to "JOBS", jobs_path %>
     </ul>
 
     <ul class="main-resources right hide-on-med-and-down">
-      <li><%= render partial: 'shared/volunteer_commitments' %></li>
+      <!-- <li><%#= render partial: 'shared/volunteer_commitments' %></li> -->
       <li><%= render partial: 'shared/login_logout' %></li>
-      <li><%= link_to "Cart: #{@cart.total}", cart_path %></li>
+      <li><%= link_to "FAVORITES", favorites_path %></li>
     </ul>
 
     <ul class="side-nav show-on-medium" id="mobile">
-      <li><%= link_to "CART: #{@cart.total}", cart_path %></li>
+      <li><%= link_to "FAVORITES", favorites_path %></li>
       <li><%= render partial: 'shared/login_logout' %></li>
-      <li><%= link_to "ALL TASKS", tasks_path %></li>
+      <li><%= link_to "JOBS", jobs_path %></li>
     </ul>
   </div>
 </nav>
