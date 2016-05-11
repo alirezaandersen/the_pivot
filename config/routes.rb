@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :jobs, only: [:index]
   resources :companies, only: [:index]
-  resources :users, only: [:new, :create, :show]
+  resources :users, only: [:new, :create]
 
   get    "/dashboard", to: "users#show"
 

@@ -9,9 +9,10 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "Account Created! Logged in as #{@user.first_name}"
-      redirect_to '/dashboard'
+      redirect_to dashboard_path
     else
       flash.now[:error] = "Invalid. Please try again."
+      # byebug
       render :new
     end
   end
