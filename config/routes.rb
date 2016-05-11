@@ -6,6 +6,4 @@ Rails.application.routes.draw do
 
   get "/login", to: "sessions#new"
   get "/favorites", to: 'users_jobs#show', as: :favorites
-
-
 end
