@@ -4,10 +4,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @volunteer = Volunteer.find_by(username: params[:session][:username])
-    if @volunteer && @volunteer.authenticate(params[:session][:password])
-      session[:volunteer_id] = @volunteer.id
-      flash[:notice] = "Logged in as #{@volunteer.username}"
+    @user = User.find_by(email: params[:session][:email])
+    if @user && @user.authenticate(params[:session][:password])
+      session[:user_id] = @user.id
+      flash[:notice] = "Logged in as #{@user.email}"
       role_redirect
     else
       flash.now[:error] = "Invalid. Please try again."
@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
   private
 
   def role_redirect
-    if @volunteer.admin?
+    if @user.admin?
       flash[:notice] = "You have been logged in as an admin"
       redirect_to admin_dashboard_path
     else
