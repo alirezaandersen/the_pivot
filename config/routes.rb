@@ -6,9 +6,11 @@ Rails.application.routes.draw do
 
   resources :companies, only: [:index, :show]
   resources :users, only: [:new, :create]
+  get '/search/jobs', to: 'search#show', as: :search_job
+
   resources :favorites_jobs, only: [:create, :destroy]
 
-  get    "/dashboard", to: "users#show"
+  get "/dashboard", to: "users#show"
 
   get    "/login", to: "sessions#new", as: :login
   post   "/login", to: "sessions#create"
