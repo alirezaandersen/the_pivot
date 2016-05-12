@@ -30,28 +30,8 @@ RSpec.feature "Visitor can favorite jobs" do
     expect(page).to have_button("Save your Favorites")
   end
 
-  # scenario "they cannot favorite the same job twice" do
-  #   job1, job2 = create_list(:job, 2)
-  #
-  #   visit job_path(job1.title)
-  #   first("#job-text-box").click_link("FAVORITE")
-  #   visit job_path(job2.title)
-  #   safe_and_open_page
-  #   first("#job-text-box").click_link("FAVORITE")
-  #
-  #   # expect(page).to have_content("Favorites: 2")
-  #
-  #   visit job_path(job1.title)
-  #
-  #   first("#job-text-box").click_link("FAVORITE")
-  #   # expect(page).to have_content("FAVORITE: 2")
-  #   expect(page).to have_content("Job is already in your Favorites!")
-  # end
-
   scenario "they can remove a job from favorites" do
     job1, job2 = create_list(:job, 2)
-
-    # message = "Job #{job1.title} removed from your favorites."
 
     visit job_path(job1.title)
     first("#job-text-box").click_link("FAVORITE")
