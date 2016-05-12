@@ -3,4 +3,6 @@ class HomeController < ApplicationController
     @job = Job.new
   end
 
+  def about_us
+  end
 end

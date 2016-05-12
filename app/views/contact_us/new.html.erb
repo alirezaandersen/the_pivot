@@ -1,0 +1,20 @@
+<h1>We would love to hear from you</h1>
+
+<div class="row">
+  <div class="col s6 offset-s3">
+    <div class="contact_us_form">
+      <%= form_for(:session) do |f| %>
+        <%= f.text_field :name, placeholder: "Name" %>
+        <%= f.text_field :company_name, placeholder: "Company Name" %>
+        <%= f.text_field :email, placeholder: "Email" %>
+        <%= f.text_field :phone_number, placeholder: "Phone Number" %>
+        <%= f.text_field :description, placeholder: "Talk to me! " %>
+
+        <span>
+           <a href="#" class="waves-effect waves-light btn">Submit</a>
+        </span>
+
+      <% end %>
+    </div>
+  </div>
+</div>

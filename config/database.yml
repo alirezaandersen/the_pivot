@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: ziba_production
-  username: ziba
-  password: <%= ENV['ZIBA_DATABASE_PASSWORD'] %>
