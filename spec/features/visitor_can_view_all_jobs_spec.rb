@@ -20,7 +20,7 @@ RSpec.feature "Visitor can view all jobs" do
         expect(page).to have_content job.company.name
         expect(page).to have_content job.title
         expect(page).to have_content city.name_and_state
-        expect(page).to have_content job.description
+        expect(page).to have_content job.description        
       end
     end
   end

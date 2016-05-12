@@ -4,6 +4,7 @@ class JobsController < ApplicationController
   end
 
   def show
+    @favorites
     @job = Job.find_by(title: params[:title])
   end
 end

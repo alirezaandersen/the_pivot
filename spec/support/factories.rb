@@ -31,20 +31,10 @@ FactoryGirl.define do
   end
 
   factory :job do
-    sequence(:title) { |n| "Job #{n}" }
-
-    sequence :description, ["A", "B", "C"].cycle do |n|
-      "#{n} description"
-    end
-
-    sequence :years_of_experience, ["1", "2"].cycle do |n|
-      "#{n}"
-    end
-
-    sequence :department, %w("Engineering", "Sales", "Customer Success").cycle do |n|
-      "#{n}"
-    end
-
+    title
+    description
+    years_of_experience
+    department
     city
     status 0
     education "Bachelor"
@@ -52,6 +42,22 @@ FactoryGirl.define do
     job_type "Full-time"
     company
   end
+
+  sequence(:title) { |n| "Job #{n}" }
+
+  sequence :description, ["A", "B", "C"].cycle do |n|
+    "#{n} description"
+  end
+
+  sequence :years_of_experience, ["1", "2", "10"].cycle do |n|
+    "#{n}"
+  end
+
+  sequence :department, %w("Engineering", "Sales", "Customer Success").cycle do |n|
+    "#{n}"
+  end
+
+
 
   factory :city do
     sequence :name, %w(Denver Aurora Turingopolis).cycle do |n|
