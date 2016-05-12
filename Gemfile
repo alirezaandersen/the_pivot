@@ -17,6 +17,7 @@ gem "paperclip"
 gem 'aws-sdk', '< 2.0'
 gem 'simplecov', :require => false, :group => :test
 gem 'faker'
+gem 'utf8_enforcer_workaround'
 
 group :development, :test do
   gem 'byebug'
