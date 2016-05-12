@@ -1,8 +1,0 @@
-<h1>Welcome to your Cart</h1>
-<h4>Total Hours: <%= @cart.total_hours %></h4>
-
-<% unless @cart.contents.empty? %>
-  <%= render partial: "full_cart" %>
-<% else %>
-  <h4>No Tasks!</h4>
-<% end %>
