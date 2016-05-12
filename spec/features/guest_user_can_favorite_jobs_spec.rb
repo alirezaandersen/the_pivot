@@ -41,12 +41,10 @@ RSpec.feature "Visitor can favorite jobs" do
     within('.main-resources') do
       click_on("FAVORITES")
     end
-
     expect(page).to have_current_path(favorites_path)
     expect(page).to have_content(job1.title)
     expect(page).to have_content(job2.title)
     visit job_path(job1.title)
-    save_and_open_page
     first("#job-text-box").click_link("UNFAVORITE")
 
     within('.main-resources') do
