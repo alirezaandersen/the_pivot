@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160510225758) do
+ActiveRecord::Schema.define(version: 20160512031913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,10 +62,7 @@ ActiveRecord::Schema.define(version: 20160510225758) do
     t.integer  "role",                  default: 0
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
-    t.integer  "company_id"
   end
-
-  add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
 
   create_table "users_jobs", force: :cascade do |t|
     t.string   "status"
@@ -81,7 +78,6 @@ ActiveRecord::Schema.define(version: 20160510225758) do
 
   add_foreign_key "jobs", "cities"
   add_foreign_key "jobs", "companies"
-  add_foreign_key "users", "companies"
   add_foreign_key "users_jobs", "jobs"
   add_foreign_key "users_jobs", "users"
 end
