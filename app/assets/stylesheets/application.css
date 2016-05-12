@@ -76,3 +76,13 @@ a:link {
   background-size: cover;
   height: 600px;
 }
+
+/*landing page*/
+#search-bar{
+  border-width: thin;
+  width: 100%;
+  height: 15%;
+  border: 6px solid #efefef;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}

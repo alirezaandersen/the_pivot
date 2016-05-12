@@ -26,15 +26,6 @@ RSpec.feature "Visitor can view landing page" do
     end
   end
 
-  scenario "they can see the search bar" do
-    visit root_path
-
-    within(".search-bar") do
-      expect(page).to have_content "Search"
-    end
-  end
-
-
   scenario "they can view a footer" do
     visit root_path
 
