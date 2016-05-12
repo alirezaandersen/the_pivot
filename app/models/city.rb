@@ -22,5 +22,4 @@ class City < ActiveRecord::Base
   def name_and_state
     "#{name}, #{state}"
   end
-
 end
