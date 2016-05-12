@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
-
   def index
-    @cities = City.all
+    @job = Job.new
   end
-  
+
+  def about_us
+  end
 end

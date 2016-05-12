@@ -2,15 +2,16 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_action :set_cart, :all_cities
-  helper_method :current_volunteer
+  utf8_enforcer_workaround
+  before_action :set_favorites, :all_cities
+  helper_method :current_user
 
-  def set_cart
-    @cart = Cart.new(session[:cart])
+  def set_favorites
+    @favorites ||= Favorites.new(session[:favorites])
   end
 
-  def current_volunteer
-    @current_volunteer ||= Volunteer.find(session[:volunteer_id]) if session[:volunteer_id]
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def all_cities

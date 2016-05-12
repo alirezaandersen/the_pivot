@@ -1,3 +1,10 @@
 <div class="slider">
   <%= render partial: "slider" %>
 </div>
+
+<div class="search-container">
+  <%= form_tag(:search_job, method: :get, id: "search-form" ) do  %>
+    <%= text_field_tag :search, "Enter a job title" %>
+    <%= submit_tag "SEARCH", name: nil %>
+  <% end %>
+</div>

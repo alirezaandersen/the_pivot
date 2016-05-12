@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: habitask_development
+  database: ziba_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: habitask_test
+  database: ziba_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: habitask_production
-  username: habitask
-  password: <%= ENV['HABITASK_DATABASE_PASSWORD'] %>
+  database: ziba_production
