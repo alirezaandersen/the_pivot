@@ -1,11 +1,11 @@
 class SearchController < ApplicationController
   def show
     @jobs = Job.all
-    if params[:search]
+    if params[:search] != "Enter a job title"
       @jobs = Job.search(params[:search]).order("created_at DESC")
     else
-      flash[:null_search] = "Looks like there are no jobs fitting your search."
-      redirect_to jobs_path
+      flash[:null_search] = "Enter a job title to search."
+      redirect_to root_path
     end
   end
 end
