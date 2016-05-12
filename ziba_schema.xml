@@ -37,7 +37,7 @@
 		<type label="SET" length="1" sql="SET" quote=""/>
 		<type label="Bit" length="0" sql="bit" quote=""/>
 	</group>
-</datatypes><table x="165" y="103" name="users">
+</datatypes><table x="37" y="0" name="users">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -85,7 +85,7 @@
 <default>NULL</default></row>
 <row name="id_job_locations" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="job_locations" row="id" />
+<default>NULL</default><relation table="cities" row="id" />
 </row>
 <row name="education" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
@@ -104,7 +104,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="396" y="248" name="companies">
+<table x="132" y="363" name="companies">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -130,7 +130,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="399" y="54" name="user_jobs">
+<table x="345" y="2" name="user_jobs">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -152,7 +152,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="598" y="340" name="job_locations">
+<table x="928" y="226" name="cities">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -161,6 +161,9 @@
 <default>NULL</default></row>
 <row name="state" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="slug" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
