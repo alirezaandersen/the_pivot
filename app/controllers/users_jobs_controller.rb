@@ -1,26 +1,19 @@
-class UsersJobsController < ApplicationController
-  include ActionView::Helpers::TextHelper
-
-  def create
-    job = Job.find(params[:job_id])
-    if @favorites.has_job?(job.id)
-      flash[:notice] = "Job is already favorited!"
-    else
-      @favorites.add_job(job.id)
-      session[:favorites] = @favorites.contents
-      flash[:notice] = "Job favorited!"
-    end
-    redirect_to request.referrer
-  end
+class CommitmentsController < ApplicationController
 
   def show
-    @jobs = @favorites.jobs
+    if current_user.nil?
+      render file: '/public/404'
+    else
+      @upcoming_tasks  = current_user.tasks.pledged
+      @pending_tasks   = current_user.tasks.pending
+      @completed_tasks = current_user.tasks.completed
+    end
   end
 
-  def destroy
-    job = Job.find(params[:id])
-    @favorites.remove_job(job.id)
-    flash[:notice] = "Job #{job.name} removed from your favorites."
-    redirect_to favorites_path
+  def create
+    Commitment.associate_tasks(session[:cart], current_user)
+    flash[:notice] = "You're Committed!"
+    session[:cart] = {}
+    redirect_to commitments_path
   end
 end

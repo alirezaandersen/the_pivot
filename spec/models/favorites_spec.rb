@@ -17,36 +17,29 @@ RSpec.describe Favorites, type: :model do
       expect(favorites.contents).to eql({"1" => 1, "2" => 1, "3" => 1})
     end
 
-    # it "can return total number of all added jobs" do
-    #   favorites = Favorites.new({"1" => 1})
-    #
-    #   favorites.add_job(2)
-    #   favorites.add_job(3)
-    #
-    #   expect(favorites.total).to eql(3)
-    # end
+    it "can return total number of all added jobs" do
+      favorites = Favorites.new({"1" => 1})
 
-    # it "can total hours of all jobs" do
-    #   city = create(:city_with_jobs)
-    #   favorites = Favorites.new({})
-    #   city.jobs.each do |job|
-    #     favorites.add_job(job.id)
-    #   end
-    #   expect(favorites.total_hours).to eql(6)
-    # end
+      favorites.add_job(2)
+      favorites.add_job(3)
+
+      expect(favorites.total).to eql(3)
+    end
 
     it "can remove a job from the favorites" do
-      jobs = create(:jobs)
+      job1 = create(:job)
+      job2 = create(:job)
+      job3 = create(:job)
       favorites = Favorites.new({})
-      jobs.each do |job|
-        favorites.add_job(job.id)
-      end
+
+      favorites.add_job(job1.id)
+      favorites.add_job(job2.id)
+      favorites.add_job(job3.id)
+
 
       expect(favorites.contents).to eql({"1" => 1, "2" => 1, "3" => 1})
-      # expect(favorites.total_hours).to eql(6)
-      favorites.remove_job(jobs.first.id)
+      favorites.remove_job(job1.id)
       expect(favorites.contents).to eql({"2" => 1, "3" => 1})
-      # expect(favorites.total_hours).to eql(5)
     end
   end
 end

@@ -20,10 +20,16 @@
         <p><b>Department:</b> <%= @job.department %></p>
         <p><b>Salary:</b> <%= @job.salary %> USD</p>
         <p><b>Description:</b> <%= @job.description %></p>
-
-          <%= link_to "APPLY", login_path, class:"slider-btn waves-effect waves-light btn teal lighten-3" %>
-          <%= link_to "FAVORITES", favorites_path, class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :get %>
-
+          <% if current_user %>
+            <%= link_to "APPLY", job_path(@job.title), class:"slider-btn waves-effect waves-light btn teal lighten-3" %>
+          <% else %>
+            <%= link_to "LOGIN TO APPLY", login_path, class:"slider-btn waves-effect waves-light btn teal lighten-3" %>
+          <% end %>
+          <% if @favorites.has_job?(@job.id) %>
+            <%= link_to "UNFAVORITE", favorites_job_path(@job.id), class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :delete %>
+          <% else %>
+            <%= link_to "FAVORITE", favorites_jobs_path(job_id: @job.id), class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :post %>
+          <% end %>
       </div>
 
     </div>

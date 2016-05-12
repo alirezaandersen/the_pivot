@@ -2,95 +2,83 @@ require 'rails_helper'
 
 RSpec.feature "Visitor can favorite jobs" do
   scenario "they visit jobs show page and favorite a job" do
-    job = create(:jobs, 1)
-    visit job_path(job.id)
-    expect(page).to have_content("Favorite")
-    first(".card-action").click_link("Favorite")
+
+    job = create(:job)
+
+    visit job_path(job.title)
+    expect(page).to have_content("FAVORITE")
+    first("#job-text-box").click_link("FAVORITE")
 
     expect(page).to have_content("Job favorited!")
-    # expect(page).to have_content("Cart: 1")
   end
 
   scenario "they can view contents of favorites" do
-    job = create(:jobs, 2)
+    job = create(:job)
 
-    visit job_path(job.id)
+    visit job_path(job.title)
 
-    first(".card-action").click_link("Favorite")
+    first("#job-text-box").click_link("FAVORITE")
 
-    within("nav") do
-      click_link("Favorites")
+    within(".main-resources") do
+      click_link("FAVORITES")
     end
 
     expect(page).to have_current_path("/favorites")
-    expect(page).to have_content job.name
+    expect(page).to have_content job.title
     expect(page).to have_content job.description
-    expect(page).to have_content job.location
+    expect(page).to have_content job.city.name
+    expect(page).to have_button("Save your Favorites")
   end
 
-  # scenario "they can see total hours of tasks" do
-  #   create(:city_with_tasks)
+  # scenario "they cannot favorite the same job twice" do
+  #   job1, job2 = create_list(:job, 2)
   #
-  #   visit tasks_path
+  #   visit job_path(job1.title)
+  #   first("#job-text-box").click_link("FAVORITE")
+  #   visit job_path(job2.title)
+  #   safe_and_open_page
+  #   first("#job-text-box").click_link("FAVORITE")
   #
-  #   first(".card-action").click_link("Add to Cart")
-  #   page.all(".card-action")[1].click_link("Add to Cart")
+  #   # expect(page).to have_content("Favorites: 2")
   #
-  #   within(".main-resources") do
-  #     click_link("Cart:")
-  #   end
-  #   expect(page).to have_content("Total Hours: 3")
+  #   visit job_path(job1.title)
+  #
+  #   first("#job-text-box").click_link("FAVORITE")
+  #   # expect(page).to have_content("FAVORITE: 2")
+  #   expect(page).to have_content("Job is already in your Favorites!")
   # end
 
-  scenario "they cannot favorite the same job twice" do
-    job1, job2 = create(:jobs, 2)
-
-    visit job_path(job1.id)
-    first(".card-action").click_link("Favorite")
-    visit job_path(job2.id)
-    first(".card-action").click_link("Favorite")
-
-    # expect(page).to have_content("Favorites: 2")
-
-    visit job_path(job1.id)
-    first(".card-action").click_link("Favorite")
-
-    # expect(page).to have_content("Favorite: 2")
-    expect(page).to have_content("Job is already in your Favorites!")
-  end
-
   scenario "they can remove a job from favorites" do
-    job1, job2 = create(:jobs, 2)
+    job1, job2 = create_list(:job, 2)
 
-    message = "Job #{job1.name} removed from your favorites."
+    # message = "Job #{job1.title} removed from your favorites."
 
-    visit job_path(job1.id)
-    first(".card-action").click_link("Favorite")
-    visit job_path(job2.id)
-    first(".card-action").click_link("Favorite")
+    visit job_path(job1.title)
+    first("#job-text-box").click_link("FAVORITE")
+    visit job_path(job2.title)
+    first("#job-text-box").click_link("FAVORITE")
 
-    within('nav') do
-      click_on("Favorites")
+    within('.main-resources') do
+      click_on("FAVORITES")
     end
 
     expect(page).to have_current_path(favorites_path)
-    expect(page).to have_content("job1.name")
-    expect(page).to have_content("job2.name")
-    first(".card-action").click_link("Unfavorite")
+    expect(page).to have_content(job1.title)
+    expect(page).to have_content(job2.title)
+    visit job_path(job1.title)
+    save_and_open_page
+    first("#job-text-box").click_link("UNFAVORITE")
 
-    # expect(page).to have_content("Total Hours: 1")
+    within('.main-resources') do
+      click_on("FAVORITES")
+    end
 
     within(".card-content") do
-      expect(page).not_to have_content("#{job1.name}")
+      expect(page).not_to have_content(job1.title)
     end
 
-    within(".flash-notice") do
-      expect(page).to have_content(message)
-
-      expect(page).to have_link("#{job2.name}")
-    end
-
-    click_link("#{job2.name}")
-    expect(page).to have_current_path(job_path(job2.id))
+    expect(page).to have_link("#{job2.title}")
+    click_link("#{job2.title}")
+    expect(page).to have_current_path(job_path(job2.title))
   end
 end
