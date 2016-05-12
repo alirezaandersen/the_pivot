@@ -10,23 +10,22 @@
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700italic,100,300,700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Lustria' rel='stylesheet' type='text/css'>
-  
+
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <%= render partial: "shared/navbar" %>
-
   <div class="container">
     <% flash.each do |type, message| %>
       <div class="card-panel teal lighten-2"><h5><%= content_tag :div, message.html_safe, class:"flash-#{type}" %></h5></div>
     <% end %>
     <%= yield %>
   </div>
-
   <%= render partial: "shared/footer" %>
 </body>
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+<script src="https://use.fontawesome.com/9a1ae299b0.js"></script>
 </html>

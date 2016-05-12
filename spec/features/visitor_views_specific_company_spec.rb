@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.feature "Guest views specific company" do
-
   scenario "Guest views NIKE's page" do
     nike = create(:company)
+    shoe_maker = create(:job, title: "shoe maker", company_id: nike.id)
 
     visit companies_path
 
@@ -17,8 +17,10 @@ RSpec.feature "Guest views specific company" do
     expect(page).to have_content("About Us")
     expect(page).to have_content(nike.description)
 
-    expect(page).to have_content("Available Jobs")
+    expect(page).to have_content("Available Positions")
+    expect(page).to have_content(shoe_maker.title)
+    expect(page).to have_content(shoe_maker.description)
+    expect(page).to have_content(shoe_maker.city.name)
+    expect(page).to have_content(shoe_maker.city.state)
   end
 end
-
-# display message *NO JOBS AVAILABLE*
