@@ -1,4 +1,4 @@
-# module UserHelpers
+module UserHelpers
 #   def create_and_login_admin
 #     admin = Volunteer.create(first_name: "John",
 #                              last_name: "Last",
@@ -9,12 +9,12 @@
 #     login_volunteer(admin)
 #   end
 #
-#   def login_volunteer(volunteer)
-#     visit login_path
-#     fill_in "Username", with: volunteer.username
-#     fill_in "Password", with: volunteer.password
-#     click_button("LOGIN")
-#   end
+  def login_user(user)
+    visit login_path
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    click_button("LOGIN")
+  end
 #
 #   def cart_checkout
 #     visit tasks_path
@@ -34,4 +34,4 @@
 #     volunteer.tasks << tasks
 #     volunteer
 #   end
-# end
+end

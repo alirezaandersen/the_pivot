@@ -20,6 +20,8 @@
         <p><b>Department:</b> <%= @job.department %></p>
         <p><b>Salary:</b> <%= @job.salary %> USD</p>
         <p><b>Description:</b> <%= @job.description %></p>
+        <% render partial: "job_form", locals: { job: @job} %>
+
           <% if current_user %>
             <%= link_to "APPLY", job_path(@job.title), class:"slider-btn waves-effect waves-light btn teal lighten-3" %>
           <% else %>

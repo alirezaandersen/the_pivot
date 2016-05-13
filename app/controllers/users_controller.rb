@@ -14,6 +14,7 @@ class UsersController < ApplicationController
       flash.now[:error] = "Invalid. Please try again."
       render :new
     end
+    redirect_to request.referrer
   end
 
   def show
