@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   has_many :users_job
+  has_many :contact_us
   has_many :jobs, through: :users_job
 
   validates :first_name, presence: true
