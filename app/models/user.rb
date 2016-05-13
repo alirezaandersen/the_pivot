@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
-  has_many :users_job
-  has_many :jobs, through: :users_job
+  has_many :users_jobs
+  has_many :jobs, through: :users_jobs
 
   validates :first_name, presence: true
   validates :last_name, presence: true

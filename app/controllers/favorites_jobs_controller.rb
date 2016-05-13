@@ -15,6 +15,7 @@ class FavoritesJobsController < ApplicationController
 
   def show
     @jobs = @favorites.jobs
+
   end
 
   def destroy

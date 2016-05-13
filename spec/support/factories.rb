@@ -24,7 +24,7 @@ FactoryGirl.define do
   end
 
   factory :users_job do
-    status "MyString"
+    status 0
     resume "MyText"
     user
     job

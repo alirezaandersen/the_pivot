@@ -1,10 +1,9 @@
 <h1>Welcome <%= @current_user.first_name %></h1>
 
 <div class="dashboard">
-  <h4>Email: <%= @current_user.email %></h4>
-  <h4>Current Resume: </h4>
-
-   <h3> Favorite Jobs Link</h3>
-   <h3> Jobs Applied To Link</h3>
+  <h5>Email: <%= @current_user.email %></h5>
+  <h5>Current Resume: </h5>
+  <%= button_to "My Favorites", users_job_path(@current_user), method: :get, class:"slider-btn waves-effect waves-light btn"%>
+   <h5> Jobs Applied To Link</h5>
 
 </div>
