@@ -6,8 +6,7 @@ RSpec.feature "Registered job seeker can apply to a job" do
     job = create(:job)
     file_path = "#{Rails.root}/spec/support/sample_cv_of_failures.pdf"
     text = "This is the body of the cover letter.\nNot entirely sure what to right.\nSincerely,\nBenjamin Franklin"
-    flash_text = "You have applied for #{job.title} with #{job.company.name}"
-
+    flash_text = "You have applied for #{job.title} with #{job.company.name}."
     visit job_path(job.title)
 
     click_link("LOGIN TO APPLY")
@@ -16,16 +15,16 @@ RSpec.feature "Registered job seeker can apply to a job" do
 
     login_user(registered_user)
 
-# figure out how to redirect to job page; troubleshoot why request.referrer didn't work
+    # figure out how to redirect to job page; troubleshoot why request.referrer didn't work
     # expect(page).to have_current_path job_path(job.title)
     expect(page).to have_current_path dashboard_path
 
     visit job_path(job.title)
 
     within(".job-form") do
-      attach_file("Upload Resume", file_path)
-      fill_in "Cover Letter (optional)", with: text
-      click_button("Apply")
+      attach_file("users_jobs[resume]", file_path)
+      fill_in "users_jobs[cover_letter]", with: text
+      click_button("Submit")
     end
 
     expect(page).to have_current_path dashboard_path

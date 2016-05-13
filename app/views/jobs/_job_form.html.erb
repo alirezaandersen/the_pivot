@@ -1,9 +1,10 @@
 <div class="job-form">
-  <%= form_for( @job, url: users_jobs_path ) do |f| %>
-    <%= f.label :resume, placeholder: "Upload Resume" %> <br>
-    <%= f.form_field :resume %> <br>
-    <%= f.label :cover_letter, placeholder: "Cover Letter (optional)" %> <br>
-    <%= f.text_area :cover_letter %> <br>
-    <%= f.submit %>
+  <%= form_for( :users_jobs, url: users_jobs_path ) do |f| %>
+    <%= f.label "Upload resume" %> <br>
+    <%= f.file_field :resume %> <br>
+    <%= f.label "Cover letter (optional)" %> <br>
+    <%= f.text_area :cover_letter, size: '40x20' %> <br>
+    <%= f.hidden_field :job, value: @job.id %>
+    <%= f.submit "Submit" %>
   <% end %>
 </div>

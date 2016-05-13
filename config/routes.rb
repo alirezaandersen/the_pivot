@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   get '/search/jobs', to: 'search#show', as: :search_job
 
   resources :favorites_jobs, only: [:create, :destroy]
-
+  resources :users_jobs, only: [:create]
+  
   get "/dashboard", to: "users#show"
 
   get    "/login", to: "sessions#new", as: :login

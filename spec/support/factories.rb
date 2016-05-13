@@ -57,8 +57,6 @@ FactoryGirl.define do
     "#{n}"
   end
 
-
-
   factory :city do
     sequence :name, %w(Denver Aurora Turingopolis).cycle do |n|
       "#{n}"
