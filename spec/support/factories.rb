@@ -5,6 +5,7 @@ FactoryGirl.define do
     email
     password "password"
     role
+
   end
 
   sequence :first_name do |fn|
@@ -23,11 +24,8 @@ FactoryGirl.define do
     r = 0
   end
 
-  factory :users_job do
-    status "MyString"
-    resume "MyText"
-    user
-    job
+  sequence :status, [0, 1, 2].cycle do |s|
+    s
   end
 
   factory :job do

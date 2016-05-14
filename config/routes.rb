@@ -10,7 +10,8 @@ Rails.application.routes.draw do
 
   resources :favorites_jobs, only: [:create, :destroy]
   resources :users_jobs, only: [:create]
-  
+  get '/submissions', to: "users_jobs#show", as: :my_jobs
+
   get "/dashboard", to: "users#show"
 
   get    "/login", to: "sessions#new", as: :login

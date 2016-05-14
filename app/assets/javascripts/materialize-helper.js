@@ -23,4 +23,7 @@ $(document).ready(function(){
      dismissible: true
   });
 
+  $( "#applied-button" ).click(function() {
+    alert( "You have already applied for this job" );
+  });
 });

@@ -22,10 +22,15 @@
         <p><b>Description:</b> <%= @job.description %></p>
         <br>
         <% if current_user %>
-          <a class="modal-trigger waves-effect waves-light btn teal lighten-3" href="#modal1">APPLY</a>
-          <div id="modal1" class="modal">
-            <%= render partial: "job_form", locals: { job: @job} %>
-          </div>
+          <% if UsersJob.exists?(job_id: @job.id) %>
+          <button class = "slider-btn waves-effect waves-light btn teal lighten-3", id = "applied-button"> APPLIED </button>
+          <% else %>
+            <a class="modal-trigger waves-effect waves-light btn teal lighten-3" href="#modal1">APPLY</a>
+
+            <div id="modal1" class="modal">
+              <%= render partial: "job_form", locals: { job: @job } %>
+            </div>
+          <% end %>
         <% else %>
           <%= link_to "LOGIN TO APPLY", login_path, class:"slider-btn waves-effect waves-light btn teal lighten-3" %>
         <% end %>
