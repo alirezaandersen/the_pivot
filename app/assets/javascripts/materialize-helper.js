@@ -19,4 +19,8 @@ $(document).ready(function(){
     belowOrigin: true
   });
 
+  $('.modal-trigger').leanModal({
+     dismissible: true
+  });
+
 });
