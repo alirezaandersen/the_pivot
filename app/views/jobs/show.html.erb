@@ -1,38 +1,47 @@
-<h1><%= @job.title %> at <%= @job.company.name %></h1>
+<h1 class="job-show-title"><%= @job.title.capitalize %> at <%= @job.company.name %></h1>
 <div class="job-show-container">
-
   <div class="row">
-    <div class="col s12 l6">
-      <!-- <%#= image_tag @task.image.url(:original), alt: "Tag Image", class: "task-image" %> -->
-      <%= @job.company.logo %>
-      Placeholder
+    <div class="col s12 l12 center-align" id="job-show-image">
+      <%= image_tag(@job.company.logo) %>
     </div>
-    <div class="col s12 l6">
-      <div class="card-panel teal lighten-2" id="job-text-box">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p class="job-show-description">
+            <%= @job.description %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 l12">
+      <div class="card-panel" id="job-text-box">
         <h4>Opportunity Details</h4>
-        <p><b>Company:</b> <%= @job.company.name %> </p>
-        <p><b>Job Title:</b> <%= @job.title %> </p>
-        <p><b>Location:</b> <%= @job.city.name_and_state %> </p>
+        <p>Company: <%= @job.company.name %> </p>
+        <p>Job Title: <%= @job.title.capitalize %> </p>
+        <p>Location: <%= @job.city.name_and_state %> </p>
         <br>
         <h4>Requirements</h4>
-        <p><b>Education:</b> <%= @job.education %> </p>
-        <p><b>Years of Experience:</b> <%= @job.years_of_experience %> year(s) </p>
-        <p><b>Department:</b> <%= @job.department %></p>
-        <p><b>Salary:</b> <%= @job.salary %> USD</p>
-        <p><b>Description:</b> <%= @job.description %></p>
-          <% if current_user %>
+        <p>Education: <%= @job.education.capitalize %> </p>
+        <p>Years of Experience: <%= @job.years_of_experience %> year(s) </p>
+        <p>Department: <%= @job.department %></p>
+        <p>Salary: <%= number_to_currency(@job.salary) %> USD</p>
+
+        <div class="row">
+          <div class="col s12 m12 l12 center-align">
+            <% if current_user %>
             <%= link_to "APPLY", job_path(@job.title), class:"slider-btn waves-effect waves-light btn teal lighten-3" %>
-          <% else %>
+            <% else %>
             <%= link_to "LOGIN TO APPLY", login_path, class:"slider-btn waves-effect waves-light btn teal lighten-3" %>
-          <% end %>
-          <% if @favorites.has_job?(@job.id) %>
+            <% end %>
+            <% if @favorites.has_job?(@job.id) %>
             <%= link_to "UNFAVORITE", favorites_job_path(@job.id), class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :delete %>
-          <% else %>
+            <% else %>
             <%= link_to "FAVORITE", favorites_jobs_path(job_id: @job.id), class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :post %>
-          <% end %>
+            <% end %>
+          </div>
+        </div>
       </div>
 
     </div>
   </div>
-
 </div>

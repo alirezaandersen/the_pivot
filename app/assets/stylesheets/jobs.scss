@@ -32,3 +32,35 @@
 .job-title-snippet {
   text-transform: capitalize;
 }
+
+
+/* Job's Show Page  */
+
+.job-show-title {
+  border-bottom: solid 2px;
+  margin-bottom: 55px;
+  font-weight: 300;
+}
+
+#job-show-image{
+  margin-bottom: 55px;
+}
+
+#job-text-box {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+#job-text-box h4 {
+  border-bottom: 1px dotted #26A69A;
+  width: 100%;
+  display: block;
+}
+
+#job-text-box p {
+  font-size: 25px;
+}
+
+.job-show-description {
+  font-size: 20px;
+}
