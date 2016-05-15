@@ -24,8 +24,11 @@ FactoryGirl.define do
     r = 0
   end
 
-  sequence :status, [0, 1, 2].cycle do |s|
-    s
+  factory :users_job do
+    status 0
+    resume "MyText"
+    user
+    job
   end
 
   factory :job do

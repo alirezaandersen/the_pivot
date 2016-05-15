@@ -56,7 +56,7 @@ class Seed
   end
 
   def generate_users_jobs
-    status = ["favorited", "applied"]
+    status = [0, 1]
 
     20.times do |i|
       UsersJob.create(status: status.sample,

@@ -23,4 +23,12 @@ class UsersJob < ActiveRecord::Base
     user_job.applied!
     user_job
   end
+
+  def self.favorited
+    where(status: 0)
+  end
+
+  def self.applied
+    where(status: 1)
+  end
 end

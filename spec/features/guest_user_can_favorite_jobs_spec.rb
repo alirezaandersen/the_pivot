@@ -27,7 +27,7 @@ RSpec.feature "Visitor can favorite jobs" do
     expect(page).to have_content job.title
     expect(page).to have_content job.description
     expect(page).to have_content job.city.name
-    expect(page).to have_button("Save your Favorites")
+    expect(page).to have_button("Login to save your Favorites")
   end
 
   scenario "they can remove a job from favorites" do

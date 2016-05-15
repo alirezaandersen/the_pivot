@@ -1,0 +1,28 @@
+<h1>My Saved Favorite Jobs</h1>
+<div class="row">
+  <% @favorited_jobs.each do |favorited_job| %>
+    <div class="col xs12 x6 m4 l3" id="job-snippet">
+      <div class="card medium">
+        <div class="card-image">
+          <!-- <%#= link_to( image_tag(task.image.url(:medium), alt: "Task Image"), task_path(task) ) %> -->
+          <%= image_tag(favorited_job.job.company.logo) %>
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4"><%= link_to favorited_job.job.title, job_path(favorited_job.job.title) %><i class="material-icons right">more_vert</i></span>
+          <p><%= favorited_job.job.company.name %></p>
+          <p><%= favorited_job.job.city.name_and_state %></p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Job Details<i class="mfaterial-icons right">close</i></span>
+          <p><%= favorited_job.job.title %></p>
+          <span class="job-snippet-details">
+            Looking for someone with about <%= favorited_job.job.years_of_experience %> year(s) of experience, with a starting salary of <%= favorited_job.job.salary %>
+          </span>
+          <p><%= favorited_job.job.description %></p>
+        </div>
+        <div class="card-action">
+          <%= link_to "View opportunity details", job_path(favorited_job.job.title) %>
+        </div>
+      </div>
+    </div>
+  <% end %>

@@ -15,7 +15,7 @@ class JobApplicationService
 
   def allow_to_apply?
     case
-    when user_job && !user_job.applied?
+    when user_job && user_job.favorited?
       update_with_application
       return true
     when user_job && user_job.applied?

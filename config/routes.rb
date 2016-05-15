@@ -8,9 +8,11 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   get '/search/jobs', to: 'search#show', as: :search_job
 
-  resources :favorites_jobs, only: [:create, :destroy]
+  resources :favorites, only: [:create, :destroy]
+
   resources :users_jobs, only: [:create]
   get '/submissions', to: "users_jobs#show", as: :my_jobs
+  get '/my-favorites', to: "saved_favorites#show", as: :my_favorites
 
   get "/dashboard", to: "users#show"
 
@@ -21,5 +23,5 @@ Rails.application.routes.draw do
   get    "/about_us", to: 'home#about_us', as: :about_us
   get    "/contact_us", to:'contact_us#new', as: :contact_us
   post    "/contact_us", to:'contact_us#create'
-  get    "/favorites", to: 'favorites_jobs#show', as: :favorites
+  get    "/favorites", to: 'favorites#show', as: :favorites
 end
