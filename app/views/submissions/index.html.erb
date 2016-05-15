@@ -7,6 +7,7 @@
           <div class="card-image">
             <img src="<%= company.logo %>">
           </div>
+          <%= company.created_at %>
           <div class="card-action">
             <span class="card-title"> <%= link_to company.company_name, company_submission_status_path(company.company_name) %> </span>
           </div>

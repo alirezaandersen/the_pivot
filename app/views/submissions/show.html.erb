@@ -12,6 +12,6 @@
     <%= image_tag(@submission.logo, id: "img_preview") %>
   </div>
 
-<%= button_to "Approve Company", company_approved_path, method: :get, class:"slider-btn waves-effect waves-light btn" %>
-<%= button_to "Deny Company", company_denied_path, method: :get, class:"slider-btn waves-effect waves-light btn" %>
+<%= button_to "Approve Company", company_approved_path(@submission.company_name), method: :get, class:"slider-btn waves-effect waves-light btn" %>
+<%= button_to "Deny Company", company_denied_path(@submission.company_name), method: :get, class:"slider-btn waves-effect waves-light btn" %>
 </div>
