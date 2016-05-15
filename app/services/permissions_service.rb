@@ -33,7 +33,7 @@ class PermissionsService
     return true if controller == "contact_us"  && action.in?(%w(index new create show delete))
     return true if controller == "favorites"  && action.in?(%w(create show delete))
     return true if controller == "home"  && action.in?(%w(index about_us))
-    return true if controller == "submissions" && action.in?(%w(index new create show edit update approved_submissions denied_submissions))
+    return true if controller == "submissions" && action.in?(%w(index new create show edit update approved_index denied_index approved_submissions denied_submissions))
 
 
   end

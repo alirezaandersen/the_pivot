@@ -91,6 +91,12 @@ class Seed
         City.create(name: city, state: "CO")
       end
     end
+
+    def generate_roles
+      Role.create(name: "registered_user")
+      Role.create(name: "store_admin")
+      Role.create(name: "platform_admin")
+    end 
 end
 
 Seed.start

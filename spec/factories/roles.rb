@@ -1,5 +1,5 @@
-FactoryGirl.define do
-  factory :role do
-    name "MyString"
-  end
-end
+# FactoryGirl.define do
+#   factory :role do
+#     name "MyString"
+#   end
+# end

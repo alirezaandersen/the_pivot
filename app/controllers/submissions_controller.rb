@@ -1,7 +1,8 @@
 class SubmissionsController < ApplicationController
 
   def index
-    @submissions = Submission.all
+    @title = "Pending Submissions"
+    @submissions = Submission.where(approval: 0) || []
     # binding.pry
   end
 
@@ -22,23 +23,33 @@ class SubmissionsController < ApplicationController
   end
 
   def show
-    # binding.pry
-    # @submission = Submission.find(params[:id])
     @submission = Submission.find_by(company_name:params[:company_name])
-    binding.pry
+  end
+
+  def approved_index
+    @title = "Approved Submissions"
+    @submission = Submission.where(approval: 1) || []
+    # binding.pry
   end
 
   def approved_submissions
-      # binding.pry
       @company = Company.create(company_info)
-      # binding.pry
       @user = User.create(user_info.merge(company_id:@company[:id]))
       role = Role.find_by(name:"store_admin")
       UserRole.create(role_id:role[:id],user_id:@user[:id])
+      Submission.find_by(company_name:@company.name).update(approval: 1)
+      redirect_to companies_approved_path
   end
 
-  def denied_submissions(params)
+  def denied_index
+    @title = "Denied Submissions"
+    @submission = Submission.where(approval: 2) || []
+  end
 
+  def denied_submissions
+    # binding.pry
+    Submission.find_by(company_name: params[:company_name]).update(approval: 2)
+    redirect_to companies_denied_path
   end
 
   def submissions_parser
@@ -58,7 +69,6 @@ class SubmissionsController < ApplicationController
   end
 
   def user_info
-
     user_params = {}
     user_params[:first_name] = submissions_parser[:first_name]
     user_params[:last_name] = submissions_parser[:last_name]
@@ -70,9 +80,6 @@ class SubmissionsController < ApplicationController
   private
 
   def submissions_params
-    #binding.pry
-    # params.require(:submission).permit(:company_name, :logo, :url, :size_of_company, :industry, :about_company, :first_name, :last_name, :email, :phone_number, :description)
-    params.permit(:company_name, :logo, :url, :size_of_company, :industry, :about_company, :first_name, :last_name, :email, :phone_number, :description)
-
+    params.require(:submission).permit(:company_name, :logo, :url, :size_of_company, :industry, :about_company, :first_name, :last_name, :email, :phone_number, :description, :authenticity_token)
   end
 end
