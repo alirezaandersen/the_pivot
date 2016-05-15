@@ -1,10 +1,14 @@
 <div class="job-form">
   <%= form_for( :users_jobs, url: users_jobs_path ) do |f| %>
     <div class="modal-content">
-        <h5>SUBMISSION FORM</h5>
+        <h5>
+          SUBMISSION FORM
+        </h5>
 
         <div class="resume col s12">
-          <b><%= f.label "Upload resume", id: "job-form-label" %></b>
+          <b>
+            <%= f.label "Upload resume", id: "job-form-label" %>
+          </b>
           <br>
           <%= f.file_field :resume %>
         </div>
@@ -14,8 +18,7 @@
           <br>
             <%= f.text_area :cover_letter, size: '40x20', id: "textarea1", class: "materialize-textarea" %>
         </div>
-
-        <%= f.hidden_field :job, value: @job.id %>
+        <%= f.hidden_field :job, value: job_presenter.id %>
     </div>
 
     <div class="modal-footer col s12">

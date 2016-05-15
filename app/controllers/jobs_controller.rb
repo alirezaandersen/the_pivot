@@ -4,7 +4,7 @@ class JobsController < ApplicationController
   end
 
   def show
-    @job = Job.find_by(slug: params[:title])
-    @favorites
+    @objects = { job: Job.find_by(slug: params[:title]),
+                 favorites: @favorites, user: current_user }
   end
 end

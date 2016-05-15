@@ -14,12 +14,11 @@ class JobApplicationService
   end
 
   def allow_to_apply?
-    case
-    when user_job && user_job.favorited?
+    if already_applied_for_job_at_specific_company
+      return false
+    elsif favorited_job_at_specific_company
       update_with_application
       return true
-    when user_job && user_job.applied?
-      return false
     else
       submit_application
       return true
@@ -48,7 +47,19 @@ class JobApplicationService
       @_application
     end
 
+    def company
+      job.company
+    end
+
     def user_job
       @_user_job = UsersJob.query_record(job, user)
+    end
+
+    def favorited_job_at_specific_company
+      user_job && user_job.favorited? && (company == user_job.job.company)
+    end
+
+    def already_applied_for_job_at_specific_company
+      user_job && user_job.applied? && (company == user_job.job.company)
     end
 end

@@ -8,4 +8,10 @@ module ApplicationHelper
       users_job
     end
   end
+
+  def present(objects)
+    presenter = MultiPresenter.new(objects, self)
+    yield presenter if block_given?
+    presenter
+  end
 end
