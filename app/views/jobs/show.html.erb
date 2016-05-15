@@ -21,6 +21,7 @@
         <p><b>Salary:</b> <%= @job.salary %> USD</p>
         <p><b>Description:</b> <%= @job.description %></p>
         <br>
+<!-- push down logic -->
         <% if current_user %>
           <% if UsersJob.exists?(job_id: @job.id) %>
           <button class = "btn tooltipped waves-effect waves-light btn teal lighten-3", id = "applied-button", data-position="bottom", data-tooltip="You have already applied for this job"> APPLIED </button>
