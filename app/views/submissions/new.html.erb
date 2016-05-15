@@ -1,0 +1,39 @@
+<h1>Recruit With Us</h1>
+
+
+<p>Ziba is all about a lifestyle we just don't do the typical recruiting that other firms do.
+  Our goal is not only to find the culture fit but to also find the culture add on. Our regiorous
+  recruiment style allows only the best fit candidate to apply for you. We understand recruiting
+  is all about risk management. Our leading industry practices ensures that we find the perfect balance
+  of qualifications to allow both a Ziba lifestyle for the Employer and the Recruitee. Since your company
+  is our top priority we make sure that you are the right business that believes in our mission statement.
+  Feel free to contact us to see if You can also have the Ziba lifestyle for your company.</p>
+
+
+  <h8> Give your company the Ziba Lifestyle</h8><br>
+  <h8> Fill out this form and a Ziba specialist will contact you</h8>
+
+  <div class="row">
+    <div class="col s6 offset-s3">
+      <div class="submissions_form">
+        <%= form_for(@submission, url: submissions_path) do |f| %>
+
+        <%= f.text_field :company_name, placeholder: "Company Name" %>
+        <%= f.text_field :logo, placeholder: "Company Logo" %>
+        <%= f.text_field :url, placeholder: "Company url" %>
+        <%= f.text_field :size_of_company, placeholder: "Company Size" %>
+        <%= f.text_field :industry, placeholder: "Company Industry" %>
+        <%= f.text_field :about_company, placeholder: "Tell Us About Your Company" %>
+        <%= f.text_field :first_name, placeholder: "First Name" %>
+        <%= f.text_field :last_name, placeholder: "Last Name" %>
+        <%= f.text_field :email, placeholder: "Email" %>
+        <%= f.text_field :phone_number, placeholder: "Phone Number" %>
+        <%= f.text_field :description, placeholder: "Describe Your Companies Culture" %>
+
+        <span>
+          <%= f.submit "Submit Application", class:"slider-btn waves-effect waves-light btn" %>
+        </span>
+        <% end %>
+      </div>
+    </div>
+  </div>

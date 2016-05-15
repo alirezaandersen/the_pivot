@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   resources :jobs, only: [:index]
   get '/jobs/:title', to: 'jobs#show', as: :job
 
-  get    "companies/pending_companies_approval", to: 'companies#pending_index', as: :companies_applicants
-  get    "companies/pending_companies_approval/:id", to: 'companies#pending_show', as: :company_applicants
+  # get    "companies/pending_companies_approval", to: 'companies#pending_index', as: :companies_applicants
+  # get    "companies/pending_companies_approval/:id", to: 'companies#pending_show', as: :company_applicants
   resources :companies, only: [:index, :show]
-  get  "/submissions", to: 'companies#new', as: :submissions
+
   post "/companies", to: 'companies#create'
   resources :users, only: [:new, :create]
   get '/search/jobs', to: 'search#show', as: :search_job
@@ -28,4 +28,11 @@ Rails.application.routes.draw do
   get    "/contact_us/:id", to: 'contact_us#show', as: :customer_inquiry
   delete "/contact_us/:id", to: 'contact_us#delete'
   get    "/favorites", to: 'favorites_jobs#show', as: :favorites
+
+  get    "submissions", to: 'submissions#new', as: :submissions
+  post   "submissions", to: 'submissions#create'
+  get    "submissions/all", to: 'submissions#index', as: :submissions_status
+  get    "submissions/:company_name", to: 'submissions#show', as: :company_submission_status
+  get    "submissions/:company_name/approved", to: 'submissions#approved_submissions', as: :company_approved
+  get    "submissions/:company_name/denied", to: 'submissions#denied_submissions', as: :company_denied
 end
