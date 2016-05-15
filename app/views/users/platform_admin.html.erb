@@ -1,0 +1,15 @@
+<h1>Welcome Super <%= @current_user.first_name %></h1>
+
+<div class="dashboard">
+  <h4>Email: <%= @current_user.email %></h4>
+  <h4>Super Admin </h4>
+  <ul>
+    <li><h6><%= link_to "Customer Inquiries", customer_inquiries_path %></h6></li>
+    <li><h6><%= link_to "Company Applicants", companies_applicants_path %></h6></li>
+    <li><h6><%= link_to "Bunch of Analytic Data", '#' %></h6></li>
+    <li><h6><%= link_to "Bunch of More Stuff1", '#' %></h6></li>
+    <li><h6><%= link_to "Bunch of More Stuff2", '#' %></h6></li>
+    <li><h6><%= link_to "Bunch of More Stuff3", '#' %></h6></li>
+  </ul>
+
+</div>

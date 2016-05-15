@@ -1,7 +1,7 @@
 class ContactUsController < ApplicationController
 
   def index
-
+    @contacts = ContactUs.all
   end
 
   def new
@@ -19,6 +19,15 @@ class ContactUsController < ApplicationController
     end
   end
 
+  def show
+    @contact = ContactUs.find(params[:id])
+  end
+
+  def delete
+    inquiry = ContactUs.find(params[:id])
+    inquiry.destroy
+    redirect_to platform_admin_dashboard_path
+  end
 
   private
 
