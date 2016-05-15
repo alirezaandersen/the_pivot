@@ -4,7 +4,7 @@ FactoryGirl.define do
     last_name
     email
     password "password"
-    role
+    roles = 0
   end
 
   sequence :first_name do |fn|
@@ -17,10 +17,6 @@ FactoryGirl.define do
 
   sequence :email do |e|
     "#{e}@gmail.com"
-  end
-
-  sequence :role do |r|
-    r = 0
   end
 
   factory :users_job do
@@ -58,6 +54,48 @@ FactoryGirl.define do
   end
 
 
+  factory :submission do
+    company_name
+    logo
+    url
+    size_of_company
+    about_company
+    industry
+    first_name
+    last_name
+    email
+    phone_number
+    description
+    approval = 0
+  end
+
+  sequence :company_name do |cn|
+    "Company #{cn}"
+  end
+
+  sequence :url do |cn|
+    "Url #{cn}"
+  end
+
+  sequence :logo do |cn|
+    "Logo#{cn}"
+  end
+
+  sequence :size_of_company do |cn|
+    "Size of Company #{cn}"
+  end
+
+  sequence :about_company do |cn|
+    "About Company #{cn}"
+  end
+
+  sequence :industry, %w("Engineering", "Sales", "Customer Success").cycle do |n|
+    "#{n}"
+  end
+
+  sequence :phone_number do |cn|
+    "72#{cn}333-1223"
+  end
 
   factory :city do
     sequence :name, %w(Denver Aurora Turingopolis).cycle do |n|
@@ -86,5 +124,6 @@ FactoryGirl.define do
     url "http://www.nike.com/us/en_us/"
     size 1
     industry "Footwear"
+    approve = true
   end
 end

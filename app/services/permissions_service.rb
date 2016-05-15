@@ -34,8 +34,7 @@ class PermissionsService
     return true if controller == "favorites"  && action.in?(%w(create show delete))
     return true if controller == "home"  && action.in?(%w(index about_us))
     return true if controller == "submissions" && action.in?(%w(index new create show edit update approved_index denied_index approved_submissions denied_submissions))
-
-
+    return true if controller == "search"  && action.in?(%w(show))
   end
 
   def store_admin_permissions
@@ -47,7 +46,7 @@ class PermissionsService
     return true if controller == "contact_us"  && action.in?(%w(new create))
     return true if controller == "favorites"  && action.in?(%w(create show destroy))
     return true if controller == "home"  && action.in?(%w(index about_us))
-
+    return true if controller == "search"  && action.in?(%w(show))
   end
 
   def registered_user_permissions
@@ -58,7 +57,7 @@ class PermissionsService
     return true if controller == "contact_us"  && action.in?(%w(new create))
     return true if controller == "users" && action.in?(%w(index new create show edit update))
     return true if controller == "home"  && action.in?(%w(index about_us))
-
+    return true if controller == "search"  && action.in?(%w(show))
   end
 
   def guest_permissions
@@ -70,8 +69,7 @@ class PermissionsService
     return true if controller == "favorites_jobs"  && action.in?(%w(create show destroy))
     return true if controller == "users" && action.in?(%w(index new create show edit update))
     return true if controller == "submissions" && action.in?(%w(new create))
-
-
+    return true if controller == "search"  && action.in?(%w(show))
   end
 
   def controller

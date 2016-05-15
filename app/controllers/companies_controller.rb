@@ -1,10 +1,9 @@
 class CompaniesController < ApplicationController
   def index
-    @companies = Company.all
+    @companies = Company.where(approve: 1) || []
   end
 
   def new
-    # binding.pry
     @company = Company.new
     @contact_us = ContactUs.new
   end
@@ -15,7 +14,6 @@ class CompaniesController < ApplicationController
     binding.pry
     @company = Company.new(company_params)
     @company.users.create(user_params)
-
   end
 
   def show

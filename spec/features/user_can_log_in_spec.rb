@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.feature "Visitor log in" do
   scenario "they can log in from the home index" do
     user = create(:user)
-
     visit root_path
 
     within(".main-resources") do

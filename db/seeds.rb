@@ -7,6 +7,7 @@ class Seed
     seed.generate_cities
     seed.generate_jobs
     seed.generate_users_jobs
+    seed.generate_roles
   end
 
   def generate_companies
@@ -17,7 +18,8 @@ class Seed
                                 logo: Faker::Company.logo,
                                 url: Faker::Internet.url(name.parameterize, ".com/"),
                                 size: rand(1000),
-                                industry: Faker::Commerce.department(1))
+                                industry: Faker::Commerce.department(1),
+                                approve: true)
     end
     puts "Companies was created."
   end
@@ -96,7 +98,7 @@ class Seed
       Role.create(name: "registered_user")
       Role.create(name: "store_admin")
       Role.create(name: "platform_admin")
-    end 
+    end
 end
 
 Seed.start

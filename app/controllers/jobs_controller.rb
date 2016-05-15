@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
   def index
-    @jobs = Job.all
+    company_ids = Company.select(:id).where(approve:1).ids
+    @jobs = Job.find(company_ids)
   end
 
   def show
