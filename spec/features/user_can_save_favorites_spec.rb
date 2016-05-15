@@ -3,11 +3,10 @@ require 'rails_helper'
 RSpec.feature "Registered user can save favorites" do
   include UserHelpers
 
-  scenario "they can save favorites" do
-    user = create(:user)
+  scenario "guest user cannot save favorites" do
     job = create(:job)
 
-    visit job_path(job.title)
+    visit job_path(job)
 
     within("#job-text-box") do
       click_link("FAVORITE")
@@ -20,47 +19,101 @@ RSpec.feature "Registered user can save favorites" do
     expect(page).to have_current_path("/favorites")
     expect(page).to_not contain_exactly("Save your Favorites")
     click_button("Login to save your Favorites")
+  end
 
-    login_user(user)
+  scenario "guest user must login or register to save favorites" do
+    job = create(:job)
+    user = create(:user)
 
-    within(".main-resources") do
-      expect(page).to have_content("LOGOUT")
+    visit job_path(job)
+    within("#job-text-box") do
+      click_link("FAVORITE")
     end
-
-    expect(page).to have_current_path("/dashboard")
 
     within(".main-resources") do
       click_on("FAVORITES")
     end
 
-    # expect(page).to have_button("My Favorites")
-
-    # click_on("Save your Favorites")
-    # within(".dashboard") do
-    #   click_on("My Favorites")
-    # end
     expect(page).to have_current_path("/favorites")
-    click_button("Save your Favorites")
+    expect(page).to_not contain_exactly("Save your Favorites")
 
-    expect(page).to have_current_path(users_job_path(user))
+    click_button("Login to save your Favorites")
 
-    # within(".flash-notice") do
-    #   expect(page).to have_content("Your Jobs are Saved!")
-    # end
+    expect(page).to have_current_path(login_path)
+    login_user(user)
 
-    within(".card-reveal") do
-      expect(page).to have_content(job.title)
-      # expect(page).to have_content("#{task_2.name}")
+    expect(page).to have_current_path("/dashboard")
+
+    within(".main-resources") do
+      expect(page).to have_content("LOGOUT")
+      expect(page).to have_content("MY FAVORITES")
     end
-    # expect(page).to have_content("Cart: 0")
+
+    expect(page).to have_link("My Favorites")
+
+    within(".dashboard") do
+      click_link("My Favorites")
+    end
+
+    expect(page).to have_current_path(my_favorites_path)
   end
 
-  # scenario "user gets redirected to city_path when adding item to cart" do
-  #   city = create(:city_with_tasks)
-  #
-  #   visit city_path(city)
-  #   page.all(".card-action")[0].click_link("Add to Cart")
-  #
-  #   expect(page).to have_current_path(city_path(city))
-  # end
+  scenario "logged in user can save favorites" do
+    user = create(:user)
+    job = create(:job)
+
+    login_user(user)
+
+    visit job_path(job)
+
+    within("#job-text-box") do
+      click_link("SAVE TO FAVORITES")
+    end
+
+    within(".flash-notice") do
+      expect(page).to have_content("Your Favorites are saved!")
+    end
+
+
+    within(".main-resources") do
+      click_on("MY FAVORITES")
+    end
+
+    expect(page).to have_current_path(my_favorites_path)
+    within(".card-content") do
+      expect(page).to have_content(job.title)
+    end
+  end
+
+  scenario "user cannot save favorites twice" do
+    user = create(:user)
+    job = create(:job)
+    login_user(user)
+
+    visit job_path(job)
+
+    within("#job-text-box") do
+      click_link("SAVE TO FAVORITES")
+    end
+
+    within(".flash-notice") do
+      expect(page).to have_content("Your Favorites are saved!")
+    end
+
+    within(".main-resources") do
+      click_link("MY FAVORITES")
+    end
+
+    expect(page).to have_current_path(my_favorites_path)
+    within(".card-reveal") do
+      expect(page).to have_content(job.title)
+    end
+
+    within(".card-action") do
+      click_link("View opportunity details")
+    end
+    expect(page).to have_current_path(job_path(job))
+    expect(page).to_not contain_exactly("SAVE TO FAVORITES")
+    expect(page).to have_content("SAVED")
+  end
 end

@@ -1,4 +1,4 @@
-class FavoritesJobsController < ApplicationController
+class FavoritesController < ApplicationController
   include ActionView::Helpers::TextHelper
 
   def create
@@ -21,6 +21,6 @@ class FavoritesJobsController < ApplicationController
   def destroy
     job = Job.find(params[:id])
     @favorites.remove_job(job.id)
-    redirect_to favorites_path
+    redirect_to job_path(job)
   end
 end

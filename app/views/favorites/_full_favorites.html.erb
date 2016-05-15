@@ -1,6 +1,6 @@
 <div class="checkout-button">
   <% if current_user %>
-    <%= button_to "Save your Favorites", users_jobs_path, method: :post, class:"slider-btn waves-effect waves-light btn"%>
+    <%= button_to "Save your Favorites", saved_favorites_path, method: :post, class:"slider-btn waves-effect waves-light btn"%>
   <% else %>
     <%= button_to "Login to save your Favorites", login_path, method: :get, class:"slider-btn waves-effect waves-light btn" %>
   <% end %>

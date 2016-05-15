@@ -22,7 +22,7 @@
         <p><b>Description:</b> <%= @job.description %></p>
         <br>
         <% if current_user %>
-          <% if UsersJob.exists?(job_id: @job.id) %>
+          <% if current_user.users_jobs.exists?(job_id: @job.id, status: 1) %>
           <button class = "slider-btn waves-effect waves-light btn teal lighten-3", id = "applied-button"> APPLIED </button>
           <% else %>
             <a class="modal-trigger waves-effect waves-light btn teal lighten-3" href="#modal1">APPLY</a>
@@ -34,11 +34,14 @@
         <% else %>
           <%= link_to "LOGIN TO APPLY", login_path, class:"slider-btn waves-effect waves-light btn teal lighten-3" %>
         <% end %>
-
         <% if @favorites.has_job?(@job.id) %>
-          <%= link_to "UNFAVORITE", favorites_job_path(@job.id), class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :delete %>
+          <%= link_to "UNFAVORITE", favorite_path(@job.id), class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :delete %>
+        <% elsif current_user && !current_user.users_jobs.where(job_id: @job.id).empty? %>
+          <button class="slider-btn waves-effect waves-light btn teal lighten-3", id = "favorited-button"> SAVED </button>
+        <% elsif current_user %>
+          <%= link_to "SAVE TO FAVORITES", saved_favorites_path(job_id: @job.id), method: :post, class:"slider-btn waves-effect waves-light btn"%>
         <% else %>
-          <%= link_to "FAVORITE", favorites_jobs_path(job_id: @job.id), class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :post %>
+          <%= link_to "FAVORITE", favorites_path(job_id: @job.id), class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :post %>
         <% end %>
       </div>
 

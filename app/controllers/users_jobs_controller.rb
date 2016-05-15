@@ -1,7 +1,8 @@
 class UsersJobsController < ApplicationController
-  before_action :authorize_application_submission!, only: [:create]
+  # before_action :authorize_application_submission!, only: [:create]
 
   def create
+    authorize_application_submission!
     current_user
     @job = UsersJob.query_record(find_job.id, current_user)
     flash[:apply_success] = "You have applied for #{find_job.title} with #{find_job.company.name}."
@@ -10,7 +11,8 @@ class UsersJobsController < ApplicationController
   end
 
   def show
-    @jobs = current_user.jobs
+    # @jobs = job_application.query_for_user_applied_jobs(current_user) - issue with params !!
+    @jobs = current_user.users_jobs.where(status: 1).select(:job_id).map { |user_job| user_job.job }
   end
 
   def authorize_application_submission!
