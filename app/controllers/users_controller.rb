@@ -9,7 +9,6 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "Account Created! Logged in as #{@user.first_name}"
-      binding.pry
       favorite_jobs(session[:favorites], current_user) unless session[:favorites].nil?
       redirect_to dashboard_path
     else
