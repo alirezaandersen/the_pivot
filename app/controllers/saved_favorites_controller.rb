@@ -1,12 +1,12 @@
 class SavedFavoritesController < ApplicationController
   def create
     if UsersJob.exists?(job_id: session[:favorites].keys, status: 0 )
-      redirect_to users_job_path(current_user)
+      redirect_to my_favorites_path(current_user)
     else
       favorite_jobs(session[:favorites], current_user)
       flash[:notice] = "Your Favorites are saved!"
       session[:favorites] = {}
-      redirect_to users_job_path(current_user)
+      redirect_to my_favorites_path(current_user)
     end
   end
 

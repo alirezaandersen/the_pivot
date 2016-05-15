@@ -2,6 +2,6 @@
 
 <div class="dashboard">
   <p>Email: <%= @current_user.email %></p>
-  <%= button_to "My Favorites", users_job_path(@current_user), method: :get, class:"slider-btn waves-effect waves-light btn"%>
+  <%= link_to "My Favorites", my_favorites_path(@current_user), class:"slider-btn waves-effect waves-light btn"%>
   <%= link_to "Jobs I've Applied To", my_jobs_path(@user), class: "slider-btn waves-effect waves-light btn teal lighten-3" %>
 </div>

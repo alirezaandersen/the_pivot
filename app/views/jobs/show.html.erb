@@ -36,9 +36,9 @@
         <% end %>
 
         <% if @favorites.has_job?(@job.id) %>
-          <%= link_to "UNFAVORITE", favorites_job_path(@job.id), class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :delete %>
+          <%= link_to "UNFAVORITE", favorite_path(@job.id), class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :delete %>
         <% else %>
-          <%= link_to "FAVORITE", favorites_jobs_path(job_id: @job.id), class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :post %>
+          <%= link_to "FAVORITE", favorites_path(job_id: @job.id), class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :post %>
         <% end %>
       </div>
 

@@ -72,6 +72,7 @@ RSpec.describe UsersJob, type: :model do
 
       expect(users_jobs).to eql(jobs)
     end
+  end
 
   context "status helper methods" do
     it "shows status favorited" do

@@ -1,4 +1,4 @@
-class FavoritesJobsController < ApplicationController
+class FavoritesController < ApplicationController
   include ActionView::Helpers::TextHelper
 
   def create
