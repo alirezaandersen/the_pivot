@@ -51,8 +51,8 @@ RSpec.feature "Registered user can save favorites" do
     within(".dashboard") do
       click_on("My Favorites")
     end
+    expect(page).to have_current_path(my_favorites_path)
 
-    expect(page).to have_current_path(my_favorites_path(user))
     within(".card-reveal") do
       expect(page).to have_content(job.title)
     end
@@ -79,9 +79,8 @@ RSpec.feature "Registered user can save favorites" do
     click_button("Save your Favorites")
 
     expect(page).to have_current_path(my_favorites_path)
-
     within(".flash-notice") do
-      expect(page).to have_content("Your Favorites are Saved!")
+      expect(page).to have_content("Your Favorites are saved!")
     end
 
     within(".card-reveal") do

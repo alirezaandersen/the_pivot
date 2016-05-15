@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   get '/search/jobs', to: 'search#show', as: :search_job
 
+  get    "/favorites", to: 'favorites#show', as: :favorites
   resources :favorites, only: [:create, :destroy]
-  get    "/favorites", to: 'favorites#show'
 
   resources :users_jobs, only: [:create]
   get '/submissions', to: "users_jobs#show", as: :my_jobs

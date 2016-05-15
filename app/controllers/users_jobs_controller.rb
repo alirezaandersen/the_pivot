@@ -10,7 +10,8 @@ class UsersJobsController < ApplicationController
   end
 
   def show
-    @jobs = current_user.jobs
+    # @jobs = job_application.query_for_user_applied_jobs(current_user) - issue with params !!
+    @jobs = current_user.users_jobs.where(status: 1).select(:job_id).map { |user_job| user_job.job }
   end
 
   def authorize_application_submission!

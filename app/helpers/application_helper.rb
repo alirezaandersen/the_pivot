@@ -6,6 +6,15 @@ module ApplicationHelper
       users_job = UsersJob.create(user_id: current_user.id, job_id: job.id)
       users_job.favorited!
       users_job
+      # favorites.destroy
     end
+    # binding.pry
   end
+
+  # def is_job_favorited?(job_id)
+  #   return true if current_user.
+
+    #return true if current_user has this job in favorites
+    # or if current_user has this job saved (current_user.user_jobs.
+
 end

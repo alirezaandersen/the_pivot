@@ -16,7 +16,6 @@ class JobApplicationService
   def allow_to_apply?
     case
     when user_job && user_job.favorited?
-      binding.pry
       update_with_application
       return true
     when user_job && user_job.applied?
@@ -24,6 +23,7 @@ class JobApplicationService
     else
       submit_application
       return true
+      binding.pry
     end
   end
 
