@@ -66,14 +66,12 @@ ActiveRecord::Schema.define(version: 20160514204025) do
   end
 
   create_table "users_jobs", force: :cascade do |t|
-    t.integer  "status"
+    t.integer  "status",       default: 0
     t.text     "resume"
     t.integer  "user_id"
     t.integer  "job_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    t.integer  "status",       default: 0
-    t.text     "resume"
     t.text     "cover_letter"
   end
 

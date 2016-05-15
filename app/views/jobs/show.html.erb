@@ -23,7 +23,7 @@
         <br>
         <% if current_user %>
           <% if UsersJob.exists?(job_id: @job.id) %>
-          <button class = "slider-btn waves-effect waves-light btn teal lighten-3", id = "applied-button"> APPLIED </button>
+          <button class = "btn tooltipped waves-effect waves-light btn teal lighten-3", id = "applied-button", data-position="bottom", data-tooltip="You have already applied for this job"> APPLIED </button>
           <% else %>
             <a class="modal-trigger waves-effect waves-light btn teal lighten-3" href="#modal1">APPLY</a>
 

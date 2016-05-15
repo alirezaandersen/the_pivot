@@ -6,7 +6,6 @@ class UsersJobsController < ApplicationController
     @job = UsersJob.query_record(find_job.id, current_user)
     flash[:apply_success] = "You have applied for #{find_job.title} with #{find_job.company.name}."
     redirect_to dashboard_path
-    # if already applied, on click trigger alert that says this job has already been applied for, rather than submission form; do not want to implement another button until view has been cleaned up and tests created
   end
 
   def show
