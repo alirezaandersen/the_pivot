@@ -37,7 +37,10 @@ class SubmissionsController < ApplicationController
       @user = User.create(user_info.merge(company_id:@company[:id]))
       role = Role.find_by(name:"store_admin")
       UserRole.create(role_id:role[:id],user_id:@user[:id])
-      Submission.find_by(company_name:@company.name).update(approval: 1)
+
+      status = Submission.find_by(company_name:@company.name)
+      status.update(approval: 1) if !status.nil?
+
       redirect_to companies_approved_path
   end
 

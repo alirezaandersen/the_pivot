@@ -3,12 +3,15 @@ class Company < ActiveRecord::Base
   belongs_to :contact_us
   has_many :users, dependent: :destroy
   accepts_nested_attributes_for :contact_us, allow_destroy:true
+  before_validation :capitalize_name
 
+  validates :name, presence: true,
+  uniqueness: true
 
-  # def approval_process(@company)
-  #   if @company.approve
-  #   end
-  # end
+  def capitalize_name
+    name.capitalize! if name
+  end
+
 
 
 end

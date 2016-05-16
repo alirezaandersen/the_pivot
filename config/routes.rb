@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   resources :jobs, only: [:index]
   get '/jobs/:title', to: 'jobs#show', as: :job
 
-  # get    "companies/pending_companies_approval", to: 'companies#pending_index', as: :companies_applicants
-  # get    "companies/pending_companies_approval/:id", to: 'companies#pending_show', as: :company_applicants
+  get "/companies/inactive_companies", to: 'companies#inactive_companies', as: :inactive_companies
+  get "/companies/active_companies", to: 'companies#active_companies', as: :active_companies
+  get "/companies/activate/:company_name", to: 'companies#activate_company', as: :activate_company
+  get "/companies/inactivate/:company_name", to: 'companies#inactivate_company', as: :inactivate_company
   resources :companies, only: [:index, :show]
 
   post "/companies", to: 'companies#create'

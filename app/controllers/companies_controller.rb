@@ -1,23 +1,37 @@
 class CompaniesController < ApplicationController
+
   def index
     @companies = Company.where(approve: 1) || []
   end
 
   def new
     @company = Company.new
-    @contact_us = ContactUs.new
   end
 
   def create
-    company_params = company_applications.except(:contact_us)
-    user_params = company_applications[:contact_us].merge({password_digest: 'asdjhgfasdf'}).except(:phone_number,:description)
-    binding.pry
     @company = Company.new(company_params)
-    @company.users.create(user_params)
   end
 
   def show
     @company = Company.find(params[:id])
+  end
+
+  def active_companies
+    @companies = Company.where(approve: 1) || []
+  end
+
+  def activate_company
+    @company = Company.find_by(name: params[:company_name]).update(approve: true)
+    redirect_to active_companies_path
+  end
+
+  def inactive_companies
+    @companies = Company.where(approve: 0) || []
+  end
+
+  def inactivate_company
+    @company = Company.find_by(name: params[:company_name]).update(approve: false)
+    redirect_to inactive_companies_path
   end
 
   def pending_index
