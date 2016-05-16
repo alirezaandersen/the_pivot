@@ -40,7 +40,6 @@ RSpec.feature "Registered user can save favorites" do
     click_button("Login to save your Favorites")
 
     login_user(user)
-
     within(".main-resources") do
       expect(page).to have_content("LOGOUT")
     end
@@ -51,6 +50,7 @@ RSpec.feature "Registered user can save favorites" do
     within(".dashboard") do
       click_on("My Favorites")
     end
+    # save_and_open_page
     expect(page).to have_current_path(my_favorites_path)
 
     within(".card-reveal") do
