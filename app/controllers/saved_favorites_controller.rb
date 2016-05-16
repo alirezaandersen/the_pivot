@@ -12,12 +12,11 @@ class SavedFavoritesController < ApplicationController
     end
   end
 
-  def show
+  def index
     if current_user.nil?
       render file: '/public/404'
     else
       @favorited_jobs = current_user.users_jobs.favorited
-
     end
   end
 end

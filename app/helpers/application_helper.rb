@@ -7,7 +7,6 @@ module ApplicationHelper
       users_job.favorited!
       users_job
     end
-    favorites = {}
   end
 
   # def is_job_favorited?(job_id)

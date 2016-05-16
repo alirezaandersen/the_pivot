@@ -9,8 +9,10 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "Account Created! Logged in as #{@user.first_name}"
-      favorite_jobs(session[:favorites], current_user) unless session[:favorites].nil?
-      binding.pry
+      if !session[:favorites].nil?
+        favorite_jobs(session[:favorites], current_user)
+        session[:favorites] = {}
+      end
       redirect_to dashboard_path
     else
       flash.now[:error] = "Invalid. Please try again."
