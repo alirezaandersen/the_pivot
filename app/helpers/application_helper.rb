@@ -9,9 +9,10 @@ module ApplicationHelper
     end
   end
 
-  def present(objects)
-    presenter = MultiPresenter.new(objects, self)
-    yield presenter if block_given?
+  def present(model, klass=nil)
+    klass ||= "#{model.class}Presenter".constantize
+    presenter = klass.new(model, self)
+    yield(presenter) if block_given?
     presenter
   end
 end
