@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Visitor can view all jobs" do
   scenario "they see a listing of available jobs" do
     city = create(:city_with_jobs)
-
+    # binding.pry
     city_jobs = city.jobs
 
     visit root_path
@@ -13,14 +13,14 @@ RSpec.feature "Visitor can view all jobs" do
     end
 
     expect(page).to have_current_path jobs_path
-
+    # save_and_open_page
     city_jobs.each_with_index do |job, index|
       within(page.all("#job-snippet")[index]) do
         expect(page).to have_xpath("//img[contains(@src, \"#{job.company.logo}\")]")
         expect(page).to have_content job.company.name
         expect(page).to have_content job.title
         expect(page).to have_content city.name_and_state
-        expect(page).to have_content job.description        
+        expect(page).to have_content job.description
       end
     end
   end

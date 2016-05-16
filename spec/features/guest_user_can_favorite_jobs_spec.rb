@@ -31,6 +31,8 @@ RSpec.feature "Visitor can favorite jobs" do
   end
 
   scenario "they can remove a job from favorites" do
+    skip
+    binding.pry
     job1, job2 = create_list(:job, 2)
 
     visit job_path(job1.title)

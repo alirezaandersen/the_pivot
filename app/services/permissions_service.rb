@@ -41,7 +41,7 @@ class PermissionsService
     return true if controller == "sessions"
     return true if controller == "jobs"  && action.in?(%w(index new create show edit update destroy))
     return true if controller == "users_jobs" && action.in?(%w(index show))
-    return true if controller == "users" && action.in?(%w(index new create show edit update destroy))
+    return true if controller == "users" && action.in?(%w(new create show edit update destroy))
     return true if controller == "companies"  && action.in?(%w(index show))
     return true if controller == "contact_us"  && action.in?(%w(new create))
     return true if controller == "favorites"  && action.in?(%w(create show destroy))
@@ -55,7 +55,7 @@ class PermissionsService
     return true if controller == "companies"  && action.in?(%w(index show))
     return true if controller == "favorites_jobs"  && action.in?(%w(create show destroy))
     return true if controller == "contact_us"  && action.in?(%w(new create))
-    return true if controller == "users" && action.in?(%w(index new create show edit update))
+    return true if controller == "users" && action.in?(%w(new create show edit update))
     return true if controller == "home"  && action.in?(%w(index about_us))
     return true if controller == "search"  && action.in?(%w(show))
   end
@@ -67,7 +67,7 @@ class PermissionsService
     return true if controller == "jobs"  && action.in?(%w(index show))
     return true if controller == "sessions" && action.in?(%w(new create destroy))
     return true if controller == "favorites_jobs"  && action.in?(%w(create show destroy))
-    return true if controller == "users" && action.in?(%w(index new create show edit update))
+    return true if controller == "users" && action.in?(%w(new create show edit update))
     return true if controller == "submissions" && action.in?(%w(new create))
     return true if controller == "search"  && action.in?(%w(show))
   end

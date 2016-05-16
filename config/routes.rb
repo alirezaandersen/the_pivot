@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :jobs, only: [:index]
+  get '/jobs/new/', to: 'jobs#new', as: :create_jobs
+  get '/jobs/:company_id/new', to: 'jobs#new', as: :create_company_jobs
+  post '/jobs/create', to: 'jobs#create'
   get '/jobs/:title', to: 'jobs#show', as: :job
+
 
   get "/companies/inactive_companies", to: 'companies#inactive_companies', as: :inactive_companies
   get "/companies/active_companies", to: 'companies#active_companies', as: :active_companies
@@ -16,6 +20,7 @@ Rails.application.routes.draw do
 
   resources :favorites_jobs, only: [:create, :destroy]
 
+  get "/dashboard/all_users", to: 'user#index', as: :view_all_users
   get "/dashboard", to: "users#show"
   get "/dashboard/platform_admin",to: "users#show", as: :platform_admin_dashboard
   get "/dashboard/store_admin", to: "users#show", as: :store_admin_dashboard

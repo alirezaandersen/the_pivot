@@ -17,7 +17,7 @@ class CompaniesController < ApplicationController
   end
 
   def active_companies
-    @companies = Company.where(approve: 1) || []
+    @companies = Company.where(approve: true) || []
   end
 
   def activate_company
@@ -31,6 +31,7 @@ class CompaniesController < ApplicationController
 
   def inactivate_company
     @company = Company.find_by(name: params[:company_name]).update(approve: false)
+    # binding.pry
     redirect_to inactive_companies_path
   end
 

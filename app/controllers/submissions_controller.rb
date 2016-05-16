@@ -39,9 +39,12 @@ class SubmissionsController < ApplicationController
       UserRole.create(role_id:role[:id],user_id:@user[:id])
 
       status = Submission.find_by(company_name:@company.name)
-      status.update(approval: 1) if !status.nil?
 
-      redirect_to companies_approved_path
+      status.update(approval: 1) if !status.nil?
+      flash.now[:error] = "You can't approve the same Submission Again"
+    # else
+      direct_to companies_approved_path
+    # end
   end
 
   def denied_index
