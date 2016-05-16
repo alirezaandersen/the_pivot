@@ -22,7 +22,7 @@
         <p><b>Description:</b> <%= @job.description %></p>
         <br>
         <% if current_user %>
-          <% if UsersJob.exists?(job_id: @job.id, status: 1) %>
+          <% if current_user.users_jobs.exists?(job_id: @job.id, status: 1) %>
           <button class = "slider-btn waves-effect waves-light btn teal lighten-3", id = "applied-button"> APPLIED </button>
           <% else %>
             <a class="modal-trigger waves-effect waves-light btn teal lighten-3" href="#modal1">APPLY</a>

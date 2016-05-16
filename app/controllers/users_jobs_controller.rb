@@ -1,7 +1,8 @@
 class UsersJobsController < ApplicationController
-  before_action :authorize_application_submission!, only: [:create]
+  # before_action :authorize_application_submission!, only: [:create]
 
   def create
+    authorize_application_submission!
     current_user
     @job = UsersJob.query_record(find_job.id, current_user)
     flash[:apply_success] = "You have applied for #{find_job.title} with #{find_job.company.name}."
