@@ -7,7 +7,7 @@ RSpec.feature "Registered user can save favorites" do
     user = create(:user)
     job = create(:job)
 
-    visit job_path(job)
+    visit company_job_path(job.company, job)
 
     within("#job-text-box") do
       click_link("FAVORITE")

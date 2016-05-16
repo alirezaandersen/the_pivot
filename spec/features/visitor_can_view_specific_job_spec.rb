@@ -10,7 +10,7 @@ RSpec.feature "Visitor can view a job page" do
       click_link("#{job.title}")
     end
 
-    expect(page).to have_current_path job_path(job)
+    expect(page).to have_current_path company_job_path(job.company, job)
     expect(page).to have_content job.company.logo
 
     within("#job-text-box") do

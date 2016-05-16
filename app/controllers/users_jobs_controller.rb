@@ -14,7 +14,7 @@ class UsersJobsController < ApplicationController
 
   def authorize_application_submission!
     unless job_application.allow_to_apply?
-      redirect_to job_path(find_job.title)
+      redirect_to company_job_path(find_job.company, find_job.title)
     end
   end
 

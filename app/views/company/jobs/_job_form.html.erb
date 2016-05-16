@@ -1,0 +1,28 @@
+<div class="job-form">
+  <%= form_for( :users_jobs, url: users_jobs_path ) do |f| %>
+    <div class="modal-content">
+        <h5>
+          SUBMISSION FORM
+        </h5>
+
+        <div class="resume col s12">
+          <b>
+            <%= f.label "Upload resume", id: "job-form-label" %>
+          </b>
+          <br>
+          <%= f.file_field :resume %>
+        </div>
+
+        <div class="input-field col s12">
+          <%= f.label "Cover letter (optional)", id: "job-form-label" %>
+          <br>
+            <%= f.text_area :cover_letter, size: '40x20', id: "textarea1", class: "materialize-textarea" %>
+        </div>
+        <%= f.hidden_field :job, value: job_id %>
+    </div>
+
+    <div class="modal-footer col s12">
+      <%= f.submit "Submit", class: "modal-action modal-close waves-effect waves-light btn teal lighten-3" %>
+    </div>
+  <% end %>
+</div>

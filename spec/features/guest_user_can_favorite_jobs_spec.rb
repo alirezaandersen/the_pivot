@@ -5,7 +5,7 @@ RSpec.feature "Visitor can favorite jobs" do
 
     job = create(:job)
 
-    visit job_path(job)
+    visit company_job_path(job.company, job)
     expect(page).to have_content("FAVORITE")
     first("#job-text-box").click_link("FAVORITE")
 
@@ -15,7 +15,7 @@ RSpec.feature "Visitor can favorite jobs" do
   scenario "they can view contents of favorites" do
     job = create(:job)
 
-    visit job_path(job)
+    visit company_job_path(job.company, job)
 
     first("#job-text-box").click_link("FAVORITE")
 
@@ -33,9 +33,9 @@ RSpec.feature "Visitor can favorite jobs" do
   scenario "they can remove a job from favorites" do
     job1, job2 = create_list(:job, 2)
 
-    visit job_path(job1)
+    visit company_job_path(job1.company, job1)
     first("#job-text-box").click_link("FAVORITE")
-    visit job_path(job2)
+    visit company_job_path(job2.company, job2)
     first("#job-text-box").click_link("FAVORITE")
 
     within('.main-resources') do
@@ -44,7 +44,7 @@ RSpec.feature "Visitor can favorite jobs" do
     expect(page).to have_current_path(favorites_path)
     expect(page).to have_content(job1.title)
     expect(page).to have_content(job2.title)
-    visit job_path(job1)
+    visit company_job_path(job1.company, job1)
     first("#job-text-box").click_link("UNFAVORITE")
 
     within('.main-resources') do
@@ -57,6 +57,6 @@ RSpec.feature "Visitor can favorite jobs" do
 
     expect(page).to have_link("#{job2.title}")
     click_link("#{job2.title}")
-    expect(page).to have_current_path(job_path(job2))
+    expect(page).to have_current_path(company_job_path(job2.company, job2))
   end
 end

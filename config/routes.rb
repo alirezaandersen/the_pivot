@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get '/jobs/:title', to: 'jobs#show', as: :job
 
   resources :companies, only: [:index, :show]
+
+  get ':company_name/jobs/:job_title', to: 'company/jobs#show', as: "company_job"
+
   resources :users, only: [:new, :create]
   get '/search/jobs', to: 'search#show', as: :search_job
 
