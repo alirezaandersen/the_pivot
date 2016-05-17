@@ -3,7 +3,6 @@ require "rails_helper"
 RSpec.feature "Vistor sees all companies" do
   scenario "visitor clicks on companies" do
     visit root_path
-    # save_and_open_page
     within("ul.left") do
       click_on "COMPANIES"
     end

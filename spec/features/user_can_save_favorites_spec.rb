@@ -33,34 +33,13 @@ RSpec.feature "Registered user can save favorites" do
       click_on("FAVORITES")
     end
 
-    # expect(page).to have_link("My Favorites")
-
-    # click_on("Save your Favorites")
-    # within(".dashboard") do
-    #   click_on("My Favorites")
-    # end
     expect(page).to have_current_path("/favorites")
     click_button("Save your Favorites")
 
     expect(page).to have_current_path(my_favorites_path(user))
 
-    # within(".flash-notice") do
-    #   expect(page).to have_content("Your Jobs are Saved!")
-    # end
-
     within(".card-reveal") do
       expect(page).to have_content(job.title)
-      # expect(page).to have_content("#{task_2.name}")
     end
-    # expect(page).to have_content("Cart: 0")
   end
-
-  # scenario "user gets redirected to city_path when adding item to cart" do
-  #   city = create(:city_with_tasks)
-  #
-  #   visit city_path(city)
-  #   page.all(".card-action")[0].click_link("Add to Cart")
-  #
-  #   expect(page).to have_current_path(city_path(city))
-  # end
 end
