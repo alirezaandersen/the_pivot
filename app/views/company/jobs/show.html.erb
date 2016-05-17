@@ -1,0 +1,61 @@
+<% present(@job) do |job_presenter| %>
+  <h1 class="job-show-title"><%= job_presenter.title %> at <%= job_presenter.company %></h1>
+  <div class="job-show-container">
+    <div class="row">
+      <div class="col s12 l12 center-align" id="job-show-image">
+        <%= image_tag(job_presenter.logo) %>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p class="job-show-description">
+              <%= job_presenter.description %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 l12">
+        <div class="card-panel" id="job-text-box">
+          <h4>Opportunity Details</h4>
+          <p>Company: <%= job_presenter.company %> </p>
+          <p>Job Title: <%= job_presenter.title %> </p>
+          <p>Location: <%= job_presenter.city %> </p>
+          <br>
+          <h4>Requirements</h4>
+          <p>Education: <%= job_presenter.education %> </p>
+          <p>Years of Experience: <%= job_presenter.experience %> year(s) </p>
+          <p>Department: <%= job_presenter.department %></p>
+          <p>Salary: <%= number_to_currency(job_presenter.salary) %> USD</p>
+
+          <div class="row">
+            <div class="col s12 m12 l12 center-align">
+              <% if current_user %>
+              <% if job_presenter.already_applied_for?(current_user) %>
+              <button class = "btn tooltipped waves-effect waves-light btn teal lighten-3", id = "applied-button", data-position="bottom", data-tooltip="You have already applied for this job"> APPLIED </button>
+              <% else %>
+              <a class="modal-trigger waves-effect waves-light btn teal lighten-3" href="#modal1">APPLY</a>
+
+              <div id="modal1" class="modal">
+                <%= render partial: "job_form", locals: { job: job_presenter.job } %>
+              </div>
+              <% end %>
+              <% else %>
+              <%= link_to "LOGIN TO APPLY", login_path, class:"slider-btn waves-effect waves-light btn teal lighten-3" %>
+              <% end %>
+
+              <% if @favorites.has_job?(job_presenter.id) %>
+              <%= link_to "UNFAVORITE", favorite_path(job_presenter.id), class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :delete %>
+              <% elsif current_user && !current_user.users_jobs.where(job_id: job_presenter.id).empty? %>
+                <button class="slider-btn waves-effect waves-light btn teal lighten-3", id = "favorited-button"> SAVED </button>
+              <% elsif current_user %>
+                <%= link_to "SAVE TO FAVORITES", saved_favorites_path(job_id: job_presenter.id), method: :post, class:"slider-btn waves-effect waves-light btn"%>
+              <% else %>
+              <%= link_to "FAVORITE", favorites_path(job_id: job_presenter.id), class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :post %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

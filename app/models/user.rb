@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :contact_us
   has_many :jobs, through: :users_job
 
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true

@@ -19,7 +19,6 @@ RSpec.feature "Visitor can search for jobs" do
     expect(uri.path).to eql("/search/jobs")
 
     within("#job-snippet") do
-      expect(page).to have_xpath("//img[contains(@src, \"#{search_job.company.logo}\")]")
       expect(page).to have_content search_job.company.name
       expect(page).to have_content search_job.title
       expect(page).to have_content search_job.city.name_and_state

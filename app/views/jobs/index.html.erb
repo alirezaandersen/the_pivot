@@ -1,2 +1,5 @@
-<h1>Job Opportunities</h1>
+<h1 id="jobs-index-heading">Job Opportunities</h1>
   <%=  render partial: "shared/job_cards", locals: { jobs: @jobs } %>
+  <div class="center-align">
+    <%= will_paginate @companies %>
+  </div>

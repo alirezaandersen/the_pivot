@@ -1,9 +1,0 @@
-<div class="checkout-button">
-  <% if current_user %>
-    <%= button_to "Save your Favorites", favorites_path, method: :create, class:"slider-btn waves-effect waves-light btn"%>
-  <% else %>
-    <%= button_to "Save your Favorites", login_path, method: :get, class:"slider-btn waves-effect waves-light btn" %>
-  <% end %>
-</div>
-
-<%= render partial: "shared/job_cards", locals: {jobs: @jobs, method: :delete } %>

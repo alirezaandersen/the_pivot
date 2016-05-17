@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160513000043) do
+
+ActiveRecord::Schema.define(version: 20160516224004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(version: 20160513000043) do
     t.string   "industry"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "slug"
   end
 
   create_table "contact_us", force: :cascade do |t|
@@ -59,6 +61,7 @@ ActiveRecord::Schema.define(version: 20160513000043) do
     t.integer  "salary"
     t.string   "job_type"
     t.integer  "company_id"
+    t.string   "slug"
   end
 
   add_index "jobs", ["city_id"], name: "index_jobs_on_city_id", using: :btree
@@ -76,12 +79,13 @@ ActiveRecord::Schema.define(version: 20160513000043) do
   end
 
   create_table "users_jobs", force: :cascade do |t|
-    t.string   "status"
+    t.integer  "status",       default: 0
     t.text     "resume"
     t.integer  "user_id"
     t.integer  "job_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.text     "cover_letter"
   end
 
   add_index "users_jobs", ["job_id"], name: "index_users_jobs_on_job_id", using: :btree

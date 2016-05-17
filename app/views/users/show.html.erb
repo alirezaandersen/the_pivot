@@ -1,10 +1,7 @@
-<h1>Welcome <%= @current_user.first_name %></h1>
+<h1>Welcome <%= @user.first_name %></h1>
 
 <div class="dashboard">
-  <h4>Email: <%= @current_user.email %></h4>
-  <h4>Current Resume: </h4>
-
-   <h3> Favorite Jobs Link</h3>
-   <h3> Jobs Applied To Link</h3>
-
+  <p>Email: <%= @user.email %></p>
+  <%= link_to "My Favorites", my_favorites_path, class:"slider-btn waves-effect waves-light btn"%>
+  <%= link_to "Jobs I've Applied To", my_jobs_path, class: "slider-btn waves-effect waves-light btn teal lighten-3" %>
 </div>
