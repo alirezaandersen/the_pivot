@@ -1,0 +1,17 @@
+<div class="container">
+  <h1> <%= @submission.company_name %> </h1>
+  Company Description<%= @submission.about_company %> <br><br>
+  Number of Employees  <%= @submission.size_of_company %><br>
+  Company Representative : <%= @submission.first_name %>&nbsp;<%= @submission.last_name %><br>
+  Email:<%= @submission.email%><br>
+  Contact Number<%= @submission.phone_number %><br><br>
+  Why They Want To Become Ziba: <br>
+  &nbsp;&nbsp;&nbsp;<%= @submission.description %><br>
+
+  <div class="row">
+    <%= image_tag(@submission.logo, id: "img_preview") %>
+  </div>
+
+<%= button_to "Approve Company", company_approved_path(@submission.company_name), method: :get, class:"slider-btn waves-effect waves-light btn" %>
+<%= button_to "Deny Company", company_denied_path(@submission.company_name), method: :get, class:"slider-btn waves-effect waves-light btn" %>
+</div>

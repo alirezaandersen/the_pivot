@@ -7,7 +7,8 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:session][:email])
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
-      flash[:notice] = "Logged in as #{@user.email}"
+      # flash[:notice] = "Logged in as #{@user.email}"
+      # redirect_to dashboard_path
       role_redirect
     else
       flash.now[:error] = "Invalid. Please try again."
@@ -24,11 +25,15 @@ class SessionsController < ApplicationController
   private
 
   def role_redirect
-    if @user.admin?
-      flash[:notice] = "You have been logged in as an admin"
-      redirect_to admin_dashboard_path
+    if @user.platform_admin?
+      flash[:notice] = "Welcome Super #{@user.first_name}"
+      redirect_to platform_admin_dashboard_path
+    elsif @user.store_admin?
+      flash[:notice] = "Welcome #{@user.first_name}"
+      redirect_to store_admin_dashboard_path
     else
-      cart_redirect
+      flash[:notice] = "Account Created! Logged in as #{@user.first_name}"
+      redirect_to dashboard_path
     end
   end
 

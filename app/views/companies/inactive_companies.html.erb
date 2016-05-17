@@ -1,0 +1,13 @@
+<h1>Inactive Companies</h1>
+
+<h3>Total Inactive Companies: <%= @companies.count %></h3>
+
+<ul>
+<% @companies.each do |company| %>
+  <h7><li><%= company.name %></li></h7>
+  <li><%= company.logo %></li>
+  <li>Company Inactive Since<%= company.updated_at %></li>
+
+  <%= button_to "ACTIVATE COMPANY", activate_company_path(company.name),method: :get %>
+<% end  %>
+<ul>

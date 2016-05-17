@@ -31,18 +31,22 @@ ActiveRecord::Schema.define(version: 20160516224004) do
     t.text     "url"
     t.integer  "size"
     t.string   "industry"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "slug"
+    t.boolean  "approve",     default: false
   end
 
   create_table "contact_us", force: :cascade do |t|
-    t.string  "first_name"
-    t.string  "last_name"
-    t.string  "email"
-    t.integer "phone_number"
-    t.text    "description"
-    t.integer "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.integer  "phone_number"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "company_id"
   end
 
   add_index "contact_us", ["user_id"], name: "index_contact_us_on_user_id", using: :btree
@@ -66,15 +70,48 @@ ActiveRecord::Schema.define(version: 20160516224004) do
   add_index "jobs", ["city_id"], name: "index_jobs_on_city_id", using: :btree
   add_index "jobs", ["company_id"], name: "index_jobs_on_company_id", using: :btree
 
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "submissions", force: :cascade do |t|
+    t.string   "company_name"
+    t.string   "logo"
+    t.string   "url"
+    t.integer  "size_of_company"
+    t.string   "industry"
+    t.string   "about_company"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone_number"
+    t.string   "description"
+    t.integer  "approval",        default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "user_roles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "user_roles", ["role_id"], name: "index_user_roles_on_role_id", using: :btree
+  add_index "user_roles", ["user_id"], name: "index_user_roles_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "password_digest"
     t.string   "password_confirmation"
     t.string   "email"
-    t.integer  "role",                  default: 0
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "company_id"
   end
 
   create_table "users_jobs", force: :cascade do |t|

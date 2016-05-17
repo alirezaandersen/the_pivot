@@ -1,0 +1,20 @@
+<h1>Welcome Super <%= @current_user.first_name %></h1>
+
+<div class="dashboard">
+  <h4>Email: <%= @current_user.email %></h4><br><br>
+
+  <ul>
+    <li><h6><%= link_to "Customer Inquiries", customer_inquiries_path %></h6></li><br><br>
+
+    <li><h6><%= link_to "Company Applicants", submissions_status_path %></h6></li>
+    <li><h6><%= link_to "Approved Companies", companies_approved_path %></h6></li>
+    <li><h6><%= link_to "Denied Companies", companies_denied_path %></h6></li><br><br>
+
+    <li><h6><%= link_to "Avaiable Companies", active_companies_path %></h6></li>
+    <li><h6><%= link_to "Inactive Companies", inactive_companies_path %></h6></li><br><br>
+
+    <li><h6><%= link_to "View all Users", view_all_users_path %></h6></li><br><br>
+    <li><h6><%= link_to "View all Jobs", jobs_path %></h6></li><br><br>
+  </ul>
+
+</div>

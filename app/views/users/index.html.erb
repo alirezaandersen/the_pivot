@@ -1,0 +1,10 @@
+<h1>All Ziba Users </h1>
+
+<ul>
+<% @users.each do |user| %>
+
+  <li>Users: &nbsp;<%= user.first_name %>&nbsp;<%= user.last_name %> &nbsp;Email: <%= user.email %></li>
+<% end %>
+
+
+</ul>

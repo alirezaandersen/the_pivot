@@ -1,0 +1,16 @@
+<div class="container">
+  <h1> <%= @pending_company.name %> </h1>
+  <%= @pending_company.description %>
+  <%= @pending_company.logo %>
+  <%= @pending_company.size %>
+  <%= @pending_company.description %>
+  <%= @pending_company.first_name %>
+  <div class="row">
+    <%= image_tag(@pending_company.logo, id: "img_preview") %>
+  </div>
+
+approve or deny
+  About Us
+
+  Available Jobs
+</div>

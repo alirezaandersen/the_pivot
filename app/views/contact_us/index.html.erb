@@ -1,0 +1,8 @@
+<h1>Customer Inquiries</h1>
+<h6>Total Inquiries: <%= @contacts.count %></h6>
+
+<ul>
+<% @contacts.each do |contact| %>
+ <li><%= link_to "#{contact.created_at}: #{contact.description}", customer_inquiry_path(contact)%></li>
+<% end %>
+</ul>

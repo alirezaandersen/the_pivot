@@ -1,0 +1,11 @@
+<h1>Customer Inquiry</h1>
+
+<ul>
+
+ <li>Name: <%=@contact.first_name%> <%= @contact.last_name %></li>
+ <li>Email: <%=@contact.email%></li>
+ <li>Phone Number: <%= @contact.phone_number %></li>
+ <li>Description: <%=@contact.description%></li>
+ <%= link_to "CLOSED", customer_inquiry_path, method: :delete %>
+
+</ul>

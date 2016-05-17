@@ -1,5 +1,4 @@
-<h1>Create Account</h1>
-
+<h1><%= @title %></h1>
 <div class="row">
   <div class="col s6 offset-s3">
     <%= form_for @user do |f| %>
@@ -8,8 +7,10 @@
       <%= f.text_field :email, placeholder: "Email" %>
       <%= f.password_field :password, placeholder: "Password" %>
       <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
-
-      <%= f.submit "CREATE ACCOUNT", class:"slider-btn waves-effect waves-light btn" %>
+      <%= f.hidden_field :company_id, :value => @company_id %>
+      <span>
+      <%= f.submit "CREATE ACCOUNT", method: :post, class:"slider-btn waves-effect waves-light btn" %>
+    </span>
     <% end %>
   </div>
 </div>

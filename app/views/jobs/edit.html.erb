@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col s6 offset-s3">
+    <div class="submissions_form">
+      <%= form_for @job do |f| %>
+
+      <%= f.text_field :title, placeholder: "Position Title" %>
+      <%= f.text_field :department, placeholder: "Department" %>
+      <%= f.text_field :years_of_experience, placeholder: "Requirements" %>
+      <%= f.text_field :education, placeholder: "Education " %>
+      <%= f.text_field :job_type, placeholder: "Job Type" %>
+      <%= f.text_field :salary, placeholder: "Salary" %>
+      <%= f.text_field :description, placeholder: "Description of Job" %>
+      <%= f.hidden_field :company_id, :value => @company_id %>
+      <span>
+        <%= f.submit "Update A Job", method: :patch, class:"slider-btn waves-effect waves-light btn" %>
+      </span>
+
+      <% end %>
+    </div>
+  </div>
+</div>

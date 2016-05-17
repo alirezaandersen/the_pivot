@@ -30,7 +30,6 @@ RSpec.feature "All visitors can use contact us link" do
 
     click_on "SUBMIT"
 
-    # save_and_open_page
     expect(page).to have_current_path root_path
 
     expect(page).to have_content("Thanks for the feedback, we'll be in touch as soon as we can")
@@ -52,7 +51,6 @@ RSpec.feature "All visitors can use contact us link" do
 
     click_on "SUBMIT"
 
-    # save_and_open_page
     expect(page).to have_current_path contact_us_path
 
     expect(page).to have_content("Invalid Info. Please try again.")

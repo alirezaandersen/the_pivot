@@ -32,4 +32,20 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+
+  def store_admin_user
+    user = create(:user)
+    Role.create(name: "store_admin")
+    user.roles << Role.find_by(name: "store_admin")
+    user.update(company_id: 1)
+    user
+  end
+
+  def platform_admin_user
+    user = create(:user)
+    Role.create(name: "platform_admin")
+    user.roles << Role.find_by(name: "platform_admin")
+    user.update(company_id: 1)
+    user
+  end
 end

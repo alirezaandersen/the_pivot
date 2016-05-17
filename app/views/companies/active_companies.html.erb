@@ -1,0 +1,19 @@
+<h1>Active Companies </h1>
+<h3>Total Active Companies <%= @companies.count %></h3>
+<ul>
+<% @companies.each do |company| %>
+
+  <li><%= company.name %></li>
+  <li><%= company.logo %></li>
+  <li>Company Active Since<%= company.created_at %></li>
+
+  <%= button_to "CREATE JOB", create_company_jobs_path(company.id),method: :get %>
+  <%= button_to "EDIT JOB", store_jobs_path(company.id),method: :get %>
+  <%= button_to "VIEW JOBS", store_jobs_path(company.id) ,method: :get %>
+  <%= button_to "CREATE ADMINSTRATOR", new_admin_user_path(company.id), method: :get %>
+  <%= button_to "UPDATE COMPANY INFORMATION", update_company_path(company.id),method: :get %>
+  <%= button_to "VIEW ADMINISTRATION STAFF", view_store_admins_path(company.id),method: :get %>
+  <%= button_to "INACTIVATE COMPANY", inactivate_company_path(company.name),method: :get %><br><br>
+
+<% end  %>
+<ul>

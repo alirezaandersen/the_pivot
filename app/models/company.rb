@@ -1,5 +1,10 @@
 class Company < ActiveRecord::Base
+
   has_many :jobs
+  has_many :users, dependent: :destroy
+
+  belongs_to :contact_us
+  accepts_nested_attributes_for :contact_us, allow_destroy:true
 
   validates :name, uniqueness: true
 
@@ -12,4 +17,4 @@ class Company < ActiveRecord::Base
   def to_param
     slug
   end
-end
+end 
