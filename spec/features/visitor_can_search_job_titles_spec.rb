@@ -21,7 +21,6 @@ RSpec.feature "Visitor can search for jobs" do
     within("#job-snippet") do
       expect(page).to have_content search_job.company.name
       expect(page).to have_content search_job.title
-      expect(page).to have_content search_job.city.name_and_state
       expect(page).to have_content search_job.description
     end
   end
