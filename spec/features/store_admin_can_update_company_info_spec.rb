@@ -6,6 +6,7 @@ RSpec.feature "Store Admin Can log in" do
 
     user = store_admin_user
     company = create(:company)
+    company.update(approve: true)
     visit login_path
 
     expect(page).to have_current_path login_path
@@ -23,15 +24,15 @@ RSpec.feature "Store Admin Can log in" do
     expect(page).to have_current_path update_company_path(user.company_id)
 
     fill_in "Company Name", with: "Holmz"
-    fill_in "Company Logo", with: "Jue"
+    fill_in "Company Logo", with: "http://static.businessinsider.com/image/53d29d5c6bb3f7a80617ada8/image.jpg"
     fill_in "Company url", with: "No Picture Available"
     fill_in "Company Size", with: "100-4311"
     fill_in "Company Industry", with: "Dog Bouncer"
     fill_in "Company Description", with: "Woof woof"
-    # binding.pry
     click_on "Submit Application"
 
-    expect(page).to have_current_path company_path(company.id)
+    company.reload
+    expect(page).to have_current_path company_path(company)
     expect(page).to have_content("Holmz has been updated")
   end
 end
