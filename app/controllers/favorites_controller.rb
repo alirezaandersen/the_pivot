@@ -21,6 +21,6 @@ class FavoritesController < ApplicationController
   def destroy
     job = Job.find(params[:id])
     @favorites.remove_job(job.id)
-    redirect_to job_path(job)
+    redirect_to company_job_path(job.company, job)
   end
 end

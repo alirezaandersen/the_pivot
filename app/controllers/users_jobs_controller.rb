@@ -1,5 +1,4 @@
 class UsersJobsController < ApplicationController
-  # before_action :authorize_application_submission!, only: [:create]
 
   def create
     authorize_application_submission!
@@ -7,17 +6,15 @@ class UsersJobsController < ApplicationController
     @job = UsersJob.query_record(find_job.id, current_user)
     flash[:apply_success] = "You have applied for #{find_job.title} with #{find_job.company.name}."
     redirect_to dashboard_path
-    # if already applied, on click trigger alert that says this job has already been applied for, rather than submission form; do not want to implement another button until view has been cleaned up and tests created
   end
 
   def show
-    # @jobs = job_application.query_for_user_applied_jobs(current_user) - issue with params !!
-    @jobs = current_user.users_jobs.where(status: 1).select(:job_id).map { |user_job| user_job.job }
+    @jobs = Job.joins(:users_jobs).where(users_jobs: { user_id: current_user.id, status: 1 })
   end
 
   def authorize_application_submission!
     unless job_application.allow_to_apply?
-      redirect_to job_path(find_job.title)
+      redirect_to company_job_path(find_job.company, find_job.title)
     end
   end
 

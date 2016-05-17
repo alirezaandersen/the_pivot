@@ -1,7 +1,7 @@
 <h1>Welcome <%= @user.first_name %></h1>
 
 <div class="dashboard">
-  <p>Email: <%= @current_user.email %></p>
+  <p>Email: <%= @user.email %></p>
   <%= link_to "My Favorites", my_favorites_path, class:"slider-btn waves-effect waves-light btn"%>
-  <%= link_to "Jobs I've Applied To", my_jobs_path(@user), class: "slider-btn waves-effect waves-light btn teal lighten-3" %>
+  <%= link_to "Jobs I've Applied To", my_jobs_path, class: "slider-btn waves-effect waves-light btn teal lighten-3" %>
 </div>

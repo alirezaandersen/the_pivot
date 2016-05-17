@@ -1,8 +1,59 @@
-#img_preview {
-  width: 700px;
-  height: 500px;
+.img-preview {
+  width: 100%;
+  height: auto;
+  margin-top: 40px;
 }
 
 #company-title {
   text-transform: uppercase;
+  font-weight: 300;
+  font-size: 45px;
+  border-bottom: solid 1px;
+}
+
+#no-job{
+  text-transform: capitalize;
+  color: #FF0000;
+  font-size: 50px;
+}
+
+.parent-title{
+  text-transform: capitalize;;
+  font-weight: 300;
+  font-size: 45px;
+  margin-top: 5px;
+  margin-bottom: 1px;
+}
+
+.children-heading{
+  margin-top: 4px;
+  margin-left: 14px;
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.favs {
+  cursor: pointer;
+}
+
+#job-post {
+  -webkit-animation-duration: 3s;
+}
+
+#company-index {
+  -webkit-animation-duration: 3.5s;
+}
+
+#job-post div {
+  margin-left: 35px;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+}
+
+#job-post-title {
+  text-transform: capitalize;
+  font-size: 35px;
+  font-weight: 300;
+  color: #26A69A;
 }

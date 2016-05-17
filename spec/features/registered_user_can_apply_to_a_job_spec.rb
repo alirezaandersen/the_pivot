@@ -1,4 +1,4 @@
-require 'rails_helper'
+  require 'rails_helper'
 
 RSpec.feature "Registered job seeker can apply to a job" do
   scenario "they must be logged in to apply to a job" do
@@ -8,18 +8,16 @@ RSpec.feature "Registered job seeker can apply to a job" do
     text = "This is the body of the cover letter.\nNot entirely sure what to right.\nSincerely,\nBenjamin Franklin"
     flash_text = "You have applied for #{job.title} with #{job.company.name}."
 
-    visit job_path(job)
+    visit company_job_path(job.company, job)
     click_link("LOGIN TO APPLY")
 
     expect(page).to have_current_path login_path
 
     login_user(registered_user)
 
-    # figure out how to redirect to job page; troubleshoot why request.referrer didn't work
-    # expect(page).to have_current_path job_path(job)
     expect(page).to have_current_path dashboard_path
 
-    visit job_path(job)
+    visit company_job_path(job.company, job)
     click_link("APPLY")
     within(".job-form") do
       attach_file("users_jobs[resume]", file_path)
@@ -38,12 +36,10 @@ RSpec.feature "Registered job seeker can apply to a job" do
     text = "This is the body of the cover letter.\nNot entirely sure what to right.\nSincerely,\nBenjamin Franklin"
     flash_text = "You have applied for #{job.title} with #{job.company.name}."
 
-    visit job_path(job)
+    visit company_job_path(job.company, job)
     login_user(registered_user)
 
-    # figure out how to redirect to job page; troubleshoot why request.referrer didn't work
-    # expect(page).to have_current_path job_path(job)
-    visit job_path(job)
+    visit company_job_path(job.company, job)
     click_link("APPLY")
     within(".job-form") do
       attach_file("users_jobs[resume]", file_path)
@@ -72,12 +68,13 @@ RSpec.feature "Registered job seeker can apply to a job" do
       click_link("Jobs I've Applied To")
     end
 
-    expect(page).to have_current_path my_jobs_path(registered_user)
+    expect(page).to have_current_path my_jobs_path
+
     within(page.all(".card-action")[0]) do
       click_link("View opportunity details")
     end
 
-    expect(page).to have_current_path job_path(job_one)
+    expect(page).to have_current_path company_job_path(job_one.company, job_one)
 
     within("#job-text-box") do
       expect(page).to have_button "APPLIED"
