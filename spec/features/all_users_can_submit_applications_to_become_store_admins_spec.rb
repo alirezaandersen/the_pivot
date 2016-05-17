@@ -57,7 +57,7 @@ RSpec.feature "All users can submit application to become store admin" do
   click_on "SUBMIT APPLICATION"
 
   expect(page).to have_current_path submissions_path
-  # save_and_open_page
+
   expect(page).to have_content("Invalid Info. Please try again")
 
   end

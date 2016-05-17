@@ -13,7 +13,7 @@ RSpec.feature "Visitor can view all jobs" do
     end
 
     expect(page).to have_current_path jobs_path
-    # save_and_open_page
+
     city_jobs.each_with_index do |job, index|
       within(page.all("#job-snippet")[index]) do
         expect(page).to have_xpath("//img[contains(@src, \"#{job.company.logo}\")]")

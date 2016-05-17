@@ -16,7 +16,6 @@ RSpec.feature "Store Admin Can log in" do
     click_on "LOGIN"
 
     expect(page).to have_current_path store_admin_dashboard_path
-    # save_and_open_page
 
     expect(page).to have_content("Welcome to your Store, #{user.first_name}")
     expect(page).to have_content("Email: #{user.email}")

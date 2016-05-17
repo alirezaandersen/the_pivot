@@ -25,7 +25,7 @@ RSpec.feature "Platform Admin can view customer inquiries" do
     click_link("Customer Inquiries")
 
     expect(page).to have_current_path customer_inquiries_path
-    save_and_open_page
+
     expect(page).to have_content("Total Inquiries")
     expect(page).to have_content("#{customers[0].description}")
     expect(page).to have_content("#{customers[1].description}")
