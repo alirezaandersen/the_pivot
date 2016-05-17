@@ -17,12 +17,11 @@ class CompaniesController < ApplicationController
   end
 
   def edit
-    binding.pry
     @company = Company.find(params[:company_id])
   end
 
   def update
-    
+
     @company = Company.find(params[:id])
     if @company.update(company_applications)
       flash[:success] = "#{@company.name} has been updated"

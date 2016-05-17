@@ -4,6 +4,16 @@ class JobsController < ApplicationController
     @jobs = Job.find(company_ids)
   end
 
+  def store_jobs
+
+    @company_name = if params[:company_id].nil?
+                      Company.find(job_params[:company_id]).name
+                    else
+                      Company.find(params[:company_id]).name
+                    end
+    @jobs = Job.where(company_id: params[:company_id])
+  end
+
   def show
     @favorites
     @job = Job.find_by(title: params[:title])
@@ -18,20 +28,39 @@ class JobsController < ApplicationController
   end
 
   def create
-    # binding.pry
     if (current_user.store_admin? && (current_user.company_id == job_params[:company_id].to_i)) || current_user.platform_admin?
       @job = Job.create(job_params)
-    binding.pry
+    # binding.pry
     else
       flash[:error] = "No Trolls Allowed!"
     end
-
     redirect_to job_path(@job.title)
   end
 
+  def edit
+    # binding.pry if params[:id].nil?
+    @job = Job.find(params[:id])
+    @company_id = @job.company_id
+    # binding.pry
+  end
+
+  def update
+    @job = Job.find(params[:id])
+    if @job.update(job_params)
+      # binding.pry
+      flash[:success] = "#{@job.title} has been updated"
+      redirect_to store_jobs_path(@job.company_id)
+    else
+      flash.now[:error] = "Invalid Information"
+      render :now
+    end
+  end
+
+  private
+
   def job_params
     params.require(:job).permit(:title,
-                                :description,
+                                :department,
                                 :years_of_experience,
                                 :education,
                                 :job_type,

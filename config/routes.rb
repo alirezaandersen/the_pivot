@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   get '/jobs/new/', to: 'jobs#new', as: :create_jobs
   get '/jobs/:company_id/new', to: 'jobs#new', as: :create_company_jobs
   post '/jobs/create', to: 'jobs#create'
+  get '/jobs/:company_id/jobs', to: 'jobs#store_jobs', as: :store_jobs
+  get '/jobs/:id/edit', to: 'jobs#edit', as: :job_edit
+  patch '/jobs/:id', to: 'jobs#update'
   get '/jobs/:title', to: 'jobs#show', as: :job
-
 
   get "/companies/inactive_companies", to: 'companies#inactive_companies', as: :inactive_companies
   get "/companies/active_companies", to: 'companies#active_companies', as: :active_companies

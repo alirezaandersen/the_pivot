@@ -26,7 +26,7 @@ class PermissionsService
 
   def platform_admin_permissions
     return true if controller == "sessions"
-    return true if controller == "jobs"  && action.in?(%w(index new create show edit update delete))
+    return true if controller == "jobs"  && action.in?(%w(index new create show edit update delete store_jobs))
     return true if controller == "users_jobs" && action.in?(%w(index show))
     return true if controller == "users" && action.in?(%w(index new create show edit update delete admin_index))
     return true if controller == "companies"  && action.in?(%w(index new create show active_companies inactive_companies inactivate_company activate_company edit update))
@@ -39,7 +39,7 @@ class PermissionsService
 
   def store_admin_permissions
     return true if controller == "sessions"
-    return true if controller == "jobs"  && action.in?(%w(index new create show edit update destroy))
+    return true if controller == "jobs"  && action.in?(%w(index new create show edit update destroy store_jobs))
     return true if controller == "users_jobs" && action.in?(%w(index show))
     return true if controller == "users" && action.in?(%w(new create show edit update destroy admin_index))
     return true if controller == "companies"  && action.in?(%w(index show edit update))

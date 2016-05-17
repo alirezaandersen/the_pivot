@@ -1,0 +1,8 @@
+<h1><%= @company_name %></h1>
+
+
+<% @jobs.each do |job| %>
+Job Title: <%= link_to "#{job.title}", job_edit_path(job.id) %><br>
+Job Description:  <%= job.description %><br><br>
+
+<% end %>
