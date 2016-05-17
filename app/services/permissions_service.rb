@@ -36,6 +36,8 @@ class PermissionsService
     return true if controller == "submissions" && action.in?(%w(index new create show edit update approved_index denied_index approved_submissions denied_submissions))
     return true if controller == "search"  && action.in?(%w(show))
     return true if controller == "company/jobs" && action.in?(%w(show))
+    return true if controller == "saved_favorites" && action.in?(%w(create index))
+
   end
 
   def store_admin_permissions
@@ -49,18 +51,22 @@ class PermissionsService
     return true if controller == "home"  && action.in?(%w(index about_us))
     return true if controller == "search"  && action.in?(%w(show))
     return true if controller == "company/jobs" && action.in?(%w(show))
+    return true if controller == "saved_favorites" && action.in?(%w(create index))
+
   end
 
   def registered_user_permissions
     return true if controller == "sessions"
-    return true if controller == "jobs"  && action.in?(%w(index show))
+    return true if controller == "jobs"  && action.in?(%w(index))
     return true if controller == "companies"  && action.in?(%w(index show))
     return true if controller == "favorites_jobs"  && action.in?(%w(create show destroy))
     return true if controller == "contact_us"  && action.in?(%w(new create))
     return true if controller == "users" && action.in?(%w(new create show edit update))
     return true if controller == "home"  && action.in?(%w(index about_us))
     return true if controller == "search"  && action.in?(%w(show))
+    return true if controller == "users_jobs" && action.in?(%w(new create show))
     return true if controller == "company/jobs" && action.in?(%w(show))
+    return true if controller == "saved_favorites" && action.in?(%w(create index))
   end
 
   def guest_permissions
@@ -74,6 +80,8 @@ class PermissionsService
     return true if controller == "submissions" && action.in?(%w(new create))
     return true if controller == "search"  && action.in?(%w(show))
     return true if controller == "company/jobs" && action.in?(%w(show))
+    return true if controller == "saved_favorites" && action.in?(%w(create index))
+
   end
 
   def controller

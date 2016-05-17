@@ -31,6 +31,7 @@ class UsersController < ApplicationController
     else
       @user = User.new(user_params)
       if @user.save
+         @user.roles << Role.find_by(name: "registered_user")
         session[:user_id] = @user.id
         flash[:notice] = "Account Created! Logged in as #{@user.first_name}"
         if !session[:favorites].nil?

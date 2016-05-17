@@ -14,3 +14,17 @@ RSpec.describe ApplicationHelper, "#favorite_jobs_from_session" do
     expect(user.users_jobs[1].status).to eq("favorited")
   end
 end
+
+RSpec.describe ApplicationHelper, "#default_user_role" do
+  it "associates registered user with default role of registered user" do
+    # job1, job2 = create_list(:job, 2)
+    user = create(:user)
+    # helper.default_user_role
+    #
+    # expect(user.user_roles).to eq(user.id)
+    # expect(user.users_jobs[0].user_id).to eq(user.id)
+    #
+    # expect(user.users_jobs[0].status).to eq("favorited")
+    # expect(user.users_jobs[1].status).to eq("favorited")
+  end
+end

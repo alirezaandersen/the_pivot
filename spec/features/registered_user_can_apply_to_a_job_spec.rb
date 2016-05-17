@@ -4,6 +4,7 @@ RSpec.feature "Registered job seeker can apply to a job" do
   scenario "they must be logged in to apply to a job" do
     registered_user = create(:user)
     job = create(:job)
+    job.company.update(approve: true)
     file_path = "#{Rails.root}/spec/support/sample_cv_of_failures.pdf"
     text = "This is the body of the cover letter.\nNot entirely sure what to right.\nSincerely,\nBenjamin Franklin"
     flash_text = "You have applied for #{job.title} with #{job.company.name}."
@@ -16,7 +17,6 @@ RSpec.feature "Registered job seeker can apply to a job" do
     login_user(registered_user)
 
     expect(page).to have_current_path dashboard_path
-
     visit company_job_path(job.company, job)
     click_link("APPLY")
     within(".job-form") do

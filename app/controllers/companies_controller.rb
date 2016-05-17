@@ -15,7 +15,9 @@ class CompaniesController < ApplicationController
   end
 
   def show
+    # binding.pry
     @company = Company.find_by(slug: params[:company_name])
+      # @company = Company.find(params[:id])
   end
 
   def edit
@@ -23,7 +25,6 @@ class CompaniesController < ApplicationController
   end
 
   def update
-
     @company = Company.find(params[:id])
     if @company.update(company_applications)
       flash[:success] = "#{@company.name} has been updated"
@@ -35,6 +36,7 @@ class CompaniesController < ApplicationController
   end
 
   def active_companies
+    # binding.pry
     @companies = Company.where(approve: true) || []
   end
 

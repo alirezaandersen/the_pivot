@@ -8,7 +8,6 @@ RSpec.feature "Platform Admin can see current company clients" do
     company = create(:company)
      company.update(approve: true)
 
-    # binding.pry
     visit login_path
 
     expect(page).to have_current_path login_path
@@ -19,8 +18,7 @@ RSpec.feature "Platform Admin can see current company clients" do
     click_on "LOGIN"
 
     expect(page).to have_current_path platform_admin_dashboard_path
-
-    click_link("Avaiable Companies")
+    click_link("Available Companies")
 
     expect(page).to have_current_path active_companies_path
 
