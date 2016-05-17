@@ -53,6 +53,14 @@ FactoryGirl.define do
     "#{n}"
   end
 
+  factory :contact_us do
+    first_name
+    last_name
+    email
+    phone_number
+    description
+  end
+
 
   factory :submission do
     company_name
@@ -94,7 +102,7 @@ FactoryGirl.define do
   end
 
   sequence :phone_number do |cn|
-    "72#{cn}333-1223"
+    "72#{cn}333 1223"
   end
 
   factory :city do

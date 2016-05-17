@@ -47,7 +47,6 @@ class CompaniesController < ApplicationController
 
   def inactivate_company
     @company = Company.find_by(name: params[:company_name]).update(approve: false)
-    # binding.pry
     redirect_to inactive_companies_path
   end
 
@@ -56,8 +55,6 @@ class CompaniesController < ApplicationController
   end
 
   def pending_show
-
-    binding.pry
     @pending_company = Company.find(params[:id])
   end
 

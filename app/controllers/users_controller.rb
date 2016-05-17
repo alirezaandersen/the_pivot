@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   end
 
   def admin_index
-    # binding.pry
     @company_name = Company.find(params[:company_id]).name
     @users = User.where(company_id: params[:company_id])
   end
@@ -15,7 +14,6 @@ class UsersController < ApplicationController
       @user = User.new
       @title = "Create Account"
     else
-      # binding.pry
       @company_id = params[:company_id] if current_user.platform_admin?
       @company_id = current_user.company_id if current_user.store_admin?
       flash[:error] = "Admin is missing a company id" if @company_id.nil?
@@ -25,10 +23,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    # binding.pry
     if !current_user.nil?
       (current_user.store_admin? && (current_user.company_id == admin_params[:company_id].to_i)) || current_user.platform_admin?
-      binding.pry
       @user = User.create(admin_params)
       @user.roles << Role.find_by(name: "store_admin")
       role_redirect
