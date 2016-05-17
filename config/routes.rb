@@ -2,22 +2,22 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :companies, only: [:index]
-  get '/companies/:company_name', to: "companies#show", as: "company"
-
   resources :jobs, only: [:index]
-
+  get '/companies/:company_name', to: "companies#show", as: "company"
   get ':company_name/jobs/:job_title', to: 'company/jobs#show', as: "company_job"
 
   resources :users, only: [:new, :create]
   get '/search/jobs', to: 'search#show', as: :search_job
 
+  get    "/favorites", to: 'favorites#show', as: :favorites
   resources :favorites, only: [:create, :destroy]
   get    "/favorites", to: 'favorites#show'
 
   resources :users_jobs, only: [:create]
   get '/submissions', to: "users_jobs#show", as: :my_jobs
   resources :saved_favorites, only: [:create]
-  get '/my-favorites', to: "saved_favorites#show", as: :my_favorites
+
+  get '/my-favorites', to: "saved_favorites#index", as: :my_favorites
 
   get "/dashboard", to: "users#show"
 

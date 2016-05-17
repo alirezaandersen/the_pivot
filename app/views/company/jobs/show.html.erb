@@ -45,6 +45,10 @@
 
               <% if @favorites.has_job?(job_presenter.id) %>
               <%= link_to "UNFAVORITE", favorite_path(job_presenter.id), class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :delete %>
+              <% elsif current_user && !current_user.users_jobs.where(job_id: job_presenter.id).empty? %>
+                <button class="slider-btn waves-effect waves-light btn teal lighten-3", id = "favorited-button"> SAVED </button>
+              <% elsif current_user %>
+                <%= link_to "SAVE TO FAVORITES", saved_favorites_path(job_id: job_presenter.id), method: :post, class:"slider-btn waves-effect waves-light btn"%>
               <% else %>
               <%= link_to "FAVORITE", favorites_path(job_id: job_presenter.id), class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :post %>
               <% end %>

@@ -10,21 +10,22 @@
 
     <ul class="main-resources right hide-on-med-and-down">
       <li><%= render partial: 'shared/login_logout' %></li>
-      <li><%= link_to "FAVORITES", favorites_path %></li>
+      <% if current_user %>
+        <li><%= link_to "MY FAVORITES", my_favorites_path %></li>
+      <% else %>
+        <li><%= link_to "FAVORITES", favorites_path %></li>
+      <% end %>
     </ul>
 
     <ul class="side-nav show-on-medium" id="mobile">
+      <% if current_user %>
+        <li><%= link_to "MY FAVORITES", my_favorites_path %></li>
+      <% else %>
+        <li><%= link_to "FAVORITES", favorites_path %></li>
+      <% end %>
       <li><%= link_to "COMPANIES", companies_path %>
-      <li><%= link_to "FAVORITES", favorites_path %></li>
       <li><%= render partial: 'shared/login_logout' %></li>
       <li><%= link_to "JOBS", jobs_path %></li>
     </ul>
   </div>
 </nav>
-
-<!-- Dropdown Structure -->
-<!-- <ul id="cities-dropdown" class="dropdown-content">
-  <% @cities.each do |city| %>
-    <li><%#= link_to city.name.upcase, city_path(city) %></li>
-  <% end %>
-</ul> -->

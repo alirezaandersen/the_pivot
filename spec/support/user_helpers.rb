@@ -4,7 +4,9 @@ module UserHelpers
     visit login_path
     fill_in "Email", with: user.email
     fill_in "Password", with: user.password
-    click_button("LOGIN")
+    within('.login-signup') do
+      click_on("LOGIN")
+    end
   end
 
   def users_job_with_resume(user, job)

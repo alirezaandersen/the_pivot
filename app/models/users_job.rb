@@ -31,4 +31,10 @@ class UsersJob < ActiveRecord::Base
   def self.applied
     where(status: 1)
   end
+
+  def self.favorite_jobs(job_id, current_user)
+    users_job = UsersJob.create(user_id: current_user.id, job_id: job_id)
+    users_job.favorited!
+    users_job
+  end
 end

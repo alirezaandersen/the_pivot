@@ -19,7 +19,7 @@
       <div class="children-heading card hoverable animated slideInLeft"  id="job-post">
         <div class="row">
           <div class="col s6 m6 l6">
-            <%= link_to(job.title, "#", id:"job-post-title") %>
+            <%= link_to(job.title, company_job_path(job.company, job), id:"job-post-title") %>
           </div>
           <div class="col s4 m4 l4 right-align">
             <i class="fa fa-heart-o favs" aria-hidden="true"></i>
