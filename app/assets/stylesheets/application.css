@@ -80,3 +80,10 @@ a:link {
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
+/*job form*/
+#job-form-label{
+  font-size: 14px;
+  color: rgba(0,0,0,0.87);
+  font-weight: bold;
+}

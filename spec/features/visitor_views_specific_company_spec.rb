@@ -1,24 +1,27 @@
 require 'rails_helper'
 
 RSpec.feature "Guest views specific company" do
-
   scenario "Guest views NIKE's page" do
-    nike = create(:company)
+    company = create(:company)
+    shoe_maker = create(:job, title: "shoe maker", company_id: company.id)
 
     visit companies_path
+    within(page.all(".card-action")[0]) do
+      click_link "#{company.name}"
+    end
 
-    click_on "NIKE"
+    expect(current_path).to eq("/companies/#{company.slug}")
 
-    expect(current_path).to eq("/companies/#{nike.id}")
-
-    expect(page).to have_content(nike.name)
-    expect(page).to have_xpath("//img[contains(@src, \"#{nike.logo}\")]")
+    expect(page).to have_content(company.name)
+    expect(page).to have_xpath("//img[contains(@src, \"#{company.logo}\")]")
 
     expect(page).to have_content("About Us")
-    expect(page).to have_content(nike.description)
+    expect(page).to have_content(company.description)
 
-    expect(page).to have_content("Available Jobs")
+    expect(page).to have_content("Available Positions")
+    expect(page).to have_content(shoe_maker.title)
+    expect(page).to have_content(shoe_maker.description)
+    expect(page).to have_content(shoe_maker.city.name)
+    expect(page).to have_content(shoe_maker.city.state)
   end
 end
-
-# display message *NO JOBS AVAILABLE*

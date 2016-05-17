@@ -19,4 +19,11 @@ $(document).ready(function(){
     belowOrigin: true
   });
 
+  $('.modal-trigger').leanModal({
+     dismissible: true
+  });
+
+  $('.tooltipped').tooltip({
+    delay: 50
+  });
 });
