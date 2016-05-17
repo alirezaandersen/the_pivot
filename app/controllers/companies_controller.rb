@@ -17,11 +17,12 @@ class CompaniesController < ApplicationController
   end
 
   def edit
+    binding.pry
     @company = Company.find(params[:company_id])
   end
 
   def update
-    binding.pry
+    
     @company = Company.find(params[:id])
     if @company.update(company_applications)
       flash[:success] = "#{@company.name} has been updated"
@@ -29,7 +30,7 @@ class CompaniesController < ApplicationController
     else
       flash.now[:error] = "Invalid Information"
       render :now
-    end 
+    end
   end
 
   def active_companies

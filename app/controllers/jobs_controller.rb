@@ -25,13 +25,7 @@ class JobsController < ApplicationController
     else
       flash[:error] = "No Trolls Allowed!"
     end
-=begin
-    if current_user?platform_admin
-      Job.create(job_params)
-    elsif current_user?store_admin
-      Job.create(job_params.merge(company_id:current_user.id))
-    end
-=end
+
     redirect_to job_path(@job.title)
   end
 

@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def admin_index
+    # binding.pry
     @company_name = Company.find(params[:company_id]).name
     @users = User.where(company_id: params[:company_id])
   end
