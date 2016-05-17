@@ -22,8 +22,8 @@ RSpec.feature "Registered user can save favorites" do
   end
 
   scenario "guest user must login or register to save favorites" do
-    user = create(:user)
     job = create(:job)
+    user = create(:user)
 
     visit job_path(job)
     within("#job-text-box") do
@@ -36,9 +36,16 @@ RSpec.feature "Registered user can save favorites" do
 
     expect(page).to have_current_path("/favorites")
     expect(page).to_not contain_exactly("Save your Favorites")
+
     click_button("Login to save your Favorites")
 
-    login_user(user)
+    expect(page).to have_current_path(login_path)
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    within('.login-signup') do
+      click_on("LOGIN")
+    end
+
     expect(page).to have_current_path("/dashboard")
 
     within(".main-resources") do
@@ -55,9 +62,9 @@ RSpec.feature "Registered user can save favorites" do
     expect(page).to have_current_path(my_favorites_path)
     expect(page).to have_content("#{user.first_name}'s Saved Favorites")
 
-    # within(".job-snippet-details") do
-    #   expect(page).to have_content("Looking for someone with about #{job.years_of_experience} year(s) of experience")
-    # end
+    within(".job-snippet-details") do
+      expect(page).to have_content("Looking for someone with about #{job.years_of_experience} year(s) of experience")
+    end
 
     within(".card-reveal") do
       expect(page).to have_content(job.title)
@@ -86,7 +93,7 @@ RSpec.feature "Registered user can save favorites" do
     end
 
     expect(page).to have_current_path(my_favorites_path)
-    within(".card-reveal") do
+    within(".card-content") do
       expect(page).to have_content(job.title)
     end
   end
@@ -94,7 +101,6 @@ RSpec.feature "Registered user can save favorites" do
   scenario "user cannot save favorites twice" do
     user = create(:user)
     job = create(:job)
-
     login_user(user)
 
     visit job_path(job)

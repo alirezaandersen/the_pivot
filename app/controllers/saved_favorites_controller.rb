@@ -21,7 +21,8 @@ class SavedFavoritesController < ApplicationController
     if current_user.nil?
       render file: '/public/404'
     else
-      @favorited_jobs = current_user.users_jobs.favorited
+      @jobs = Job.joins(:users_jobs).where(users_jobs: { user_id: current_user, status: 0 })
+      # @favorited_jobs = current_user.users_jobs.favorited
     end
   end
 end

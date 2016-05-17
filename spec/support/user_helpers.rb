@@ -1,19 +1,20 @@
 module UserHelpers
-#   def create_and_login_admin
-#     admin = Volunteer.create(first_name: "John",
-#                              last_name: "Last",
-#                              username: "admin",
-#                              email: "admin@me.com",
-#                              password: "password",
-#                              role: 1)
-#     login_volunteer(admin)
-#   end
-#
+  def create_user
+    user = User.create(first_name: "John",
+                       last_name: "Last",
+                       email: "user@me.com",
+                       password: "password",
+                       role: 0)
+    login_user(user)
+  end
+
   def login_user(user)
     visit login_path
     fill_in "Email", with: user.email
     fill_in "Password", with: user.password
-    click_button("LOGIN")
+    within('.login-signup') do
+      click_on("LOGIN")
+    end
   end
 #
   def users_job_with_resume(user, job)
