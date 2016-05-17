@@ -3,9 +3,11 @@ require 'rails_helper'
 RSpec.feature "Guest views specific company" do
   scenario "Guest views NIKE's page" do
     company = create(:company)
+    company.update(approve: true)
     shoe_maker = create(:job, title: "shoe maker", company_id: company.id)
 
     visit companies_path
+
     within(page.all(".card-action")[0]) do
       click_link "#{company.name}"
     end

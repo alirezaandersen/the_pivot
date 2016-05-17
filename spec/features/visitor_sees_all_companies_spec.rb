@@ -12,9 +12,11 @@ RSpec.feature "Vistor sees all companies" do
 
   scenario "visitor sees a list of companies" do
     nike          = create(:company)
+    nike.update(approve: true)
     louis_vuitton = create(:company, name: "Louis Vuitton", logo: "http://luxurylaunches.com/wp-content/uploads/2013/03/louis-vuitton.jpg" )
+    louis_vuitton.update(approve: true)
     spotify       = create(:company, name: "Spotify", logo: "http://thenextweb.com/wp-content/blogs.dir/1/files/2015/07/Screen-Shot-2015-07-20-at-7.48.32-PM.png")
-
+    spotify.update(approve: true)
     visit companies_path
 
     expect(page).to have_content("All Companies")

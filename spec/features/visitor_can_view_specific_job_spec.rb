@@ -5,6 +5,7 @@ RSpec.feature "Visitor can view a job page" do
   scenario "they can see job details" do
     city = create(:city_with_jobs)
     job = city.jobs.first
+    job.company.update(approve: true)
 
     visit jobs_path
     within(page.all("#job-snippet")[0]) do

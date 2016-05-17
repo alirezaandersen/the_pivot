@@ -2,10 +2,13 @@ class JobsController < ApplicationController
   include ApplicationHelper
 
   def index
-    company_ids = Company.select(:id).where(approve:1).ids
+    # company_ids = Company.select(:id).where(approve:1).ids
     #@jobs = Job.find(company_ids)
-    approved_jobs = Job.find(company_ids)
-    @jobs = approved_jobs.paginate(:page => params[:page], :per_page => 6)
+    job = Job.all
+    # approved_jobs = Job.find(company_ids)
+    # binding.pry
+    # @jobs = approved_jobs.paginate(:page => params[:page], :per_page => 6)
+    @jobs = job.paginate(:page => params[:page], :per_page => 6)
   end
 
   def store_jobs
@@ -35,7 +38,7 @@ class JobsController < ApplicationController
     else
       flash[:error] = "No Trolls Allowed!"
     end
-    redirect_to job_path(@job.title)
+    redirect_to jobs_path(@job.title)
   end
 
   def edit

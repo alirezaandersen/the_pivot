@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
   get    "/favorites", to: 'favorites#show', as: :favorites
   resources :favorites, only: [:create, :destroy]
-  get    "/favorites", to: 'favorites#show'
+  # get    "/favorites", to: 'favorites#show'
 
   resources :users_jobs, only: [:create]
   get '/submissions', to: "users_jobs#show", as: :my_jobs
@@ -56,7 +56,7 @@ Rails.application.routes.draw do
   get    "/contact_us/all", to: 'contact_us#index', as: :customer_inquiries
   get    "/contact_us/:id", to: 'contact_us#show', as: :customer_inquiry
   delete "/contact_us/:id", to: 'contact_us#delete'
-  get    "/favorites", to: 'favorites_jobs#show', as: :favorites
+  # get    "/favorites", to: 'favorites_jobs#show', as: :favorites
 
   get    "submissions", to: 'submissions#new', as: :submissions
   post   "submissions", to: 'submissions#create'
@@ -66,4 +66,5 @@ Rails.application.routes.draw do
   get    "submissions/:company_name/denied", to: 'submissions#denied_submissions', as: :company_denied
   get    "submissions/approved/all", to: 'submissions#approved_index', as: :companies_approved
   get    "submissions/denied/all", to: 'submissions#denied_index', as: :companies_denied
+
 end
