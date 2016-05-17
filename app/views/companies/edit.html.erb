@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col s6 offset-s3">
+    <div class="submissions_form">
+<%= form_for @company do |f| %>
+
+  <%= f.text_field :name, placeholder: "Company Name" %>
+  <%= f.text_field :logo, placeholder: "Company Logo" %>
+  <%= f.text_field :url, placeholder: "Company url" %>
+  <%= f.text_field :size, placeholder: "Company Size" %>
+  <%= f.text_field :industry, placeholder: "Company Industry" %>
+  <%= f.text_field :description, placeholder: "Company Description" %>
+
+  <%= f.submit "Submit Application", method: :patch, class:"slider-btn waves-effect waves-light btn" %>
+<% end %>
+</div>
+</div>
+</div>

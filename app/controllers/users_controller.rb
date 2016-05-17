@@ -1,21 +1,45 @@
 class UsersController < ApplicationController
 
   def index
-    @user = User.all 
+    @users = User.all
+  end
+
+  def admin_index
+    @company_name = Company.find(params[:company_id]).name
+    @users = User.where(company_id: params[:company_id])
   end
 
   def new
-    @user = User.new
+    if current_user.nil?
+      @user = User.new
+      @title = "Create Account"
+    else
+      # binding.pry
+      @company_id = params[:company_id] if current_user.platform_admin?
+      @company_id = current_user.company_id if current_user.store_admin?
+      flash[:error] = "Admin is missing a company id" if @company_id.nil?
+      @user = User.new
+      @title = "Create Administrator "
+    end
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id
+    # binding.pry
+    if !current_user.nil?
+      (current_user.store_admin? && (current_user.company_id == admin_params[:company_id].to_i)) || current_user.platform_admin?
+      binding.pry
+      @user = User.create(admin_params)
+      @user.roles << Role.find_by(name: "store_admin")
       role_redirect
     else
-      flash.now[:error] = "Invalid. Please try again."
-      render :new
+      @user = User.new(user_params)
+      if @user.save
+        session[:user_id] = @user.id
+        role_redirect
+      else
+        flash.now[:error] = "Invalid. Please try again."
+        render :new
+      end
     end
   end
 
@@ -24,7 +48,6 @@ class UsersController < ApplicationController
     render file: '/public/404' if current_user.nil?
     render 'users/platform_admin' if current_user.platform_admin?
     render 'users/store_admin' if current_user.store_admin?
-
     #will default to show.html.erb (if guest)
   end
 
@@ -49,10 +72,20 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(
-                          :first_name,
-                          :last_name,
-                          :email,
-                          :password,
-                          :password_confirmation)
+    :first_name,
+    :last_name,
+    :email,
+    :password,
+    :password_confirmation)
+  end
+
+  def admin_params
+    params.require(:user).permit(
+    :first_name,
+    :last_name,
+    :email,
+    :password,
+    :password_confirmation,
+    :company_id)
   end
 end

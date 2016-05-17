@@ -12,18 +12,23 @@ Rails.application.routes.draw do
   get "/companies/active_companies", to: 'companies#active_companies', as: :active_companies
   get "/companies/activate/:company_name", to: 'companies#activate_company', as: :activate_company
   get "/companies/inactivate/:company_name", to: 'companies#inactivate_company', as: :inactivate_company
+  get "/companies/:company_id/edit", to: 'companies#edit', as: :update_company
+  patch "/companies/:id", to: 'companies#update'
+
   resources :companies, only: [:index, :show]
 
   post "/companies", to: 'companies#create'
   resources :users, only: [:new, :create]
+  get "/users/:company_id/new", to: 'users#new', as: :new_admin_user
   get '/search/jobs', to: 'search#show', as: :search_job
 
   resources :favorites_jobs, only: [:create, :destroy]
 
-  get "/dashboard/all_users", to: 'user#index', as: :view_all_users
+  get "/dashboard/all_users", to: 'users#index', as: :view_all_users
   get "/dashboard", to: "users#show"
   get "/dashboard/platform_admin",to: "users#show", as: :platform_admin_dashboard
   get "/dashboard/store_admin", to: "users#show", as: :store_admin_dashboard
+  get "/dashboard/:company_id/view_store_admins", to: 'users#admin_index', as: :view_store_admins
   get    "/login", to: "sessions#new", as: :login
   post   "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"

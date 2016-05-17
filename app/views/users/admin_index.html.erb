@@ -1,0 +1,13 @@
+<h1>Company <%= @company_name %> </h1>
+
+
+<h1>Administration</h1>
+
+<ul>
+<% @users.each do |admin|%>
+
+  <li>Name:&nbsp;<%= admin.first_name %>&nbsp; <%= admin.last_name %> &nbsp;
+      Email:<%= admin.email %></li>
+
+<% end %>
+</ul>

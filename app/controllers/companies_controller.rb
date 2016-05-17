@@ -16,6 +16,22 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
   end
 
+  def edit
+    @company = Company.find(params[:company_id])
+  end
+
+  def update
+    binding.pry
+    @company = Company.find(params[:id])
+    if @company.update(company_applications)
+      flash[:success] = "#{@company.name} has been updated"
+      redirect_to @company
+    else
+      flash.now[:error] = "Invalid Information"
+      render :now
+    end 
+  end
+
   def active_companies
     @companies = Company.where(approve: true) || []
   end
