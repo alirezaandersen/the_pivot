@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Visitor can view a job page" do
+  include ActionView::Helpers::NumberHelper
   scenario "they can see job details" do
     city = create(:city_with_jobs)
     job = city.jobs.first
@@ -11,7 +12,9 @@ RSpec.feature "Visitor can view a job page" do
     end
 
     expect(page).to have_current_path company_job_path(job.company, job)
-    expect(page).to have_content job.company.logo
+    expect(page).to have_xpath("//img[contains(@src, \"#{job.company.logo}\")]")
+
+    expect(page).to have_content job.description
 
     within("#job-text-box") do
       expect(page).to have_content job.company.name
@@ -20,8 +23,7 @@ RSpec.feature "Visitor can view a job page" do
       expect(page).to have_content job.education
       expect(page).to have_content job.years_of_experience
       expect(page).to have_content job.department
-      expect(page).to have_content "#{job.salary} USD"
-      expect(page).to have_content job.description
+      expect(page).to have_content "#{number_to_currency(job.salary)} USD"
       expect(page).to have_link "APPLY"
       expect(page).to have_link "FAVORITE"
     end

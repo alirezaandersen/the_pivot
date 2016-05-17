@@ -15,7 +15,7 @@ class JobPresenter
   end
 
   def title
-    job.title
+    job.title.capitalize
   end
 
   def company
@@ -31,7 +31,7 @@ class JobPresenter
   end
 
   def education
-    job.education
+    job.education.capitalize
   end
 
   def experience

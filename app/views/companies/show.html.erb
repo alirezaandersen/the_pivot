@@ -1,11 +1,37 @@
-<div class="container">
-  <h1> <%= @company.name %> </h1>
-  <%= @company.description %>
-  <div class="row">
-    <%= image_tag(@company.logo, id: "img_preview") %>
-  </div>
+<%= image_tag(@company.logo, class: "img-preview") %>
+<h1 class="left-align" id="company-title"> <%= @company.name %> </h1>
 
-  About Us
+<div class="row">
+  <p class="parent-title">
+    About Us
+  </p>
+  <p class="children-heading">
+    <%= @company.description %>
+  </p>
 
-  Available Jobs
+  <p class="parent-title">Available Positions</p>
+  <% if @company.jobs.empty? %>
+      <p class="center-align children-heading" id="no-job">
+        no jobs available
+      </p>
+  <% else %>
+    <% @company.jobs.each do |job| %>
+      <div class="children-heading card hoverable animated slideInLeft"  id="job-post">
+        <div class="row">
+          <div class="col s6 m6 l6">
+            <%= link_to(job.title, "#", id:"job-post-title") %>
+          </div>
+          <div class="col s4 m4 l4 right-align">
+            <i class="fa fa-heart-o favs" aria-hidden="true"></i>
+          </div>
+          <div class="col s10 m10 l10">
+            <%= company_address(job.city.name, job.city.state) %>
+          </div>
+          <div class="col s10 m10 l10">
+            <%= truncate(job.description, length: 100) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 </div>

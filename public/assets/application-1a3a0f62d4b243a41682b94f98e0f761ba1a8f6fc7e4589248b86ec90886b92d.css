@@ -1,0 +1,99 @@
+/* line 1, /Users/AlexNavarrete/Turing/3module/projects/the_pivot/app/assets/stylesheets/companies.scss */
+.companies-index {
+  height: 400px;
+}
+
+/* line 5, /Users/AlexNavarrete/Turing/3module/projects/the_pivot/app/assets/stylesheets/companies.scss */
+.img-preview {
+  width: 100%;
+  height: auto;
+}
+
+/* line 10, /Users/AlexNavarrete/Turing/3module/projects/the_pivot/app/assets/stylesheets/companies.scss */
+#company-title {
+  font-family: 'Lustria', serif;
+  text-transform: uppercase;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+
+
+.brand-logo {
+  font-family: 'Kaushan Script', cursive;
+}
+
+h1, h4 {
+  text-align: center;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+a:link {
+  color: inherit;
+}
+
+.flash-notice {
+  text-align: center;
+  color: white;
+}
+
+.task-image {
+  margin-top: 50px;
+  width: 100%;
+}
+
+#text-box {
+  margin-top: 50px;
+}
+
+
+.slider .indicators {
+  bottom: 60px;
+  z-index: 100;
+}
+
+.slider .indicators .indicator-item.active {
+  background-color: #26a69a;
+}
+
+.checkout-button {
+  text-align: center;
+  margin-top: 40px;
+}
+
+#map {
+  text-align: center;
+}
+
+.mobile-dropdowns {
+  color: black;
+}
+
+.dashboard {
+  text-align: center;
+}
+
+/*landing page*/
+#search-bar{
+  border-width: thin;
+  width: 100%;
+  height: 15%;
+  border: 6px solid #efefef;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
