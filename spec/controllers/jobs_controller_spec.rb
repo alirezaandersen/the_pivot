@@ -14,17 +14,17 @@ RSpec.describe JobsController, :type => :controller do
     end
   end
 
-  context "GET #show" do
-    # it "assigns job as an instance variable" do
-    #   job = create(:job)
-    #   get :show, title: job.title
-    #   expect(assigns(:job)).to eql(job)
-    # end
-
-    it "renders the show template" do
-      job = create(:job)
-      get :show, title: job.title
-      expect(response).to render_template("show")
-    end
-  end
+  # context "GET #show" do
+  #   # it "assigns job as an instance variable" do
+  #   #   job = create(:job)
+  #   #   get :show, title: job.title
+  #   #   expect(assigns(:job)).to eql(job)
+  #   # end
+  #
+  #   it "renders the show template" do
+  #     job = create(:job)
+  #     get :show, title: job.title
+  #     expect(response).to render_template("show")
+  #   end
+  # end
 end

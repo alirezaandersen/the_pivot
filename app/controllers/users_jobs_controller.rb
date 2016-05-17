@@ -9,7 +9,8 @@ class UsersJobsController < ApplicationController
   end
 
   def show
-    @jobs = current_user.jobs
+    # @jobs = current_user.jobs
+    @jobs = Job.joins(:users_jobs).where(users_jobs: { user_id: current_user.id, status: 1 })
   end
 
   def authorize_application_submission!

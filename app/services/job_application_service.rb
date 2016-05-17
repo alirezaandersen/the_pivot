@@ -48,7 +48,7 @@ class JobApplicationService
     end
 
     def company
-      job.company
+      user_job.job.company
     end
 
     def user_job

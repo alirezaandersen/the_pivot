@@ -29,7 +29,7 @@
               <a class="modal-trigger waves-effect waves-light btn teal lighten-3" href="#modal1">APPLY</a>
 
               <div id="modal1" class="modal">
-                <%= render partial: "job_form", locals: { job_id: job_presenter.id } %>
+                <%= render partial: "job_form", locals: { job: job_presenter.job } %>
               </div>
             <% end %>
           <% else %>
