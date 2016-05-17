@@ -26,7 +26,6 @@ RSpec.feature "Registered user can save favorites" do
     job = create(:job)
 
     visit job_path(job)
-
     within("#job-text-box") do
       click_link("FAVORITE")
     end
@@ -40,18 +39,25 @@ RSpec.feature "Registered user can save favorites" do
     click_button("Login to save your Favorites")
 
     login_user(user)
+    expect(page).to have_current_path("/dashboard")
+
     within(".main-resources") do
       expect(page).to have_content("LOGOUT")
+      expect(page).to have_content("MY FAVORITES")
     end
 
-    expect(page).to have_current_path("/dashboard")
     expect(page).to have_link("My Favorites")
 
     within(".dashboard") do
-      click_on("My Favorites")
+      click_link("My Favorites")
     end
-    # save_and_open_page
+
     expect(page).to have_current_path(my_favorites_path)
+    expect(page).to have_content("#{user.first_name}'s Saved Favorites")
+
+    # within(".job-snippet-details") do
+    #   expect(page).to have_content("Looking for someone with about #{job.years_of_experience} year(s) of experience")
+    # end
 
     within(".card-reveal") do
       expect(page).to have_content(job.title)
@@ -67,33 +73,54 @@ RSpec.feature "Registered user can save favorites" do
     visit job_path(job)
 
     within("#job-text-box") do
-      click_link("FAVORITE")
+      click_link("SAVE TO FAVORITES")
     end
 
-    within(".main-resources") do
-      click_on("FAVORITES")
-    end
-
-    expect(page).to have_current_path("/favorites")
-    expect(page).to have_button("Save your Favorites")
-    click_button("Save your Favorites")
-
-    expect(page).to have_current_path(my_favorites_path)
     within(".flash-notice") do
       expect(page).to have_content("Your Favorites are saved!")
     end
 
+
+    within(".main-resources") do
+      click_on("MY FAVORITES")
+    end
+
+    expect(page).to have_current_path(my_favorites_path)
+    within(".card-reveal") do
+      expect(page).to have_content(job.title)
+    end
+  end
+
+  scenario "user cannot save favorites twice" do
+    user = create(:user)
+    job = create(:job)
+
+    login_user(user)
+
+    visit job_path(job)
+
+    within("#job-text-box") do
+      click_link("SAVE TO FAVORITES")
+    end
+
+    within(".flash-notice") do
+      expect(page).to have_content("Your Favorites are saved!")
+    end
+
+    within(".main-resources") do
+      click_link("MY FAVORITES")
+    end
+
+    expect(page).to have_current_path(my_favorites_path)
     within(".card-reveal") do
       expect(page).to have_content(job.title)
     end
 
-    within(".main-resources") do
-      click_on("FAVORITES")
+    within(".card-action") do
+      click_link("View opportunity details")
     end
-
-    expect(page).to have_current_path("/favorites")
-
-    expect(page).to have_content("No Favorites!")
-    expect(page).to_not have_content(job.title)
+    expect(page).to have_current_path(job_path(job))
+    expect(page).to_not contain_exactly("SAVE TO FAVORITES")
+    expect(page).to have_content("SAVED")
   end
 end

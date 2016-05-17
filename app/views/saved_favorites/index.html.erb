@@ -1,4 +1,4 @@
-<h1>My Saved Favorite Jobs</h1>
+<h1><%= current_user.first_name %>'s Saved Favorites</h1>
 <div class="row">
   <% @favorited_jobs.each do |favorited_job| %>
     <div class="col xs12 x6 m4 l3" id="job-snippet">

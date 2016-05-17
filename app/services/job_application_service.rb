@@ -23,7 +23,6 @@ class JobApplicationService
     else
       submit_application
       return true
-      binding.pry
     end
   end
 

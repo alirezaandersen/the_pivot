@@ -12,7 +12,7 @@
       <!-- <li><%#= render partial: 'shared/volunteer_commitments' %></li> -->
       <li><%= render partial: 'shared/login_logout' %></li>
       <% if current_user %>
-        <li><%= link_to "Saved Favorites", my_favorites_path %></li>
+        <li><%= link_to "MY FAVORITES", my_favorites_path %></li>
       <% else %>
         <li><%= link_to "FAVORITES", favorites_path %></li>
       <% end %>
@@ -20,7 +20,7 @@
 
     <ul class="side-nav show-on-medium" id="mobile">
       <% if current_user %>
-        <li><%= link_to "Saved Favorites", my_favorites_path %></li>
+        <li><%= link_to "MY FAVORITES", my_favorites_path %></li>
       <% else %>
         <li><%= link_to "FAVORITES", favorites_path %></li>
       <% end %>

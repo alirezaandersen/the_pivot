@@ -1,15 +1,20 @@
 class SavedFavoritesController < ApplicationController
   def create
-    if UsersJob.exists?(job_id: session[:favorites].keys, user_id: current_user, status: 0)
-      session[:favorites] = {}
-      redirect_to my_favorites_path
+    # if !current_user.users_jobs.where(job_id: params[:job_id]).empty? && session[:favorites].nil?
+    #   redirect_to my_favorites_path
+    if current_user && session[:favorites].nil? || session[:favorites] == {}
+      UsersJob.favorite_jobs(params[:job_id], current_user)
+      flash[:notice] = "Your Favorites are saved!"
+
+    # elsif current_user.users_jobs.exists?(job_id: session[:favorites].keys, status: 0)
+    #   session[:favorites] = {}
+    #   redirect_to my_favorites_path
     else
-      favorite_jobs(session[:favorites], current_user)
+      favorite_jobs_from_session(session[:favorites], current_user)
       flash[:notice] = "Your Favorites are saved!"
       session[:favorites] = {}
-      redirect_to my_favorites_path
-      # status is favorited
     end
+    redirect_to my_favorites_path
   end
 
   def index

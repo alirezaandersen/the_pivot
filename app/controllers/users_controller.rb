@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       flash[:notice] = "Account Created! Logged in as #{@user.first_name}"
       if !session[:favorites].nil?
-        favorite_jobs(session[:favorites], current_user)
+        favorite_jobs_from_session(session[:favorites], current_user)
         session[:favorites] = {}
       end
       redirect_to dashboard_path
