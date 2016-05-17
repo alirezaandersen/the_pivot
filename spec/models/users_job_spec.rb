@@ -49,7 +49,6 @@ RSpec.describe UsersJob, type: :model do
       application = { resume: resume_path,
                       cover_letter: cover_letter_text,
                       job: "#{job.id}" }
-
       expect(user.users_jobs.count).to eql(1)
       expect(user_job.status).to eql("favorited")
 
