@@ -43,7 +43,7 @@ class SubmissionsController < ApplicationController
       status.update(approval: 1) if !status.nil?
       flash.now[:error] = "You can't approve the same Submission Again"
     # else
-      direct_to companies_approved_path
+      redirect_to companies_approved_path
     # end
   end
 
