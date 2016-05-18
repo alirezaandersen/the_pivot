@@ -1,3 +1,4 @@
+
 class UsersJob < ActiveRecord::Base
   belongs_to :user
   belongs_to :job
@@ -40,5 +41,10 @@ class UsersJob < ActiveRecord::Base
 
   def self.current_users_favorited_jobs(user)
     Job.joins(:users_jobs).where(users_jobs: { user_id: user, status: 0 })
+  end
+
+  def self.remove_saved_favorite(user, job_id)
+    users_job = user.users_jobs.find_by(job_id: job_id)
+    users_job.destroy
   end
 end
