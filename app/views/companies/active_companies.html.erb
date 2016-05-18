@@ -13,7 +13,7 @@
   <%= button_to "CREATE ADMINSTRATOR", new_admin_user_path(company.id), method: :get %>
   <%= button_to "UPDATE COMPANY INFORMATION", update_company_path(company.id),method: :get %>
   <%= button_to "VIEW ADMINISTRATION STAFF", view_store_admins_path(company.id),method: :get %>
-  <%= button_to "INACTIVATE COMPANY", inactivate_company_path(company.name),method: :get %><br><br>
+  <%= button_to "INACTIVATE COMPANY", inactivate_company_path(company.name),method: :patch %><br><br>
 
 <% end  %>
 <ul>

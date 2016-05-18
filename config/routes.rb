@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   # get '/jobs/:title', to: 'jobs#show', as: :job
 
   get "/companies/activate/:company_name", to: 'companies#activate_company', as: :activate_company
-  get "/companies/inactivate/:company_name", to: 'companies#inactivate_company', as: :inactivate_company
+  patch "/companies/inactivate/:company_name", to: 'companies#inactivate_company', as: :inactivate_company
   get "/companies/:company_id/edit", to: 'companies#edit', as: :update_company
   patch "/companies/:id", to: 'companies#update'
 
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   # get    "/favorites", to: 'favorites#show'
 
   resources :users_jobs, only: [:create]
-  get '/submissions', to: "users_jobs#show", as: :my_jobs
+  get '/my-submissions', to: "users_jobs#show", as: :my_jobs
   resources :saved_favorites, only: [:create]
 
   get '/my-favorites', to: "saved_favorites#index", as: :my_favorites

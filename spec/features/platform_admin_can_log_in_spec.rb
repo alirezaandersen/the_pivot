@@ -24,7 +24,7 @@ RSpec.feature "Platform Admin Can log in" do
     expect(page).to have_link("Company Applicants")
     expect(page).to have_link("Approved Companies")
     expect(page).to have_link("Denied Companies")
-    expect(page).to have_link("Avaiable Companies")
+    expect(page).to have_link("Available Companies")
     expect(page).to have_link("Inactive Companies")
     expect(page).to have_link("View all Users")
     expect(page).to have_link("View all Jobs")

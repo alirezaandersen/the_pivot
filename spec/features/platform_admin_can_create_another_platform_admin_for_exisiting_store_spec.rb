@@ -23,7 +23,7 @@ RSpec.feature "Platform Admin can create another store admin for existing compan
 
     expect(page).to have_current_path platform_admin_dashboard_path
 
-    click_link("Avaiable Companies")
+    click_link("Available Companies")
 
     expect(page).to have_current_path active_companies_path
 

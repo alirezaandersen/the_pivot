@@ -15,7 +15,6 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    # binding.pry
     @company = Company.find_by(slug: params[:company_name])
       # @company = Company.find(params[:id])
   end
@@ -36,7 +35,6 @@ class CompaniesController < ApplicationController
   end
 
   def active_companies
-    # binding.pry
     @companies = Company.where(approve: true) || []
   end
 

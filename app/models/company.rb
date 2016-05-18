@@ -1,6 +1,6 @@
 class Company < ActiveRecord::Base
 
-  default_scope {where(approve: true)}
+  # default_scope {where(approve: true)}
   has_many :jobs
   has_many :users, dependent: :destroy
 

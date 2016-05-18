@@ -39,7 +39,6 @@ RSpec.feature "All users can submit application to become store admin" do
   within("footer") do
       click_link "Recruit With Us"
   end
-
   expect(page).to have_current_path submissions_path
 
   fill_in 'Company Name', with: submissions.company_name

@@ -136,6 +136,6 @@ FactoryGirl.define do
     url "http://www.nike.com/us/en_us/"
     size 1
     industry "Footwear"
-    approve = true
+    approve false
   end
 end

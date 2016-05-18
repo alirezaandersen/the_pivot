@@ -3,7 +3,6 @@ class SubmissionsController < ApplicationController
   def index
     @title = "Pending Submissions"
     @submissions = Submission.where(approval: 0) || []
-    # binding.pry
   end
 
   def new
@@ -11,7 +10,6 @@ class SubmissionsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @submission = Submission.new(submissions_params)
     if @submission.save
       flash[:success] = "Thank you for your interest. A Ziba specialist will reach out to you soon"
@@ -29,7 +27,6 @@ class SubmissionsController < ApplicationController
   def approved_index
     @title = "Approved Submissions"
     @submission = Submission.where(approval: 1) || []
-    # binding.pry
   end
 
   def approved_submissions
@@ -42,9 +39,7 @@ class SubmissionsController < ApplicationController
 
       status.update(approval: 1) if !status.nil?
       flash.now[:error] = "You can't approve the same Submission Again"
-    # else
       redirect_to companies_approved_path
-    # end
   end
 
   def denied_index
@@ -53,7 +48,6 @@ class SubmissionsController < ApplicationController
   end
 
   def denied_submissions
-    # binding.pry
     Submission.find_by(company_name: params[:company_name]).update(approval: 2)
     redirect_to companies_denied_path
   end
