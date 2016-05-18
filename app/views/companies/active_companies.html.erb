@@ -12,8 +12,10 @@
       <%= company.name %>
     </div>
     <div class="row">
-      <div class="col s12 m4 l4", id="img_preview_2">
-          <%= image_tag(company.logo) %>
+      <div class="col s12 m4 l4">
+         <span>
+           <%= image_tag(company.logo, class:"img_preview_2") %>
+         </span>
       </div>
     </div>
     <div class="col s12 m12 l12 admin-company-created-at">
