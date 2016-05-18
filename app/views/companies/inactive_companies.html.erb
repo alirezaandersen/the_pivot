@@ -1,13 +1,44 @@
-<h1>Inactive Companies</h1>
+<h1 class='dashboard-welcome'>Inactive Companies </h1>
 
-<h3>Total Inactive Companies: <%= @companies.count %></h3>
+<h4 class='dashboard-sections left-align'>Stats</h4>
+<div class="left-align">
+  <p id="total-count">Total Inactive Companies: <%= @companies.count %></p>
+</div>
 
-<ul>
+<h4 class="dashboard-sections left-align">Listing</h4>
+
 <% @companies.each do |company| %>
-  <h7><li><%= company.name %></li></h7>
-  <li><%= company.logo %></li>
-  <li>Company Inactive Since<%= company.updated_at %></li>
+  <%= company.name %>
+  <%= company.logo %>
+  Company Inactive Since<%= company.updated_at %>
 
   <%= button_to "ACTIVATE COMPANY", activate_company_path(company.name),method: :get %>
 <% end  %>
-<ul>
+
+
+<% @companies.each do |company| %>
+  <div class="row", id="active-companies-card">
+    <div class="col s12 m12 l12 admin-company-title">
+      <%= company.name %>
+    </div>
+    <div class="row">
+      <div class="col s12 m4 l4">
+          <%= image_tag(company.logo) %>
+      </div>
+    </div>
+    <div class="col s12 m12 l12 admin-company-created-at">
+      Company Inactive Since <%= company.updated_at.strftime("%B %d, %Y") %>
+    </div>
+    <div class="col s12 m12 l12">
+      <div class="row">
+        <div class="col s12 m3 l3 admin-buttons">
+          <%= link_to "ACTIVATE COMPANY", activate_company_path(company.name),method: :get, class: "waves-effect waves-light btn admin-btn" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="center-align">
+  <%= will_paginate @companies %>
+</div>
