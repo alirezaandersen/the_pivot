@@ -2,12 +2,7 @@ class JobsController < ApplicationController
   include ApplicationHelper
 
   def index
-    # company_ids = Company.select(:id).where(approve:1).ids
-    #@jobs = Job.find(company_ids)
     job = Job.all
-    # approved_jobs = Job.find(company_ids)
-    # binding.pry
-    # @jobs = approved_jobs.paginate(:page => params[:page], :per_page => 6)
     @jobs = job.paginate(:page => params[:page], :per_page => 6)
   end
 

@@ -1,4 +1,5 @@
 class Seed
+
   def self.start
     seed = Seed.new
 
@@ -9,12 +10,13 @@ class Seed
     seed.generate_users_jobs
     seed.generate_store_admin_user
     seed.generate_platform_admin_user
-    seed.generate_roles
+    seed.generate_nate
+    seed.generate_josh
   end
 
   def generate_companies
     30.times do |i|
-      name = Faker::Company.name + i.to_s
+      name = "#{Faker::Company.name} #{i}"
       company = Company.create!(name: name,
       description: Faker::Hipster.paragraph(7),
       logo: Faker::Company.logo,
@@ -34,7 +36,6 @@ class Seed
       password: "password",
       email: "#{i}" + Faker::Internet.free_email(first_name))
     end
-
     puts "Users was created."
   end
 
@@ -77,25 +78,40 @@ class Seed
     last_name: "Admin",
     email: "platform@admin.com",
     password: "password")
+    user.roles << Role.create(name: "platform_admin")
     puts "Platform Admin Account Created"
   end
 
-  def generate_store_admin_user
-    user = User.create(first_name: "Admin",
-    last_name: "Admin",
-    email: "store@admin.com",
+  def generate_nate
+    user = User.create(first_name: "Nate",
+    last_name: "Allen",
+    email: "nate@turing.io",
     password: "password")
+    user.roles << Role.create(name: "platform_admin")
+    puts "Nate has been Created!"
+  end
+
+  def generate_josh
+    user = User.create(first_name: "Josh",
+    last_name: "Mejia",
+    email: "josh@turing.io",
+    password: "password",
+    company_id: rand(1..30))
+    user.roles << Role.create(name: "store_admin")
+    puts "Josh has been Created!"
+  end
+
+  def generate_store_admin_user
+    30.times do |i|
+      user = User.create( first_name: "Admin #{i}",
+                          last_name: "Admin #{i}",
+                          email: "store#{i}@admin.com",
+                          password: "password",
+                          company_id: i )
+      user.roles << Role.create(name: "store_admin")
+    end
     puts "Store Admin Account Created"
   end
-
-  def generate_roles
-    Role.create(name: "registered_user")
-    Role.create(name: "store_admin")
-    Role.create(name: "platform_admin")
-    puts "Finished Generating Roles"
-  end
-
-
 
   private
   def california_cities
@@ -121,16 +137,6 @@ class Seed
       City.create(name: city, state: "CO")
     end
   end
-
 end
 
 Seed.start
-
-# 1 business admins per business
-
-# Username: andrew@turing.io
-# Password: password
-
-# 1 platform administrators
-# Username: jorge@turing.io
-# Password: password

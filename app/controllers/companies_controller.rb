@@ -2,7 +2,6 @@ class CompaniesController < ApplicationController
 
   def index
     approved_companies = Company.where(approve: 1) || []
-    #@companies = Company.where(approve: 1) || []
     @companies = approved_companies.paginate(:page => params[:page], :per_page => 6)
   end
 
@@ -16,7 +15,6 @@ class CompaniesController < ApplicationController
 
   def show
     @company = Company.find_by(slug: params[:company_name])
-      # @company = Company.find(params[:id])
   end
 
   def edit

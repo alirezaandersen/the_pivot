@@ -7,7 +7,7 @@ RSpec.feature "Store Admin can update company info" do
     user = store_admin_user
     company = create(:company)
     company.update(approve: true)
-    # binding.pry
+
     visit login_path
 
     expect(page).to have_current_path login_path
