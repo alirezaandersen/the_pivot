@@ -24,12 +24,10 @@ class UsersController < ApplicationController
 
   def create
     if !current_user.nil?
-      (current_user.store_admin? && (current_user.company_id == admin_params[:company_id].to_i)) || current_user.platform_admin?
       @user = User.create(admin_params)
       @user.roles << Role.find_by(name: "store_admin")
       role_redirect
     else
-      # binding.pry
       @user = User.new(user_params)
       if @user.save
          @user.roles << Role.find_by(name: "registered_user")
@@ -52,7 +50,7 @@ class UsersController < ApplicationController
     render file: '/public/404' if current_user.nil?
     render 'users/platform_admin' if current_user.platform_admin?
     render 'users/store_admin' if current_user.store_admin?
-    #will default to show.html.erb (if guest)
+    # will default to show.html.erb (if guest)
   end
 
   def edit

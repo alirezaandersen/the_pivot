@@ -25,14 +25,9 @@ class PermissionsService
   private
 
   def platform_admin_permissions
-    return true if sessions_controller
-    return true if user_jobs_controller
-    return true if favorites_controller
-    return true if saved_favorites_controller
-    return true if company_jobs_controller
-    return true if search_controller
+    return true if everybody_permissions
+    return true if user_jobs_controller_permissions
     return true if submissions_controller_platform_admin_permissions
-    return true if home_controller_permissions
     return true if contact_us_controller_platform_admin_permissions
     return true if companies_controller_platform_admin_permissions
     return true if users_controller_platform_admin_permissions
@@ -40,61 +35,55 @@ class PermissionsService
   end
 
   def store_admin_permissions
-    return true if sessions_controller
-    return true if user_jobs_controller
-    return true if favorites_controller
-    return true if saved_favorites_controller
-    return true if company_jobs_controller
-    return true if search_controller
-    return true if home_controller_permissions
-    return true if contact_us_controller_permissions
+    return true if everybody_permissions
+    return true if user_jobs_controller_permissions
+    return true if saved_favorites_controller_permissions
     return true if users_controller_store_admin_permissions
     return true if companies_controller_store_admin_permissions
     return true if jobs_controller_admins_permissions
   end
 
   def registered_user_permissions
-    return true if sessions_controller
-    return true if user_jobs_controller
-    return true if favorites_controller
-    return true if saved_favorites_controller
-    return true if company_jobs_controller
-    return true if search_controller
+    return true if everybody_permissions
+    return true if user_jobs_controller_permissions
+    return true if saved_favorites_controller_permissions
     return true if submissions_controller_user__permissions
-    return true if home_controller_permissions
-    return true if contact_us_controller_permissions
     return true if users_controller_users_permissions
     return true if companies_controller_users_permissions
     return true if jobs_controller_users_permissions
   end
 
   def guest_permissions
-    return true if sessions_controller
-    return true if favorites_controller
-    return true if company_jobs_controller
-    return true if search_controller
+    return true if everybody_permissions
     return true if submissions_controller_user__permissions
-    return true if home_controller_permissions
-    return true if contact_us_controller_permissions
     return true if users_controller_users_permissions
     return true if companies_controller_users_permissions
     return true if jobs_controller_users_permissions
   end
 
+  def everybody_permissions
+    return true if sessions_controller_permissions
+    return true if favorites_controller_permissions
+    return true if contact_us_controller_permissions
+    return true if search_controller_permissions
+    return true if home_controller_permissions
+    return true if company_jobs_controller
+  end
 
-  def sessions_controller
+
+  def sessions_controller_permissions
     controller == "sessions" && action.in?(%w(new create destroy))
   end
 
-  def user_jobs_controller
+  def user_jobs_controller_permissions
     controller == "users_jobs" && action.in?(%w(new create show))
   end
 
-  def favorites_controller
+  def favorites_controller_permissions
     controller == "favorites" && action.in?(%w(create show destroy))
   end
 
-  def saved_favorites_controller
+  def saved_favorites_controller_permissions
     controller == "saved_favorites" && action.in?(%w(create index destroy))
   end
 
@@ -102,7 +91,7 @@ class PermissionsService
     controller == "company/jobs" && action.in?(%w(show))
   end
 
-  def search_controller
+  def search_controller_permissions
     controller == "search"  && action.in?(%w(show))
   end
 
