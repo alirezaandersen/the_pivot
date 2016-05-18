@@ -1,8 +1,24 @@
-<h1><%= @company_name %></h1>
+<h1 class="dashboard-welcome"><%= @company_name %></h1>
 
 
 <% @jobs.each do |job| %>
-Job Title: <%= link_to "#{job.title}", job_edit_path(job.id) %><br>
-Job Description:  <%= job.description %><br><br>
+  <div class="row dashboard-sections">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        Job Title
+      </div>
+      <div class="col s12 m12 l12">
+        <%= link_to "#{job.title}", job_edit_path(job.id) %>
+      </div>
+    </div>
 
+    <div class="row">
+      <div class="col s12 m12 l12">
+        Job Description
+      </div>
+      <div class="col s12 m12 l12">
+        <%= job.description %>
+      </div>
+    </div>
+  </div>
 <% end %>
