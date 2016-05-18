@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    user = User.all
+    @users = user.paginate(:page => params[:page], :per_page => 20)
   end
 
   def admin_index
