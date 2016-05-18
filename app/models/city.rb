@@ -18,7 +18,6 @@ class City < ActiveRecord::Base
   #   addresses = tasks.map {|task| task.format_address }.compact
   #   addresses.join("%7C")
   # end
-
   def name_and_state
     "#{name}, #{state}"
   end

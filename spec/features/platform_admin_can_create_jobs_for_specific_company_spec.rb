@@ -6,7 +6,8 @@ RSpec.feature "Platform Admin can create job current company clients" do
 
     user = platform_admin_user
     company = create(:company)
-     company.update(approve: true)
+    company.update(approve: true)
+    city = create(:city)
 
     visit login_path
 
@@ -19,7 +20,7 @@ RSpec.feature "Platform Admin can create job current company clients" do
 
     expect(page).to have_current_path platform_admin_dashboard_path
 
-    click_link("Avaiable Companies")
+    click_link("Available Companies")
 
     expect(page).to have_current_path active_companies_path
 
@@ -38,8 +39,10 @@ RSpec.feature "Platform Admin can create job current company clients" do
     fill_in "Description of Job", with: "Programmer"
 
     click_on "Create A Job"
+    job = Job.find_by(company_id: company.id, title: "Teacher")
+    # job = job.update(city_id: city.id)
 
-    expect(page).to have_current_path job_path("Teacher")
+    expect(page).to have_current_path company_job_path(company, job)
     expect(page).to have_content("Teacher at #{company.name}")
   end
 end

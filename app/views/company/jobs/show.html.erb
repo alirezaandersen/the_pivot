@@ -1,3 +1,4 @@
+
 <% present(@job) do |job_presenter| %>
   <h1 class="job-show-title"><%= job_presenter.title %> at <%= job_presenter.company %></h1>
   <div class="job-show-container">
@@ -19,7 +20,7 @@
           <h4>Opportunity Details</h4>
           <p>Company: <%= job_presenter.company %> </p>
           <p>Job Title: <%= job_presenter.title %> </p>
-          <p>Location: <%= job_presenter.city %> </p>
+        
           <br>
           <h4>Requirements</h4>
           <p>Education: <%= job_presenter.education %> </p>
