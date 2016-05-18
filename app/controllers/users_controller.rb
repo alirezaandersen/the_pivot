@@ -7,7 +7,8 @@ class UsersController < ApplicationController
 
   def admin_index
     @company_name = Company.find(params[:company_id]).name
-    @users = User.where(company_id: params[:company_id])
+    admins = User.where(company_id: params[:company_id])
+    @users = admins.paginate(:page => params[:page], :per_page => 20)
   end
 
   def new
