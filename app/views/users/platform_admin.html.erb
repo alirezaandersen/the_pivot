@@ -1,20 +1,49 @@
-<h1>Welcome Super <%= @current_user.first_name %></h1>
+<h1 class="dashboard-welcome">Welcome Super <%= @current_user.first_name %></h1>
 
-<div class="dashboard">
-  <h4>Email: <%= @current_user.email %></h4><br><br>
+<div id="platform-admin-dashboard">
+  <h4>Email: <%= @current_user.email %></h4>
 
-  <ul>
-    <li><h6><%= link_to "Customer Inquiries", customer_inquiries_path %></h6></li><br><br>
+  <div class="row">
+    <h4 class="left-align dashboard-sections">Customers</h4>
+    <div class="col s12 m12 l12">
+      <%= link_to "Customer Inquiries", customer_inquiries_path, class: "waves-effect waves-light btn" %>
+    </div>
+  </div>
 
-    <li><h6><%= link_to "Company Applicants", submissions_status_path %></h6></li>
-    <li><h6><%= link_to "Approved Companies", companies_approved_path %></h6></li>
-    <li><h6><%= link_to "Denied Companies", companies_denied_path %></h6></li><br><br>
+  <div class="row">
+    <div class="row">
+      <h4 class="left-align dashboard-sections">Companies</h4>
+      <div class="col s12 m4 l4">
+        <%= link_to "Company Applicants", submissions_status_path, class: "waves-effect waves-light btn" %>
+      </div>
+      <div class="col s12 m4 l4">
+        <%= link_to "Approved Companies", companies_approved_path, class: "waves-effect waves-light btn" %>
+      </div>
+      <div class="col s12 m4 l4">
+        <%= link_to "Denied Companies", companies_denied_path, class: "waves-effect waves-light btn" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m6 l6">
+        <%= link_to "Available Companies", active_companies_path, class: "waves-effect waves-light btn" %>
+      </div>
+      <div class="col s12 m6 l6">
+        <%= link_to "Inactive Companies", inactive_companies_path, class: "waves-effect waves-light btn" %>
+      </div>
+    </div>
+  </div>
 
-    <li><h6><%= link_to "Available Companies", active_companies_path %></h6></li>
-    <li><h6><%= link_to "Inactive Companies", inactive_companies_path %></h6></li><br><br>
+  <div class="row">
+    <h4 class="left-align dashboard-sections">Users</h4>
+    <div class="col s12 m12 l12">
+      <%= link_to "View all Users", view_all_users_path, class: "waves-effect waves-light btn" %>
+    </div>
+  </div>
 
-    <li><h6><%= link_to "View all Users", view_all_users_path %></h6></li><br><br>
-    <li><h6><%= link_to "View all Jobs", jobs_path %></h6></li><br><br>
-  </ul>
-
+  <div class="row">
+    <h4 class="left-align dashboard-sections">Jobs</h4>
+    <div class="col s12 m12 l12">
+      <%= link_to "View all Jobs", jobs_path, class: "waves-effect waves-light btn" %>
+    </div>
+  </div>
 </div>
