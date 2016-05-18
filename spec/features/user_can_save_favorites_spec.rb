@@ -15,6 +15,7 @@ RSpec.feature "Registered user can save favorites" do
     within(".main-resources") do
       click_on("FAVORITES")
     end
+
     expect(page).to have_current_path("/favorites")
     expect(page).to_not contain_exactly("Save your Favorites")
     click_button("Login to save your Favorites")

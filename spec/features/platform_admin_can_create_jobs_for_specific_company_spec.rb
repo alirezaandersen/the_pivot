@@ -7,7 +7,6 @@ RSpec.feature "Platform Admin can create job current company clients" do
     user = platform_admin_user
     company = create(:company)
     company.update(approve: true)
-    city = create(:city)
 
     visit login_path
 
@@ -17,6 +16,7 @@ RSpec.feature "Platform Admin can create job current company clients" do
     fill_in "Password", with: user.password
 
     click_on "LOGIN"
+
 
     expect(page).to have_current_path platform_admin_dashboard_path
 
