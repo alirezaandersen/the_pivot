@@ -4,6 +4,8 @@ RSpec.feature "Registered job seeker can apply to a job" do
   scenario "they must be logged in to apply to a job" do
     registered_user = create(:user)
     job = create(:job)
+
+    registered_user.roles << Role.create(name: "registered_user")
     job.company.update(approve: true)
     file_path = "#{Rails.root}/spec/support/sample_cv_of_failures.pdf"
     text = "This is the body of the cover letter.\nNot entirely sure what to right.\nSincerely,\nBenjamin Franklin"
@@ -32,6 +34,9 @@ RSpec.feature "Registered job seeker can apply to a job" do
   scenario "they can submit a job application when already logged in" do
     registered_user = create(:user)
     job = create(:job)
+
+    registered_user.roles << Role.create(name: "registered_user")
+    job.company.update(approve: true)
     file_path = "#{Rails.root}/spec/support/sample_cv_of_failures.pdf"
     text = "This is the body of the cover letter.\nNot entirely sure what to right.\nSincerely,\nBenjamin Franklin"
     flash_text = "You have applied for #{job.title} with #{job.company.name}."
@@ -53,11 +58,15 @@ RSpec.feature "Registered job seeker can apply to a job" do
 
   scenario "they can access their own jobs index and visit the job page for which they've applied to" do
     registered_user = create(:user)
+    registered_user.roles << Role.create(name: "registered_user")
+
     jobs = create_list(:job, 2)
     job_one = jobs.first
+    job_one.company.update(approve: true)
     jobs.each do |job|
       users_job_with_resume(registered_user, job)
     end
+    
     login_user(registered_user)
 
     expect(page).to have_current_path dashboard_path

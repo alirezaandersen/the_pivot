@@ -4,8 +4,10 @@ FactoryGirl.define do
     last_name
     email
     password "password"
-    roles = 0
+    # roles 0
   end
+
+
 
   sequence :first_name do |fn|
     "#{fn}"

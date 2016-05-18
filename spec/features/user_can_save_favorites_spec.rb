@@ -15,7 +15,7 @@ RSpec.feature "Registered user can save favorites" do
     within(".main-resources") do
       click_on("FAVORITES")
     end
-
+    # save_and_open_page
     expect(page).to have_current_path("/favorites")
     expect(page).to_not contain_exactly("Save your Favorites")
     click_button("Login to save your Favorites")
@@ -23,7 +23,10 @@ RSpec.feature "Registered user can save favorites" do
 
   scenario "guest user must login or register to save favorites" do
     job = create(:job)
+    job.company.update(approve: true)
+
     user = create(:user)
+    user.roles << Role.create(name: "registered_user")
 
     visit company_job_path(job.company, job)
     within("#job-text-box") do
@@ -59,8 +62,11 @@ RSpec.feature "Registered user can save favorites" do
   end
 
   scenario "logged in user can save favorites" do
-    user = create(:user)
     job = create(:job)
+    job.company.update(approve: true)
+
+    user = create(:user)
+    user.roles << Role.create(name: "registered_user")
 
     login_user(user)
     visit company_job_path(job.company, job)
@@ -83,9 +89,13 @@ RSpec.feature "Registered user can save favorites" do
     end
   end
 
-  xscenario "user cannot save favorites twice" do
-    user = create(:user)
+  scenario "user cannot save favorites twice" do
     job = create(:job)
+    job.company.update(approve: true)
+
+    user = create(:user)
+    user.roles << Role.create(name: "registered_user")
+
     login_user(user)
 
     visit company_job_path(job.company, job)
@@ -103,14 +113,14 @@ RSpec.feature "Registered user can save favorites" do
     end
 
     expect(page).to have_current_path(my_favorites_path)
-    within(".card-reveal") do
+    within(".card-content") do
       expect(page).to have_content(job.title)
     end
 
     within(".card-action") do
       click_link("View opportunity details")
     end
-    expect(page).to have_current_path(job_path(job))
+    expect(page).to have_current_path(company_job_path(job.company, job))
     expect(page).to_not contain_exactly("SAVE TO FAVORITES")
     expect(page).to have_content("SAVED")
   end

@@ -37,6 +37,7 @@ class PermissionsService
     return true if controller == "search"  && action.in?(%w(show))
     return true if controller == "company/jobs" && action.in?(%w(show))
     return true if controller == "saved_favorites" && action.in?(%w(create index))
+    return true if controller == "favorites" && action.in?(%w(create show destroy))
 
   end
 
@@ -52,6 +53,7 @@ class PermissionsService
     return true if controller == "search"  && action.in?(%w(show))
     return true if controller == "company/jobs" && action.in?(%w(show))
     return true if controller == "saved_favorites" && action.in?(%w(create index))
+    return true if controller == "favorites" && action.in?(%w(create show destroy))
 
   end
 
@@ -68,6 +70,8 @@ class PermissionsService
     return true if controller == "company/jobs" && action.in?(%w(show))
     return true if controller == "submissions" && action.in?(%w(new create))
     return true if controller == "saved_favorites" && action.in?(%w(create index))
+    return true if controller == "favorites" && action.in?(%w(create show destroy))
+
   end
 
   def guest_permissions
@@ -81,7 +85,7 @@ class PermissionsService
     return true if controller == "submissions" && action.in?(%w(new create))
     return true if controller == "search"  && action.in?(%w(show))
     return true if controller == "company/jobs" && action.in?(%w(show))
-    return true if controller == "saved_favorites" && action.in?(%w(create index))
+    return true if controller == "favorites" && action.in?(%w(create show destroy))
 
   end
 
