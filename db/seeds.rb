@@ -8,6 +8,7 @@ class Seed
     seed.generate_cities
     seed.generate_jobs
     seed.generate_users_jobs
+    seed.generate_roles
     seed.generate_store_admin_user
     seed.generate_platform_admin_user
     seed.generate_nate
@@ -73,12 +74,19 @@ class Seed
     puts "User jobs created."
   end
 
+  def generate_roles
+    Role.create(name: "registered_user")
+    Role.create(name: "store_admin")
+    Role.create(name: "platform_admin")
+    puts "Roles Created"
+  end
+
   def generate_platform_admin_user
     user = User.create(first_name: "Admin",
     last_name: "Admin",
     email: "platform@admin.com",
     password: "password")
-    user.roles << Role.create(name: "platform_admin")
+    user.roles << Role.find_by(name: "platform_admin")
     puts "Platform Admin Account Created"
   end
 
@@ -87,7 +95,7 @@ class Seed
     last_name: "Allen",
     email: "nate@turing.io",
     password: "password")
-    user.roles << Role.create(name: "platform_admin")
+    user.roles << Role.find_by(name: "platform_admin")
     puts "Nate has been Created!"
   end
 
@@ -97,7 +105,7 @@ class Seed
     email: "josh@turing.io",
     password: "password",
     company_id: rand(1..30))
-    user.roles << Role.create(name: "store_admin")
+    user.roles << Role.find_by(name: "store_admin")
     puts "Josh has been Created!"
   end
 
@@ -108,10 +116,11 @@ class Seed
                           email: "store#{i}@admin.com",
                           password: "password",
                           company_id: i )
-      user.roles << Role.create(name: "store_admin")
+      user.roles << Role.find_by(name: "store_admin")
     end
     puts "Store Admin Account Created"
   end
+
 
   private
   def california_cities

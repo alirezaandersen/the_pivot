@@ -26,7 +26,6 @@ class CompaniesController < ApplicationController
     if @company.update(company_applications)
       flash[:success] = "#{@company.name} has been updated"
       redirect_to @company
-
     else
       flash.now[:error] = "Invalid Information"
       render :now
