@@ -37,6 +37,7 @@ class CompaniesController < ApplicationController
   end
 
   def activate_company
+    # @company = Company.company_status(params[:company_name], true)
     @company = Company.find_by(name: params[:company_name]).update(approve: true)
     redirect_to active_companies_path
   end
@@ -46,6 +47,7 @@ class CompaniesController < ApplicationController
   end
 
   def inactivate_company
+    # @company = Company.company_status(params[:company_name], false)
     @company = Company.find_by(name: params[:company_name]).update(approve: false)
     redirect_to inactive_companies_path
   end

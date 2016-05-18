@@ -99,10 +99,7 @@ RSpec.describe UsersJob, type: :model do
       UsersJob.favorite_jobs(job.id, user)
 
       expect(user.users_jobs[0].user_id).to eq(user.id)
-      # expect(user.users_jobs[1].user_id).to eq(user.id)
-
       expect(user.users_jobs[0].status).to eq("favorited")
-      # expect(user.users_jobs[1].status).to eq("favorited")
     end
   end
 
@@ -123,7 +120,7 @@ RSpec.describe UsersJob, type: :model do
   end
 
   context "#current_users_favorited_jobs" do
-    it "finds all current_user's favorited jobs" do
+    it "finds all current_user's jobs" do
       job1, job2, job3 = create_list(:job, 3)
       user = create(:user)
       user.roles << Role.create(name: "registered_user")
@@ -132,9 +129,14 @@ RSpec.describe UsersJob, type: :model do
       UsersJob.create(user_id: user.id, job_id: job3.id, status: 0)
 
 
-      users_jobs = UsersJob.current_users_favorited_jobs(user)
-      expect(users_jobs[0]).to eq(job1)
-      expect(users_jobs[1]).to eq(job3)
+      users_jobs1 = UsersJob.current_users_jobs(user, 0)
+      users_jobs2 = UsersJob.current_users_jobs(user, 1)
+
+      expect(users_jobs1[0]).to eq(job1)
+      expect(users_jobs1[1]).to eq(job3)
+
+      expect(users_jobs2[0]).to eq(job2)
+      # expect(users_jobs1[1]).to eq(job3)
     end
   end
 

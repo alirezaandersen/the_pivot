@@ -1,6 +1,6 @@
 class ContactUs < ActiveRecord::Base
 
-  has_many :users
+  belongs_to :user
   belongs_to :company
 
   validates :first_name, presence: true
@@ -9,9 +9,7 @@ class ContactUs < ActiveRecord::Base
   validates :phone_number, presence: true
   validates :description, presence: true
 
-  def remove_inquiry(inquiry)
-    contents.delete(inquiry.to_s)
-  end
-
-
+  # def remove_inquiry(inquiry)
+  #   contents.delete(inquiry.to_s)
+  # end
 end
