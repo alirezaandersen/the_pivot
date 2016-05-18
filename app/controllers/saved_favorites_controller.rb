@@ -1,13 +1,7 @@
 class SavedFavoritesController < ApplicationController
   def create
-    # if current_user && session[:favorites].nil? || session[:favorites] == {}
-      UsersJob.favorite_jobs(params[:job_id], current_user)
-      flash[:notice] = "Your Favorites are saved!"
-    # else
-    #   favorite_jobs_from_session(session[:favorites], current_user)
-    #   flash[:notice] = "Your Favorites are saved!"
-    #   session[:favorites] = {}
-    # end
+    UsersJob.favorite_jobs(params[:job_id], current_user)
+    flash[:notice] = "Your Favorites are saved!"
     redirect_to request.referrer
   end
 
@@ -15,7 +9,13 @@ class SavedFavoritesController < ApplicationController
     if current_user.nil?
       render file: '/public/404'
     else
-      @jobs = Job.joins(:users_jobs).where(users_jobs: { user_id: current_user, status: 0 })
+      @jobs = UsersJob.current_users_favorited_jobs(current_user)
     end
+  end
+
+  def destroy
+    job = current_user.users_jobs.find_by(job_id: params[:id])
+    job.destroy
+    redirect_to my_favorites_path
   end
 end

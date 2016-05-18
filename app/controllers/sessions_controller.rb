@@ -7,8 +7,11 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:session][:email])
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
-      # flash[:notice] = "Logged in as #{@user.email}"
-      # redirect_to dashboard_path
+      flash[:notice] = "Logged in as #{@user.email}"
+      if !session[:favorites].nil?
+        favorite_jobs_from_session(session[:favorites], current_user)
+        session[:favorites] = {}
+      end
       role_redirect
     else
       flash.now[:error] = "Invalid. Please try again."

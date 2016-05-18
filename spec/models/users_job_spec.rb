@@ -73,6 +73,22 @@ RSpec.describe UsersJob, type: :model do
     end
   end
 
+  context "#current_users_favorited_jobs" do
+    it "finds all current_user's favorited jobs" do
+      job1, job2, job3 = create_list(:job, 3)
+      user = create(:user)
+      user.roles << Role.create(name: "registered_user")
+      UsersJob.create(user_id: user.id, job_id: job1.id, status: 0)
+      UsersJob.create(user_id: user.id, job_id: job2.id, status: 1)
+      UsersJob.create(user_id: user.id, job_id: job3.id, status: 0)
+
+
+      users_jobs = UsersJob.current_users_favorited_jobs(user)
+      expect(users_jobs).to include(job1)
+      expect(users_jobs).to include(job3)
+    end
+  end
+
   context "status helper methods" do
     it "shows status favorited" do
       users_job_one, users_job_two, users_job_three = create_list(:users_job, 3)
