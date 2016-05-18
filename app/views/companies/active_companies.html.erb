@@ -22,26 +22,26 @@
     <div class="col s12 m12 l12">
       <div class="row">
         <div class="col s12 m3 l3 admin-buttons">
-          <%= link_to "CREATE JOB", create_company_jobs_path(company.id),method: :get, class: "waves-effect waves-light btn admin-btn" %><br>
+          <%= link_to "CREATE JOB", create_company_jobs_path(company.id), class: "waves-effect waves-light btn admin-btn" %><br>
         </div>
         <div class="col s12 m3 l3 admin-buttons">
-          <%= link_to "EDIT JOB", store_jobs_path(company.id),method: :get, class: "waves-effect waves-light btn admin-btn"%><br>
+          <%= link_to "EDIT JOB", store_jobs_path(company.id), class: "waves-effect waves-light btn admin-btn"%><br>
         </div>
         <div class="col s12 m3 l3 admin-buttons">
-          <%= link_to "VIEW JOBS", store_jobs_path(company.id) ,method: :get, class: "waves-effect waves-light btn admin-btn"%><br>
+          <%= link_to "VIEW JOBS", store_jobs_path(company.id),  class: "waves-effect waves-light btn admin-btn"%><br>
         </div>
         <div class="col s12 m3 l3 admin-buttons">
-          <%= link_to "CREATE ADMINSTRATOR", new_admin_user_path(company.id), method: :get, class: "waves-effect waves-light btn admin-btn"%><br>
+          <%= link_to "CREATE ADMIN", new_admin_user_path(company.id), class: "waves-effect waves-light btn admin-btn"%><br>
         </div>
 
         <div class="col s12 m4 l4 admin-buttons">
-          <%= link_to "UPDATE COMPANY INFORMATION", update_company_path(company.id),method: :get, class: "waves-effect waves-light btn admin-btn"%><br>
+          <%= link_to "UPDATE COMPANY INFORMATION", update_company_path(company.id), class: "waves-effect waves-light btn admin-btn"%><br>
         </div>
         <div class="col s12 m4 l4 admin-buttons">
-          <%= link_to "VIEW ADMINISTRATION STAFF", view_store_admins_path(company.id),method: :get, class: "waves-effect waves-light btn admin-btn"%><br>
+          <%= link_to "VIEW ADMINISTRATION STAFF", view_store_admins_path(company.id), class: "waves-effect waves-light btn admin-btn"%><br>
         </div>
         <div class="col s12 m4 l4 admin-buttons">
-          <%= link_to "INACTIVATE COMPANY", inactivate_company_path(company.name),method: :patch, class: "waves-effect waves-light btn admin-btn"%><br>
+          <%= link_to "INACTIVATE COMPANY", inactivate_company_path(company.name), method: :patch, class: "waves-effect waves-light btn admin-btn"%><br>
         </div>
       </div>
     </div>
