@@ -14,7 +14,7 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @company = Company.find_by(slug: params[:company_name])
+    @company = slug_company_name
   end
 
   def edit
@@ -22,7 +22,7 @@ class CompaniesController < ApplicationController
   end
 
   def update
-    @company = Company.find_by(slug: params[:company_name])
+    @company = slug_company_name
     if @company.update(company_applications)
       flash[:success] = "#{@company.name} has been updated"
       redirect_to @company
@@ -59,6 +59,10 @@ class CompaniesController < ApplicationController
   end
 
   private
+
+  def slug_company_name
+    Company.find_by(slug: params[:company_name])
+  end
 
   def company_applications
   params.require(:company).permit(:name,:logo, :url, :size, :industry, :description,  contact_us: [:first_name, :last_name, :email, :phone_number, :description])

@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   get '/jobs/:company_id/jobs', to: 'jobs#store_jobs', as: :store_jobs
   get '/jobs/:id/edit', to: 'jobs#edit', as: :job_edit
   patch '/jobs/:id', to: 'jobs#update'
-  # get '/jobs/:title', to: 'jobs#show', as: :job
 
   get "/companies/activate/:company_name", to: 'companies#activate_company', as: :activate_company
   patch "/companies/inactivate/:company_name", to: 'companies#inactivate_company', as: :inactivate_company
@@ -55,7 +54,6 @@ Rails.application.routes.draw do
   get    "/contact_us/all", to: 'contact_us#index', as: :customer_inquiries
   get    "/contact_us/:id", to: 'contact_us#show', as: :customer_inquiry
   delete "/contact_us/:id", to: 'contact_us#delete'
-  # get    "/favorites", to: 'favorites_jobs#show', as: :favorites
 
   get    "submissions", to: 'submissions#new', as: :submissions
   post   "submissions", to: 'submissions#create'
