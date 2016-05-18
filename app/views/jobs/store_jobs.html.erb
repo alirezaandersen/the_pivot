@@ -7,8 +7,8 @@
       <div class="col s12 m12 l12">
         Job Title
       </div>
-      <div class="col s12 m12 l12">
-        <%= link_to "#{job.title}", job_edit_path(job.id) %>
+      <div class="col s12 m12 l12", id="job-title-link">
+        <%= link_to "#{job.title.capitalize}", job_edit_path(job.id) %>
       </div>
     </div>
 
