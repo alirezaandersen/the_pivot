@@ -1,21 +1,26 @@
-<div class="container">
-  <h1 class="center-align" id="company-title">Approved Submissions</h1>
-  <div class="row">
-    <% @submission.each do |company| %>
-      <div class="col s12 m4">
-        <div class="card">
-          <div class="card-image">
-            <img src="<%= company.logo %>">
-          </div>
-          <%= company.created_at %>
-          <div class="card-action">
-            <span class="card-title"> <%= link_to company.company_name, company_submission_status_path(company.company_name) %> </span>
-          </div>
-          <div class="card-content">
-              <%= truncate(company.description, length: 57) %>
-          </div>
+<h1 class="center-align" id="company-title">Approved Submissions</h1>
+
+
+<% @submissions.each do |company| %>
+  <div class="dashboard-sections" id="approved-submission">
+    <div class="col s12 m12 l12">
+        <div class="col s12 m12 l12">
+          Company
         </div>
-      </div>
-    <% end %>
+        <div class="col s12 m12 l12">
+          <%= link_to company.company_name, company_submission_status_path(company.company_name) %>
+        </div>
+    </div>
+
+    <div class="col s12 m12 l12">
+      Company Description
+    </div>
+    <div class="col s12 m12 l12">
+      <%= truncate(company.description, length: 57) %>
+    </div>
   </div>
+<% end %>
+
+<div class="center-align">
+  <%= will_paginate @submissions %>
 </div>

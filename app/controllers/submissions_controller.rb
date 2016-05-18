@@ -24,7 +24,8 @@ class SubmissionsController < ApplicationController
   end
 
   def approved_index
-    @submission = Submission.where(approval: 1) || []
+    submission = Submission.where(approval: 1) || []
+    @submissions = submission.paginate(:page => params[:page], :per_page => 10)
   end
 
   def approved_submissions

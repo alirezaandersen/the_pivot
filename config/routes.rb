@@ -67,5 +67,4 @@ Rails.application.routes.draw do
   get    "submissions/:company_name/denied", to: 'submissions#denied_submissions', as: :company_denied
   get    "submissions/approved/all", to: 'submissions#approved_index', as: :companies_approved
   get    "submissions/denied/all", to: 'submissions#denied_index', as: :companies_denied
-
 end
