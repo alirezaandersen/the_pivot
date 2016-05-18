@@ -38,6 +38,5 @@ class ContactUsController < ApplicationController
                             :email,
                             :phone_number,
                             :description)
-                end
-
+  end
 end

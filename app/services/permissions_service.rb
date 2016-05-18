@@ -25,68 +25,137 @@ class PermissionsService
   private
 
   def platform_admin_permissions
-    return true if controller == "sessions"
-    return true if controller == "jobs"  && action.in?(%w(index new create show edit update delete store_jobs))
-    return true if controller == "users_jobs" && action.in?(%w(index show))
-    return true if controller == "users" && action.in?(%w(index new create show edit update delete admin_index))
-    return true if controller == "companies"  && action.in?(%w(index new create show active_companies inactive_companies inactivate_company activate_company edit update))
-    return true if controller == "contact_us"  && action.in?(%w(index new create show delete))
-    return true if controller == "favorites_jobs"  && action.in?(%w(index new create show destroy))
-    return true if controller == "home"  && action.in?(%w(index about_us))
-    return true if controller == "submissions" && action.in?(%w(index new create show edit update approved_index denied_index approved_submissions denied_submissions))
-    return true if controller == "search"  && action.in?(%w(show))
-    return true if controller == "company/jobs" && action.in?(%w(show))
-    return true if controller == "saved_favorites" && action.in?(%w(create index))
-    return true if controller == "favorites" && action.in?(%w(create show destroy))
-
+    return true if sessions_controller
+    return true if user_jobs_controller
+    return true if favorites_controller
+    return true if saved_favorites_controller
+    return true if company_jobs_controller
+    return true if search_controller
+    return true if submissions_controller_platform_admin_permissions
+    return true if home_controller_permissions
+    return true if contact_us_controller_platform_admin_permissions
+    return true if companies_controller_platform_admin_permissions
+    return true if users_controller_platform_admin_permissions
+    return true if jobs_controller_admins_permissions
   end
 
   def store_admin_permissions
-    return true if controller == "sessions"
-    return true if controller == "jobs"  && action.in?(%w(index new create show edit update destroy store_jobs))
-    return true if controller == "users_jobs" && action.in?(%w(index show))
-    return true if controller == "users" && action.in?(%w(new create show edit update destroy admin_index))
-    return true if controller == "companies"  && action.in?(%w(index show edit update))
-    return true if controller == "contact_us"  && action.in?(%w(new create))
-    return true if controller == "favorites"  && action.in?(%w(create show destroy))
-    return true if controller == "home"  && action.in?(%w(index about_us))
-    return true if controller == "search"  && action.in?(%w(show))
-    return true if controller == "company/jobs" && action.in?(%w(show))
-    return true if controller == "saved_favorites" && action.in?(%w(create index))
-    return true if controller == "favorites" && action.in?(%w(create show destroy))
-
+    return true if sessions_controller
+    return true if user_jobs_controller
+    return true if favorites_controller
+    return true if saved_favorites_controller
+    return true if company_jobs_controller
+    return true if search_controller
+    return true if home_controller_permissions
+    return true if contact_us_controller_permissions
+    return true if users_controller_store_admin_permissions
+    return true if companies_controller_store_admin_permissions
+    return true if jobs_controller_admins_permissions
   end
 
   def registered_user_permissions
-    return true if controller == "sessions"
-    return true if controller == "jobs"  && action.in?(%w(index))
-    return true if controller == "companies"  && action.in?(%w(index show))
-    return true if controller == "favorites_jobs"  && action.in?(%w(create show destroy))
-    return true if controller == "contact_us"  && action.in?(%w(new create))
-    return true if controller == "users" && action.in?(%w(new create show edit update))
-    return true if controller == "home"  && action.in?(%w(index about_us))
-    return true if controller == "search"  && action.in?(%w(show))
-    return true if controller == "users_jobs" && action.in?(%w(new create show))
-    return true if controller == "company/jobs" && action.in?(%w(show))
-    return true if controller == "submissions" && action.in?(%w(new create))
-    return true if controller == "saved_favorites" && action.in?(%w(create index))
-    return true if controller == "favorites" && action.in?(%w(create show destroy))
-
+    return true if sessions_controller
+    return true if user_jobs_controller
+    return true if favorites_controller
+    return true if saved_favorites_controller
+    return true if company_jobs_controller
+    return true if search_controller
+    return true if submissions_controller_user__permissions
+    return true if home_controller_permissions
+    return true if contact_us_controller_permissions
+    return true if users_controller_users_permissions
+    return true if companies_controller_users_permissions
+    return true if jobs_controller_users_permissions
   end
 
   def guest_permissions
-    return true if controller == "companies"  && action.in?(%w(index show))
-    return true if controller == "home"  && action.in?(%w(index about_us))
-    return true if controller == "contact_us"  && action.in?(%w(new create))
-    return true if controller == "jobs"  && action.in?(%w(index show))
-    return true if controller == "sessions" && action.in?(%w(new create destroy))
-    return true if controller == "favorites_jobs"  && action.in?(%w(create show destroy))
-    return true if controller == "users" && action.in?(%w(new create show edit update))
-    return true if controller == "submissions" && action.in?(%w(new create))
-    return true if controller == "search"  && action.in?(%w(show))
-    return true if controller == "company/jobs" && action.in?(%w(show))
-    return true if controller == "favorites" && action.in?(%w(create show destroy))
+    return true if sessions_controller
+    return true if favorites_controller
+    return true if company_jobs_controller
+    return true if search_controller
+    return true if submissions_controller_user__permissions
+    return true if home_controller_permissions
+    return true if contact_us_controller_permissions
+    return true if users_controller_users_permissions
+    return true if companies_controller_users_permissions
+    return true if jobs_controller_users_permissions
+  end
 
+
+  def sessions_controller
+    controller == "sessions" && action.in?(%w(new create destroy))
+  end
+
+  def user_jobs_controller
+    controller == "users_jobs" && action.in?(%w(new create show))
+  end
+
+  def favorites_controller
+    controller == "favorites" && action.in?(%w(create show destroy))
+  end
+
+  def saved_favorites_controller
+    controller == "saved_favorites" && action.in?(%w(create index))
+  end
+
+  def company_jobs_controller
+    controller == "company/jobs" && action.in?(%w(show))
+  end
+
+  def search_controller
+    controller == "search"  && action.in?(%w(show))
+  end
+
+  def submissions_controller_user__permissions
+    controller == "submissions" && action.in?(%w(new create))
+  end
+
+  def submissions_controller_platform_admin_permissions
+    controller == "submissions" && action.in?(%w(index new create show edit update approved_index denied_index approved_submissions denied_submissions))
+  end
+
+  def home_controller_permissions
+    controller == "home"  && action.in?(%w(index about_us))
+  end
+
+  def contact_us_controller_permissions
+    controller == "contact_us"  && action.in?(%w(new create))
+  end
+
+  def contact_us_controller_platform_admin_permissions
+    controller == "contact_us"  && action.in?(%w(index new create show delete))
+  end
+
+  def users_controller_users_permissions
+    controller == "users" && action.in?(%w(new create show edit update))
+  end
+
+  def users_controller_store_admin_permissions
+    controller == "users" && action.in?(%w(new create show edit update destroy admin_index))
+  end
+
+  def users_controller_platform_admin_permissions
+    controller == "users" && action.in?(%w(index new create show edit update delete admin_index))
+  end
+
+  def companies_controller_users_permissions
+    controller == "companies"  && action.in?(%w(index show))
+  end
+
+  def companies_controller_store_admin_permissions
+    controller == "companies"  && action.in?(%w(index show edit update))
+  end
+
+  def companies_controller_platform_admin_permissions
+    controller == "companies"  && action.in?(%w(index new create show active_companies inactive_companies inactivate_company activate_company edit update))
+  end
+
+  def jobs_controller_users_permissions
+    controller == "jobs"  && action.in?(%w(index show))
+  end
+
+  def jobs_controller_admins_permissions
+    controller == "jobs"  && action.in?(%w(index new create show edit update destroy store_jobs))
   end
 
   def controller

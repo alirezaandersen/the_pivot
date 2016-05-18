@@ -81,6 +81,8 @@ class Seed
     puts "Roles Created"
   end
 
+
+
   def generate_platform_admin_user
     user = User.create(first_name: "Admin",
     last_name: "Admin",
