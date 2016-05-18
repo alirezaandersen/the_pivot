@@ -95,7 +95,7 @@ class PermissionsService
   end
 
   def saved_favorites_controller
-    controller == "saved_favorites" && action.in?(%w(create index))
+    controller == "saved_favorites" && action.in?(%w(create index destroy))
   end
 
   def company_jobs_controller

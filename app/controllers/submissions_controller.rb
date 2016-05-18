@@ -30,16 +30,8 @@ class SubmissionsController < ApplicationController
   end
 
   def approved_submissions
-      @company = Company.create(company_info)
-      @user = User.create(user_info.merge(company_id:@company[:id]))
-      role = Role.find_by(name:"store_admin")
-      UserRole.create(role_id:role[:id],user_id:@user[:id])
-
-      status = Submission.find_by(company_name:@company.name)
-
-      status.update(approval: 1) if !status.nil?
-      flash.now[:error] = "You can't approve the same Submission Again"
-      redirect_to companies_approved_path
+    create_company
+    create_company_store_admin
   end
 
   def denied_index
@@ -55,6 +47,27 @@ class SubmissionsController < ApplicationController
   def submissions_parser
     Submission.find_by(company_name: params[:company_name])
   end
+
+  def create_company
+    @company = Company.create(company_info)
+  end
+
+  def create_company_store_admin
+    @user = User.create(user_info.merge(company_id:@company[:id]))
+    role = Role.find_by(name:"store_admin")
+    UserRole.create(role_id:role[:id],user_id:@user[:id])
+    approved_status
+  end
+
+  def approved_status
+    status = Submission.find_by(company_name:@company.name)
+    status.update(approval: 1) if !status.nil?
+    flash.now[:error] = "You can't approve the same Submission Again"
+    redirect_to companies_approved_path
+  end
+
+
+  private
 
   def company_info
     company_params = {}
@@ -76,8 +89,6 @@ class SubmissionsController < ApplicationController
     user_params[:password_digest] = "password_digest"
     user_params
   end
-
-  private
 
   def submissions_params
     params.require(:submission).permit(:company_name, :logo, :url, :size_of_company, :industry, :about_company, :first_name, :last_name, :email, :phone_number, :description, :authenticity_token)
