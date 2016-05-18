@@ -8,15 +8,6 @@
 <h4 class="dashboard-sections left-align">Listing</h4>
 
 <% @companies.each do |company| %>
-  <%= company.name %>
-  <%= company.logo %>
-  Company Inactive Since<%= company.updated_at %>
-
-  <%= button_to "ACTIVATE COMPANY", activate_company_path(company.name),method: :get %>
-<% end  %>
-
-
-<% @companies.each do |company| %>
   <div class="row", id="active-companies-card">
     <div class="col s12 m12 l12 admin-company-title">
       <%= company.name %>
