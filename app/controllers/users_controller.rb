@@ -19,7 +19,6 @@ class UsersController < ApplicationController
       @company_id = current_user.company_id if current_user.store_admin?
       flash[:error] = "Admin is missing a company id" if @company_id.nil?
       @user = User.new
-      @title = "Create Administrator "
     end
   end
 
