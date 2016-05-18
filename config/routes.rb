@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get "/companies/activate/:company_name", to: 'companies#activate_company', as: :activate_company
   patch "/companies/inactivate/:company_name", to: 'companies#inactivate_company', as: :inactivate_company
   get "/companies/:company_id/edit", to: 'companies#edit', as: :update_company
-  patch "/companies/:id", to: 'companies#update'
+  patch "/companies/:company_name", to: 'companies#update'
 
   resources :companies, only: [:index, :show]
 

@@ -24,10 +24,11 @@ class CompaniesController < ApplicationController
   end
 
   def update
-    @company = Company.find(params[:id])
+    @company = Company.find_by(slug: params[:company_name])
     if @company.update(company_applications)
       flash[:success] = "#{@company.name} has been updated"
       redirect_to @company
+
     else
       flash.now[:error] = "Invalid Information"
       render :now
