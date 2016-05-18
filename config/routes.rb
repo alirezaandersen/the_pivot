@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :companies, only: [:index]
   resources :jobs, only: [:index]
+
   get "/companies/inactive_companies", to: 'companies#inactive_companies', as: :inactive_companies
   get "/companies/active_companies", to: 'companies#active_companies', as: :active_companies
 
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
   post '/jobs/create', to: 'jobs#create'
   get '/jobs/:company_id/jobs', to: 'jobs#store_jobs', as: :store_jobs
   get '/jobs/:id/edit', to: 'jobs#edit', as: :job_edit
-  patch '/jobs/:id', to: 'jobs#update'
+  patch '/jobs/:id/jobs', to: 'jobs#update', as: :update_job
   # get '/jobs/:title', to: 'jobs#show', as: :job
 
   get "/companies/activate/:company_name", to: 'companies#activate_company', as: :activate_company

@@ -38,7 +38,6 @@ class JobsController < ApplicationController
 
   def edit
     @job = Job.find(params[:id])
-    @company_id = @job.company_id
   end
 
   def update
@@ -48,22 +47,19 @@ class JobsController < ApplicationController
       redirect_to store_jobs_path(@job.company_id)
     else
       flash.now[:error] = "Invalid Information"
-      render :now
+      render :new
     end
   end
 
   private
-
-  def job_params
-    params.require(:job).permit(:title,
-                                :department,
-                                :years_of_experience,
-                                :education,
-                                :job_type,
-                                :salary,
-                                :description,
-                                :company_id)
-  end
-
-
+    def job_params
+      params.require(:job).permit(:title,
+                                  :department,
+                                  :years_of_experience,
+                                  :education,
+                                  :job_type,
+                                  :salary,
+                                  :description,
+                                  :company_id)
+    end
 end
