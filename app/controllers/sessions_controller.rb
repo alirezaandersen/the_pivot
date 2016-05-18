@@ -8,10 +8,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
       flash[:notice] = "Logged in as #{@user.email}"
-      if !session[:favorites].nil?
-        favorite_jobs_from_session(session[:favorites], current_user)
-        session[:favorites] = {}
-      end
+      UsersJob.save_users_favorites(session[:favorites], current_user) if !session[:favorites].nil?
       role_redirect
     else
       flash.now[:error] = "Invalid. Please try again."

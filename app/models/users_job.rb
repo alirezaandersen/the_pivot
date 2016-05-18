@@ -39,6 +39,15 @@ class UsersJob < ActiveRecord::Base
     users_job
   end
 
+  def self.favorite_jobs_from_session(favorites, user)
+    favorites.map do |job_id, _v|
+      job = Job.find(job_id)
+      users_job = UsersJob.create(user_id: user.id, job_id: job.id)
+      users_job.favorited!
+      users_job
+    end
+  end
+
   def self.current_users_favorited_jobs(user)
     Job.joins(:users_jobs).where(users_jobs: { user_id: user, status: 0 })
   end
@@ -46,5 +55,10 @@ class UsersJob < ActiveRecord::Base
   def self.remove_saved_favorite(user, job_id)
     users_job = user.users_jobs.find_by(job_id: job_id)
     users_job.destroy
+  end
+
+  def self.save_users_favorites(session, user)
+    favorite_jobs_from_session(session, user)
+    session = {}
   end
 end
