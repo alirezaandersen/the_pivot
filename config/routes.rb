@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   # get    "/favorites", to: 'favorites#show'
 
   resources :users_jobs, only: [:create]
-  get '/my-submissions', to: "users_jobs#show", as: :my_jobs
+  get '/my-s', to: "users_jobs#show", as: :my_jobs
   resources :saved_favorites, only: [:create]
 
   get '/my-favorites', to: "saved_favorites#index", as: :my_favorites
