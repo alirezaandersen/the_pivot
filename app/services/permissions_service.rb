@@ -70,7 +70,6 @@ class PermissionsService
     return true if company_jobs_controller
   end
 
-
   def sessions_controller_permissions
     controller == "sessions" && action.in?(%w(new create destroy))
   end
