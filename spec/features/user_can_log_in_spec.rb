@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Visitor log in" do
+RSpec.feature "Registered user can log in" do
   scenario "they can log in from the home index" do
     user = create(:user)
     user.roles << Role.create(name: "registered_user")
@@ -51,8 +51,7 @@ RSpec.feature "Visitor log in" do
 
   scenario "Vistor can Register with Valid credentials" do
     user = create(:user)
-    user.roles << Role.create(name: "registered_user")
-
+    role = Role.create(name: "registered_user")
     visit root_path
 
     within(".main-resources") do

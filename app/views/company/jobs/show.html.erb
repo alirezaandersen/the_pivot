@@ -20,7 +20,7 @@
           <h4>Opportunity Details</h4>
           <p>Company: <%= job_presenter.company %> </p>
           <p>Job Title: <%= job_presenter.title %> </p>
-        
+
           <br>
           <h4>Requirements</h4>
           <p>Education: <%= job_presenter.education %> </p>
@@ -45,9 +45,9 @@
               <% end %>
 
               <% if @favorites.has_job?(job_presenter.id) %>
-              <%= link_to "UNFAVORITE", favorite_path(job_presenter.id), class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :delete %>
+                <%= link_to "UNFAVORITE", favorite_path(job_presenter.id), class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :delete %>
               <% elsif current_user && !current_user.users_jobs.where(job_id: job_presenter.id).empty? %>
-                <button class="slider-btn waves-effect waves-light btn teal lighten-3", id = "favorited-button"> SAVED </button>
+                <%= link_to "REMOVE FAVORITE", saved_favorite_path(id: job_presenter.id), class:"slider-btn waves-effect waves-light btn teal lighten-3", method: :delete %>
               <% elsif current_user %>
                 <%= link_to "SAVE TO FAVORITES", saved_favorites_path(job_id: job_presenter.id), method: :post, class:"slider-btn waves-effect waves-light btn"%>
               <% else %>

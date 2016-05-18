@@ -29,16 +29,12 @@ class UsersController < ApplicationController
       @user.roles << Role.find_by(name: "store_admin")
       role_redirect
     else
-      # binding.pry
       @user = User.new(user_params)
       if @user.save
          @user.roles << Role.find_by(name: "registered_user")
         session[:user_id] = @user.id
         flash[:notice] = "Account Created! Logged in as #{@user.first_name}"
-        if !session[:favorites].nil?
-          favorite_jobs_from_session(session[:favorites], current_user)
-          session[:favorites] = {}
-        end
+        UsersJob.save_users_favorites(session[:favorites], current_user) if !session[:favorites].nil?
         role_redirect
       else
         flash.now[:error] = "Invalid. Please try again."
