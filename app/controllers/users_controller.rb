@@ -29,6 +29,7 @@ class UsersController < ApplicationController
       @user.roles << Role.find_by(name: "store_admin")
       role_redirect
     else
+      # binding.pry
       @user = User.new(user_params)
       if @user.save
          @user.roles << Role.find_by(name: "registered_user")
