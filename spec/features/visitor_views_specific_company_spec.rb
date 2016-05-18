@@ -23,7 +23,5 @@ RSpec.feature "Guest views specific company" do
     expect(page).to have_content("Available Positions")
     expect(page).to have_content(shoe_maker.title)
     expect(page).to have_content(shoe_maker.description)
-    expect(page).to have_content(shoe_maker.city.name)
-    expect(page).to have_content(shoe_maker.city.state)
   end
 end
