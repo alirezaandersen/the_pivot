@@ -29,8 +29,8 @@ RSpec.feature "Store Admin can create jobs for its own company" do
     fill_in "Description of Job", with: "Programmer"
 
     click_on "Create A Job"
-
-    expect(page).to have_current_path jobs_path("Teacher")
+    job = Job.find_by(company_id: company.id, title: "Teacher")
+    expect(page).to have_current_path company_job_path(company, job)
     expect(page).to have_content("#{company.name}")
   end
 end
