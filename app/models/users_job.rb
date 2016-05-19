@@ -2,6 +2,10 @@ class UsersJob < ActiveRecord::Base
   belongs_to :user
   belongs_to :job
 
+  has_attached_file :resume_pdf
+
+  validates_attachment_content_type :resume_pdf, :content_type => /\Aimage\/.*\Z/
+
   enum status: %w(favorited applied)
 
   def self.query_record(job, user)
@@ -13,7 +17,7 @@ class UsersJob < ActiveRecord::Base
   end
 
   def self.apply_to_job(params, user)
-    create(user_id: user.id, job_id: params[:job].to_i, resume: params[:resume], cover_letter: params[:cover_letter], status: 1)
+    create(user_id: user.id, job_id: params[:job].to_i, resume_pdf: params[:resume_pdf], cover_letter: params[:cover_letter], status: 1)
   end
 
   def update_with_application(params, user)

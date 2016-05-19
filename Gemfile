@@ -13,12 +13,14 @@ gem 'figaro'
 gem 'rails_12factor', group: :production
 gem 'factory_girl_rails'
 gem 'materialize-sass'
-gem "paperclip"
+gem "paperclip"#, :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'aws-sdk', '< 2.0'
 gem 'simplecov', :require => false, :group => :test
 gem 'faker'
 gem 'utf8_enforcer_workaround'
 gem 'will_paginate-materialize'
+
+
 
 group :development, :test do
   gem 'byebug'

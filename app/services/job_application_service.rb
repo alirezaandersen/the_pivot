@@ -9,7 +9,7 @@ class JobApplicationService
     @_user = user
     @_job = params[:job]
     @_application = { job: job,
-                      resume: params[:resume],
+                      resume_pdf: params[:resume_pdf],
                       cover_letter: params[:cover_letter] }
   end
 

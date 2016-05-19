@@ -21,7 +21,7 @@ class UsersJobsController < ApplicationController
   private
 
     def users_jobs_params
-      params.require(:users_jobs).permit(:resume,
+      params.require(:users_jobs).permit(:resume_pdf,
                                          :cover_letter,
                                          :job)
     end

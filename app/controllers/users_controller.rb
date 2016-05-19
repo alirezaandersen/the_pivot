@@ -53,6 +53,11 @@ class UsersController < ApplicationController
     render 'users/store_admin' if current_user.store_admin?
   end
 
+  def resume
+    @resumes =  UsersJob.where(user_id: current_user.id)
+    
+  end
+
   def edit
     render file: '/public/404'
   end

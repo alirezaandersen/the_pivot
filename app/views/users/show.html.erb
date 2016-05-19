@@ -4,4 +4,5 @@
   <p>Email: <%= @user.email %></p>
   <%= link_to "My Favorites", my_favorites_path, class:"slider-btn waves-effect waves-light btn"%>
   <%= link_to "Jobs I've Applied To", my_jobs_path, class: "slider-btn waves-effect waves-light btn teal lighten-3" %>
+  <%= link_to "My Resumes", user_resume_path(@user.id), class: "slider-btn waves-effect waves-light btn teal lighten-3" %>
 </div>

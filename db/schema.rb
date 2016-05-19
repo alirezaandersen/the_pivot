@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160516224004) do
+ActiveRecord::Schema.define(version: 20160519044731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,13 +115,17 @@ ActiveRecord::Schema.define(version: 20160516224004) do
   end
 
   create_table "users_jobs", force: :cascade do |t|
-    t.integer  "status",       default: 0
+    t.integer  "status",                  default: 0
     t.text     "resume"
     t.integer  "user_id"
     t.integer  "job_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.text     "cover_letter"
+    t.string   "resume_pdf_file_name"
+    t.string   "resume_pdf_content_type"
+    t.integer  "resume_pdf_file_size"
+    t.datetime "resume_pdf_updated_at"
   end
 
   add_index "users_jobs", ["job_id"], name: "index_users_jobs_on_job_id", using: :btree
