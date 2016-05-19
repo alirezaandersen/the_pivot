@@ -42,7 +42,8 @@ class SubmissionsController < ApplicationController
   end
 
   def denied_index
-    @submission = Submission.where(approval: 2) || []
+    submission  = Submission.where(approval: 2) || []
+    @submissions = submission.paginate(:page => params[:page], :per_page => 10)
   end
 
   def denied_submissions
