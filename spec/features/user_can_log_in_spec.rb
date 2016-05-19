@@ -81,17 +81,18 @@ RSpec.feature "Visitor log in" do
 
   scenario "Vistor cannot Register with invalid credentials" do
     user = create(:user)
+
     visit root_path
 
     within(".main-resources") do
-        click_link "LOGIN/REGISTER"
+      click_link "LOGIN/REGISTER"
     end
 
     click_link "REGISTER"
 
     expect(page).to have_current_path new_user_path
 
-    expect(page).to have_content("Create Account")
+    expect(page).to have_content("CREATE ACCOUNT")
 
     fill_in "First Name", with: user.first_name
     fill_in "Last Name", with: user.last_name
