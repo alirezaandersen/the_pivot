@@ -32,7 +32,7 @@ RSpec.feature "Platform Admin can create another store admin for existing compan
 
     click_on "CREATE ADMIN"
 
-    expect(page).to have_content("Create Administrator")
+    expect(page).to have_content("Create Account")
     expect(page).to have_current_path new_admin_user_path(company.id)
 
     fill_in "First Name", with: store_user.first_name

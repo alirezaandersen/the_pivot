@@ -91,7 +91,7 @@ RSpec.feature "Registered user can log in" do
 
     expect(page).to have_current_path new_user_path
 
-    expect(page).to have_content("CREATE ACCOUNT")
+    expect(page).to have_content("Create Account")
 
     fill_in "First Name", with: user.first_name
     fill_in "Last Name", with: user.last_name

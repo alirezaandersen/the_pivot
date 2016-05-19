@@ -33,6 +33,7 @@ class JobsController < ApplicationController
     else
       flash[:error] = "No Trolls Allowed!"
     end
+
     redirect_to company_job_path(@job.company, @job)
   end
 

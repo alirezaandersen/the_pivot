@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col s6 offset-s3">
     <div class="submissions_form">
-      <%= form_for(@job, url: jobs_create_path) do |f| %>
+      <%= form_for(@job, url: job_create_path) do |f| %>
 
       <%= f.text_field :title, placeholder: "Position Title" %>
       <%= f.text_field :department, placeholder: "Department" %>
@@ -11,8 +11,9 @@
       <%= f.text_field :job_type, placeholder: "Job Type" %>
       <%= f.text_field :salary, placeholder: "Salary" %>
       <%= f.text_field :description, placeholder: "Description of Job" %>
+      <%= f.hidden_field :company_id, value: @company_id %>
       <span>
-        <%= f.submit "Create A Job", class:"slider-btn waves-effect waves-light btn" %>
+        <%= f.submit "Create A Job", class:"slider-btn waves-effect waves-light btn"%>
       </span>
 
       <% end %>

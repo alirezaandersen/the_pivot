@@ -4,7 +4,8 @@ require 'rails_helper'
 RSpec.feature "Store Admin Can log in" do
   scenario "Store Admin can log in and see their dashboard" do
 
-    user = store_admin_user
+    user    = store_admin_user
+    company = create(:company)
 
     visit login_path
 
