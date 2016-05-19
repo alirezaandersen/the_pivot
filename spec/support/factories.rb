@@ -64,7 +64,7 @@ FactoryGirl.define do
 
   factory :submission do
     company_name
-    logo
+    logo "http://static.businessinsider.com/image/53d29d5c6bb3f7a80617ada8/image.jpg"
     url
     size_of_company
     about_company
@@ -102,7 +102,7 @@ FactoryGirl.define do
   end
 
   sequence :phone_number do |cn|
-    "72#{cn}333 1223"
+    "72#{cn}333-1223"
   end
 
   factory :city do

@@ -31,7 +31,6 @@ class SubmissionsController < ApplicationController
 
   def approved_submissions
     submission = Submission.find_by(company_name: params[:company_name])
-    @company = approving_submissions
     @company = submission.create_company
     user = submission.create_user
     user.add_company(@company)
