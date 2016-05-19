@@ -1,8 +1,7 @@
 <h1 class="dashboard-welcome">Resume</h1>
 
-
-  <% @resumes.each do |resume| %>
-    <div class="row">
-      <%= link_to "Resume #{resume.created_at.strftime("%B %d, %Y")}", resume.resume_pdf.url %>
-    </div>
-  <% end %>
+<% @resumes.each do |resume| %>
+  <div class="row">
+    <%= link_to "Resume #{resume.created_at.strftime("%B %d, %Y")}", resume.resume_pdf.url %>
+  </div>
+<% end  %>

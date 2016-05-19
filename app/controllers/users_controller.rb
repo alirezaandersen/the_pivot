@@ -48,12 +48,12 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    if current_user.nil?
-      render file: '/public/404'
-    elsif current_user.platform_admin?
-        render 'users/platform_admin'
-    elsif  current_user.store_admin?
-    render 'users/store_admin'
+   if current_user.nil?
+     render file: '/public/404'
+   elsif current_user.platform_admin?
+       render 'users/platform_admin'
+   elsif  current_user.store_admin?
+     render 'users/store_admin'
    end
   end
 

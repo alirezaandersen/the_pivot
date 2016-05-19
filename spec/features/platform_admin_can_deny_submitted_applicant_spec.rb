@@ -24,7 +24,7 @@ RSpec.feature "Platform Admin can aprrove submissions" do
     fill_in "First Name", with: "Ali"
     fill_in "Last Name", with: "Jace"
     fill_in "Email", with: "AJ@gmail.com"
-    fill_in "Phone Number", with: "555-744-1241"
+    fill_in "Phone Number", with: "1234567890"
     fill_in "Describe Your Companies Culture", with: "Joy to the world"
 
     click_button "SUBMIT APPLICATION"

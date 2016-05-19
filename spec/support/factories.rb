@@ -102,7 +102,7 @@ FactoryGirl.define do
   end
 
   sequence :phone_number do |cn|
-    "72#{cn}333-1223"
+    "72#{cn}3331223"
   end
 
   factory :city do
