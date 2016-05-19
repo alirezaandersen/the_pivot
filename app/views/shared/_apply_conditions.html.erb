@@ -1,0 +1,12 @@
+<% if current_user %>
+  <% if job_presenter.already_applied_for?(current_user) %>
+    <button class = "btn tooltipped waves-effect waves-light btn teal lighten-3", id = "applied-button", data-position="bottom", data-tooltip="You have already applied for this job"> APPLIED </button>
+  <% else %>
+    <a class="modal-trigger waves-effect waves-light btn teal lighten-3" href="#modal1">APPLY</a>
+    <div id="modal1" class="modal">
+      <%= render partial: "job_form", locals: { job: job_presenter.job } %>
+    </div>
+  <% end %>
+<% else %>
+  <%= link_to "LOGIN TO APPLY", login_path, class:"slider-btn waves-effect waves-light btn teal lighten-3" %>
+<% end %>
