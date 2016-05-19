@@ -1,7 +1,7 @@
-<h1>Resume</h1>
-
+<h1 class="dashboard-welcome">Resume</h1>
 
 <% @resumes.each do |resume| %>
-
-  <%= link_to "Resume #{resume.created_at}", resume.resume_pdf.url %> <br>
+  <div class="row">
+    <%= link_to "Resume #{resume.created_at.strftime("%B %d, %Y")}", resume.resume_pdf.url %>
+  </div>
 <% end  %>
