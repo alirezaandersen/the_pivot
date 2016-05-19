@@ -48,14 +48,17 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    render file: '/public/404' if current_user.nil?
-    render 'users/platform_admin' if current_user.platform_admin?
-    render 'users/store_admin' if current_user.store_admin?
+    if current_user.nil?
+      render file: '/public/404'
+    elsif current_user.platform_admin?
+        render 'users/platform_admin'
+    elsif  current_user.store_admin?
+    render 'users/store_admin'
+   end
   end
 
   def resume
-    @resumes =  UsersJob.where(user_id: current_user.id)
-    
+     @resumes = UsersJob.where(user_id: current_user.id, status: 1)
   end
 
   def edit
