@@ -136,7 +136,6 @@ RSpec.describe UsersJob, type: :model do
       expect(users_jobs1[1]).to eq(job3)
 
       expect(users_jobs2[0]).to eq(job2)
-      # expect(users_jobs1[1]).to eq(job3)
     end
   end
 

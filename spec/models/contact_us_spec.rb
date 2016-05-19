@@ -13,10 +13,4 @@ RSpec.describe ContactUs, type: :model do
     it { is_expected.to validate_presence_of(:phone_number) }
     it { is_expected.to validate_presence_of(:description) }
   end
-
-  # context "#remove_inquiry" do
-  #   it "removes customer inquiry" do
-  
-  #   end
-  # end
 end
