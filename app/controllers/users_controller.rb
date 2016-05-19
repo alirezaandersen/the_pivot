@@ -50,6 +50,11 @@ class UsersController < ApplicationController
     # will default to show.html.erb (if guest)
   end
 
+  def resume
+    @resumes =  UsersJob.where(user_id: current_user.id)
+    
+  end
+
   def edit
     render file: '/public/404'
   end

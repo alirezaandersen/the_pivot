@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 
   get "/dashboard/all_users", to: 'users#index', as: :view_all_users
   get "/dashboard", to: "users#show"
+  get "/my-resume/:id", to: "users#resume", as: :user_resume
   get "/dashboard/platform_admin",to: "users#show", as: :platform_admin_dashboard
   get "/dashboard/store_admin", to: "users#show", as: :store_admin_dashboard
   get "/dashboard/:company_id/view_store_admins", to: 'users#admin_index', as: :view_store_admins

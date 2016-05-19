@@ -115,15 +115,15 @@ class PermissionsService
   end
 
   def users_controller_users_permissions
-    controller == "users" && action.in?(%w(new create show edit update))
+    controller == "users" && action.in?(%w(new create show edit update resume))
   end
 
   def users_controller_store_admin_permissions
-    controller == "users" && action.in?(%w(new create show edit update destroy admin_index))
+    controller == "users" && action.in?(%w(new create show edit update destroy admin_index resume))
   end
 
   def users_controller_platform_admin_permissions
-    controller == "users" && action.in?(%w(index new create show edit update delete admin_index))
+    controller == "users" && action.in?(%w(index new create show edit update delete admin_index resume))
   end
 
   def companies_controller_users_permissions
