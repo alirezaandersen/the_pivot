@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    user = User.all
+    @users = user.paginate(:page => params[:page], :per_page => 20)
   end
 
   def admin_index
     @company_name = Company.find(params[:company_id]).name
-    @users = User.company_users(params[:company_id])
+    admins = User.company_users(params[:company_id])
+    @users = admins.paginate(:page => params[:page], :per_page => 20)
   end
 
   def new
@@ -18,7 +20,6 @@ class UsersController < ApplicationController
       @company_id = current_user.company_id if current_user.store_admin?
       flash[:error] = "Admin is missing a company id" if @company_id.nil?
       @user = User.new
-      @title = "Create Administrator"
     end
   end
 
@@ -50,7 +51,6 @@ class UsersController < ApplicationController
     render file: '/public/404' if current_user.nil?
     render 'users/platform_admin' if current_user.platform_admin?
     render 'users/store_admin' if current_user.store_admin?
-    # will default to show.html.erb (if guest)
   end
 
   def edit

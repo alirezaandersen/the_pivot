@@ -4,7 +4,8 @@ require 'rails_helper'
 RSpec.feature "Store Admin can create another store admin for their store" do
   scenario "Store Admin creates another admin for their store" do
 
-    user = store_admin_user
+    user    = store_admin_user
+    company = create(:company)
     visit login_path
 
     expect(page).to have_current_path login_path

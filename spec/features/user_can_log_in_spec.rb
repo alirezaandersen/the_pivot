@@ -80,10 +80,11 @@ RSpec.feature "Registered user can log in" do
 
   scenario "Vistor cannot Register with invalid credentials" do
     user = create(:user)
+
     visit root_path
 
     within(".main-resources") do
-        click_link "LOGIN/REGISTER"
+      click_link "LOGIN/REGISTER"
     end
 
     click_link "REGISTER"

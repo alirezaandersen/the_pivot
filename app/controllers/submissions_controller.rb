@@ -1,7 +1,6 @@
 class SubmissionsController < ApplicationController
 
   def index
-    @title = "Pending Submissions"
     @submissions = Submission.where(approval: 0) || []
   end
 
@@ -25,13 +24,12 @@ class SubmissionsController < ApplicationController
   end
 
   def approved_index
-    @title = "Approved Submissions"
-    @submission = Submission.where(approval: 1) || []
+    submission = Submission.where(approval: 1) || []
+    @submissions = submission.paginate(:page => params[:page], :per_page => 10)
   end
 
   def approved_submissions
     submission = Submission.find_by(company_name: params[:company_name])
-    @company = approving_submissions
     @company = submission.create_company
     user = submission.create_user
     user.add_company(@company)
@@ -40,8 +38,8 @@ class SubmissionsController < ApplicationController
   end
 
   def denied_index
-    @title = "Denied Submissions"
-    @submission = Submission.where(approval: 2) || []
+    submission  = Submission.where(approval: 2) || []
+    @submissions = submission.paginate(:page => params[:page], :per_page => 10)
   end
 
   def denied_submissions

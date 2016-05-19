@@ -24,6 +24,6 @@ RSpec.feature "Platform Admin can see all inactive companies" do
     expect(page).to have_content("Inactive Companies")
     expect(page).to have_content("Total Inactive Companies:")
     expect(page).to have_content("#{company.name}")
-    expect(page).to have_button("ACTIVATE COMPANY")
+    expect(page).to have_link("ACTIVATE COMPANY")
   end
 end

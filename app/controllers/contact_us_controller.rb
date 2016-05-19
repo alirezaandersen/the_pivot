@@ -1,7 +1,8 @@
 class ContactUsController < ApplicationController
 
   def index
-    @contacts = ContactUs.all
+    contact   = ContactUs.all
+    @contacts = contact.paginate(:page => params[:page], :per_page => 20)
   end
 
   def new

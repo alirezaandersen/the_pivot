@@ -33,7 +33,8 @@ class CompaniesController < ApplicationController
   end
 
   def active_companies
-    @companies = Company.where(approve: true) || []
+    active_company = Company.where(approve: true) || []
+    @companies = active_company.paginate(:page => params[:page], :per_page => 5 )
   end
 
   def activate_company
@@ -43,7 +44,8 @@ class CompaniesController < ApplicationController
   end
 
   def inactive_companies
-    @companies = Company.where(approve: 0) || []
+    inactive_company = Company.where(approve: 0) || []
+    @companies = inactive_company.paginate(:page => params[:page], :per_page => 6)
   end
 
   def inactivate_company
