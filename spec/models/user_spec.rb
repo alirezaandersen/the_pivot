@@ -68,7 +68,6 @@ RSpec.describe User, type: :model do
   context "#store_admin!" do
     it "adds role store_admin to newly created user in user_roles table" do
       user = create(:user)
-      # Role.create(name: "store_admin")
 
       expect(user.roles.last).to eql(nil)
 
