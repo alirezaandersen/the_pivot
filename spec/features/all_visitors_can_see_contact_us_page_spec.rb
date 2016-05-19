@@ -25,7 +25,7 @@ RSpec.feature "All visitors can use contact us link" do
     fill_in "First Name", with: "Ali "
     fill_in "Last Name", with: "Andersn"
     fill_in "Email", with: "ali@ali.com"
-    fill_in "Phone Number", with: "303-754-5474"
+    fill_in "Phone Number", with: "3037545474"
     fill_in "Talk to me!", with: "Yay this works!"
 
     click_on "SUBMIT"

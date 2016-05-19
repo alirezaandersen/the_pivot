@@ -20,7 +20,7 @@ RSpec.feature "All users can submit application to become store admin" do
   fill_in 'First Name', with: "Ziba"
   fill_in 'Last Name', with: "Andersen"
   fill_in 'Email', with: "#{rand(999)}@puppy.com"
-  fill_in 'Phone Number', with: "1-800-woo ooof"
+  fill_in 'Phone Number', with: "1234567890"
   fill_in "Describe Your Companies Culture", with: "chasing cats and finding bones"
 
   click_on "SUBMIT APPLICATION"

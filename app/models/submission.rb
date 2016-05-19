@@ -4,6 +4,8 @@ class Submission < ActiveRecord::Base
     uniqueness: true
 
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
+  validates :phone_number, presence: true, length: { is: 10, message: "Phone number %(value) can only be 10 digits" }
+
 
   enum approval:["pending", "approved", "denied"]
 
@@ -24,7 +26,7 @@ class Submission < ActiveRecord::Base
   end
 
   def create_user
-    user = User.create(user_info)
+    User.create(user_info)
   end
 
   def user_info
