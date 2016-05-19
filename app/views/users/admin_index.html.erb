@@ -1,13 +1,28 @@
-<h1>Company <%= @company_name %> </h1>
+<h1 class="dashboard-welcome">Company <%= @company_name %> </h1>
 
 
 <h1>Administration</h1>
 
-<ul>
-<% @users.each do |admin|%>
+<table class="highlight">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
 
-  <li>Name:&nbsp;<%= admin.first_name %>&nbsp; <%= admin.last_name %> &nbsp;
-      Email:<%= admin.email %></li>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.first_name %></td>
+      <td><%= user.last_name %></td>
+      <td><%= user.email %></td>
+    </tr>
+    <% end %>
+</table>
 
-<% end %>
-</ul>
+<div class="center-align">
+  <%= will_paginate @users %>
+</div>

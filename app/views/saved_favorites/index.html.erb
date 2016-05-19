@@ -1,2 +1,2 @@
-<h1><%= current_user.first_name %>'s Saved Favorites</h1>
+<h1 class="dashboard-welcome"><%= current_user.first_name %>'s Saved Favorites</h1>
   <%=  render partial: "shared/job_cards", locals: { jobs: @jobs } %>

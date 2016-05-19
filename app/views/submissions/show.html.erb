@@ -1,17 +1,56 @@
-<div class="container">
-  <h1> <%= @submission.company_name %> </h1>
-  Company Description<%= @submission.about_company %> <br><br>
-  Number of Employees  <%= @submission.size_of_company %><br>
-  Company Representative : <%= @submission.first_name %>&nbsp;<%= @submission.last_name %><br>
-  Email:<%= @submission.email%><br>
-  Contact Number<%= @submission.phone_number %><br><br>
-  Why They Want To Become Ziba: <br>
-  &nbsp;&nbsp;&nbsp;<%= @submission.description %><br>
+<h1 class="dashboard-welcome"> <%= @submission.company_name %> </h1>
+
+<div class="row">
 
   <div class="row">
-    <%= image_tag(@submission.logo, id: "img_preview") %>
+    <div class="col s6 m6 l6">
+      <div>
+        Company Description
+      </div>
+      <div>
+        <%= @submission.about_company %>
+      </div><br>
+      <div>
+        Number of Employees
+      </div>
+      <div>
+        <%= @submission.size_of_company %>
+      </div><br>
+      <div>
+        Company Representative
+      </div>
+      <div>
+        <%= @submission.first_name %>&nbsp;<%= @submission.last_name %><br>
+      </div><br>
+      <div>
+        Email
+      </div>
+      <div>
+        <%= @submission.email%>
+      </div><br>
+      <div>
+        Contact Number
+      </div>
+      <div>
+        <%= @submission.phone_number %>
+      </div><br>
+      <div>
+        Why They Want To Become Ziba
+      </div>
+      <div>
+        <%= @submission.description %>
+      </div><br>
+    </div>
+    <div class="col s6 m6 l6">
+      <%= image_tag(@submission.logo, id: "img_preview") %>
+    </div>
   </div>
-
-<%= button_to "Approve Company", company_approved_path(@submission.company_name), method: :get, class:"slider-btn waves-effect waves-light btn" %>
-<%= button_to "Deny Company", company_denied_path(@submission.company_name), method: :get, class:"slider-btn waves-effect waves-light btn" %>
+  <div class="row">
+    <div class="col s12 m6 l6">
+      <%= link_to "Approve Company", company_approved_path(@submission.company_name), class:"slider-btn waves-effect waves-light btn" %>
+    </div>
+    <div class="col s12 m6 l6">
+      <%= link_to "Deny Company", company_denied_path(@submission.company_name), class:"slider-btn waves-effect waves-light btn" %>
+    </div>
+  </div>
 </div>

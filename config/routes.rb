@@ -3,18 +3,19 @@ Rails.application.routes.draw do
 
   resources :companies, only: [:index]
   resources :jobs, only: [:index]
+
   get "/companies/inactive_companies", to: 'companies#inactive_companies', as: :inactive_companies
   get "/companies/active_companies", to: 'companies#active_companies', as: :active_companies
 
-  get ':company_name/jobs/:job_title', to: 'company/jobs#show', as: "company_job"
-  get '/companies/:company_name', to: "companies#show", as: "company"
+  get ':company_name/jobs/:job_title', to: 'company/jobs#show', as: :company_job
+  get '/companies/:company_name', to: "companies#show", as: :company
 
   get '/jobs/new/', to: 'jobs#new', as: :create_jobs
   get '/jobs/:company_id/new', to: 'jobs#new', as: :create_company_jobs
-  post '/jobs/create', to: 'jobs#create'
+  post '/jobs/create', to: 'jobs#create', as: :job_create
   get '/jobs/:company_id/jobs', to: 'jobs#store_jobs', as: :store_jobs
   get '/jobs/:id/edit', to: 'jobs#edit', as: :job_edit
-  patch '/jobs/:id', to: 'jobs#update'
+  patch '/jobs/:id/jobs', to: 'jobs#update', as: :update_job
 
   get "/companies/activate/:company_name", to: 'companies#activate_company', as: :activate_company
   patch "/companies/inactivate/:company_name", to: 'companies#inactivate_company', as: :inactivate_company
@@ -33,6 +34,7 @@ Rails.application.routes.draw do
   resources :favorites, only: [:create, :destroy]
 
   resources :users_jobs, only: [:create]
+
   get '/my-submissions', to: "users_jobs#show", as: :my_jobs
   resources :saved_favorites, only: [:create, :destroy]
 
@@ -63,5 +65,4 @@ Rails.application.routes.draw do
   get    "submissions/:company_name/denied", to: 'submissions#denied_submissions', as: :company_denied
   get    "submissions/approved/all", to: 'submissions#approved_index', as: :companies_approved
   get    "submissions/denied/all", to: 'submissions#denied_index', as: :companies_denied
-
 end

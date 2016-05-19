@@ -36,7 +36,6 @@ class PermissionsService
 
   def store_admin_permissions
     return true if everybody_permissions
-    return true if user_jobs_controller_permissions
     return true if saved_favorites_controller_permissions
     return true if users_controller_store_admin_permissions
     return true if companies_controller_store_admin_permissions
