@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   end
 
   def resume
-     @resumes = UsersJob.where(user_id: current_user.id, status: 1)
+     @resumes = UsersJob.where(user_id: current_user.id)
   end
 
   def edit
