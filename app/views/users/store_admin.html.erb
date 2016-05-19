@@ -1,21 +1,38 @@
-<h1>Welcome to your Store, <%= @current_user.first_name %></h1>
+<h1 class="dashboard-welcome">Welcome to your Store, <%= @current_user.first_name %></h1>
 
-<div class="dashboard">
-
+<div class="admin-dashboard">
   <h4>Email: <%= @current_user.email %></h4>
-    <h6>Company name </h6>
-    <li><h6><%= link_to "Create Job", create_company_jobs_path(@current_user.company_id) %></h6></li>
-    <li><h6><%= link_to "View Company Jobs", store_jobs_path(@current_user.company_id) %></h6></li>
 
-    <li><h6><%= link_to "Create Administrator", new_admin_user_path(@current_user.company_id) %></h6></li>
-    <li><h6><%= link_to "Update Company Information", update_company_path(@current_user.company_id) %></h6></li>
-    <li><h6><%= link_to "View Store Admins", view_store_admins_path(@current_user.company_id) %></h6></li>
+  <div class="row">
+    <h4 class="left-align dashboard-sections">Company</h4>
+    <div class="col s12 m12 l12">
+       <%= @current_user.company.name %>
+    </div>
 
-     <h6>link to do something</h6>
-     <h6>link to do something</h6>
-     <h6>link to do something</h6>
-     <h6>link to do something</h6>
-     <h6>link to do something</h6>
-     <h6>link to do something</h6>
+    <div class="col s12 m12 l12">
+      <%= link_to "Update Company Information", update_company_path(@current_user.company_id), class: "waves-effect waves-light btn store-admin-buttons" %>
+    </div>
+  </div>
 
+  <div class="row">
+    <h4 class="left-align dashboard-sections">Jobs</h4>
+    <div class="col s12 m12 l12">
+      <%= link_to "Create Job", create_company_jobs_path(@current_user.company_id), class: "waves-effect waves-light btn store-admin-buttons" %>
+    </div>
+
+    <div class="col s12 m12 l12">
+        <%= link_to "View Company Jobs", store_jobs_path(@current_user.company_id), class: "waves-effect waves-light btn store-admin-buttons" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <h4 class="left-align dashboard-sections">Admins</h4>
+    <div class="col s12 m12 l12">
+      <%= link_to "Create Administrator", new_admin_user_path(@current_user.company_id), class: "waves-effect waves-light btn store-admin-buttons" %>
+    </div>
+
+    <div class="col s12 m12 l12">
+      <%= link_to "View Store Admins", view_store_admins_path(@current_user.company_id), class: "waves-effect waves-light btn store-admin-buttons" %>
+    </div>
+  </div>
 </div>
