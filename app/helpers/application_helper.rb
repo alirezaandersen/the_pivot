@@ -6,5 +6,4 @@ module ApplicationHelper
     yield(presenter) if block_given?
     presenter
   end
-
 end

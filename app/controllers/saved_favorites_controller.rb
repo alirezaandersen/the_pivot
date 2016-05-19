@@ -9,7 +9,7 @@ class SavedFavoritesController < ApplicationController
     if current_user.nil?
       render file: '/public/404'
     else
-      @jobs = UsersJob.current_users_favorited_jobs(current_user)
+      @jobs = UsersJob.current_users_jobs(current_user, 0)
     end
   end
 

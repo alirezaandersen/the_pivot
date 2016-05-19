@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    user = User.all
+    @users = user.paginate(:page => params[:page], :per_page => 20)
   end
 
   def admin_index
     @company_name = Company.find(params[:company_id]).name
-    @users = User.where(company_id: params[:company_id])
+    admins = User.company_users(params[:company_id])
+    @users = admins.paginate(:page => params[:page], :per_page => 20)
   end
 
   def new
@@ -18,22 +20,24 @@ class UsersController < ApplicationController
       @company_id = current_user.company_id if current_user.store_admin?
       flash[:error] = "Admin is missing a company id" if @company_id.nil?
       @user = User.new
-      @title = "Create Administrator "
     end
   end
 
   def create
     if !current_user.nil?
       @user = User.create(admin_params)
-      @user.roles << Role.find_by(name: "store_admin")
+      @user.add_store_admin_role
       role_redirect
     else
       @user = User.new(user_params)
       if @user.save
-         @user.roles << Role.find_by(name: "registered_user")
+        @user.add_registered_user_role
         session[:user_id] = @user.id
         flash[:notice] = "Account Created! Logged in as #{@user.first_name}"
-        UsersJob.save_users_favorites(session[:favorites], current_user) if !session[:favorites].nil?
+        if !session[:favorites].nil?
+          UsersJob.favorite_jobs_from_session(session[:favorites], current_user)
+          session[:favorites] = {}
+        end
         role_redirect
       else
         flash.now[:error] = "Invalid. Please try again."
@@ -47,7 +51,6 @@ class UsersController < ApplicationController
     render file: '/public/404' if current_user.nil?
     render 'users/platform_admin' if current_user.platform_admin?
     render 'users/store_admin' if current_user.store_admin?
-    # will default to show.html.erb (if guest)
   end
 
   def resume
@@ -63,10 +66,10 @@ class UsersController < ApplicationController
 
   def role_redirect
     if @user.platform_admin?
-      flash[:notice] = "Welcome Super #{@user.first_name}"
+      flash[:notice] = "Welcome Super Admin, #{@user.first_name}"
       redirect_to platform_admin_dashboard_path
     elsif @user.store_admin?
-      flash[:notice] = "Welcome #{@user.first_name}"
+      flash[:notice] = "Sucessfully created new store admin #{@user.first_name}!"
       redirect_to store_admin_dashboard_path
     else
       flash[:notice] = "Account Created! Logged in as #{@user.first_name}"

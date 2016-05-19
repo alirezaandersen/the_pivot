@@ -1,0 +1,30 @@
+#admin-dashboard{
+  text-align: center;
+}
+
+.dashboard-sections{
+  border-bottom: solid 1px;
+  margin-bottom: 11px;
+  font-weight: 300;
+}
+
+.dashboard-welcome {
+  font-weight: 300;
+}
+
+// for jobs edit index
+
+#job-title-link{
+  text-decoration: underline;
+}
+
+// Submissions
+#img_preview {
+  max-width: 500px;
+  float: right;
+}
+
+// Store Admin
+.store-admin-buttons {
+  margin-bottom: 15px;
+}
