@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   end
 
   def store_admin!
-    role = Role.create(name: "store_admin")
+    role = Role.create(name: "store_admin").id
     UserRole.create(role_id:role,user_id: self.id)
   end
 

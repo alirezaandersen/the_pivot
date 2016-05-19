@@ -24,14 +24,14 @@ RSpec.feature "Platform Admin can see current company clients" do
 
     expect(page).to have_content("#{company.name}")
 
-    expect(page).to have_button("CREATE JOB")
-    expect(page).to have_button("EDIT JOB")
-    expect(page).to have_button("CREATE ADMINSTRATOR")
-    expect(page).to have_button("UPDATE COMPANY INFORMATION")
-    expect(page).to have_button("VIEW ADMINISTRATION STAFF")
-    expect(page).to have_button("INACTIVATE COMPANY")
+    expect(page).to have_link("CREATE JOB")
+    expect(page).to have_link("EDIT JOB")
+    expect(page).to have_link("CREATE ADMIN")
+    expect(page).to have_link("UPDATE COMPANY")
+    expect(page).to have_link("VIEW ADMINISTRATION")
+    expect(page).to have_link("INACTIVATE COMPANY")
 
-    click_button "VIEW ADMINISTRATION STAFF"
+    click_link "VIEW ADMINISTRATION STAFF"
 
     expect(page).to have_content("#{company.name}")
     expect(page).to have_content("Administration")

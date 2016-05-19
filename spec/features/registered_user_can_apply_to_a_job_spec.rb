@@ -22,7 +22,7 @@ RSpec.feature "Registered job seeker can apply to a job" do
     visit company_job_path(job.company, job)
     click_link("APPLY")
     within(".job-form") do
-      attach_file("users_jobs[resume]", file_path)
+      attach_file("users_jobs[resume_pdf]", file_path)
       fill_in "users_jobs[cover_letter]", with: text
       click_button("Submit")
     end
@@ -47,7 +47,7 @@ RSpec.feature "Registered job seeker can apply to a job" do
     visit company_job_path(job.company, job)
     click_link("APPLY")
     within(".job-form") do
-      attach_file("users_jobs[resume]", file_path)
+      attach_file("users_jobs[resume_pdf]", file_path)
       fill_in "users_jobs[cover_letter]", with: text
       click_button("Submit")
     end
@@ -66,7 +66,7 @@ RSpec.feature "Registered job seeker can apply to a job" do
     jobs.each do |job|
       users_job_with_resume(registered_user, job)
     end
-    
+
     login_user(registered_user)
 
     expect(page).to have_current_path dashboard_path

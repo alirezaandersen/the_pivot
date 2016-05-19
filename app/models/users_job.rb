@@ -17,6 +17,7 @@ class UsersJob < ActiveRecord::Base
   end
 
   def self.apply_to_job(params, user)
+    # binding.pry
     create(user_id: user.id, job_id: params[:job].to_i, resume_pdf: params[:resume_pdf], cover_letter: params[:cover_letter], status: 1)
   end
 
