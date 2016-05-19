@@ -64,7 +64,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Welcome Super Admin, #{@user.first_name}"
       redirect_to platform_admin_dashboard_path
     elsif @user.store_admin?
-      flash[:notice] = "Welcome #{@user.first_name}"
+      flash[:notice] = "Sucessfully created new store admin #{@user.first_name}!"
       redirect_to store_admin_dashboard_path
     else
       flash[:notice] = "Account Created! Logged in as #{@user.first_name}"

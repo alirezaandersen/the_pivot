@@ -30,6 +30,6 @@ RSpec.feature "Store Admin can create another store admin for their store" do
     click_on "CREATE ACCOUNT"
 
     expect(page).to have_current_path store_admin_dashboard_path
-    expect(page).to have_content("Welcome Register")
+    expect(page).to have_content("Sucessfully created new store admin Register!")
   end
 end

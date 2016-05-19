@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
 
   def role_redirect
     if @user.platform_admin?
-      flash[:notice] = "Welcome Super #{@user.first_name}"
+      flash[:notice] = "Logged in as Platform Admin #{@user.first_name}!"
       redirect_to platform_admin_dashboard_path
     elsif @user.store_admin?
       flash[:notice] = "Welcome #{@user.first_name}"
