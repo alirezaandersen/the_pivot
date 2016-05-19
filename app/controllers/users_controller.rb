@@ -25,7 +25,6 @@ class UsersController < ApplicationController
 
   def create
     if !current_user.nil?
-      (current_user.store_admin? && (current_user.company_id == admin_params[:company_id].to_i)) || current_user.platform_admin?
       @user = User.create(admin_params)
       @user.roles << Role.find_by(name: "store_admin")
       role_redirect
@@ -35,10 +34,7 @@ class UsersController < ApplicationController
          @user.roles << Role.find_by(name: "registered_user")
         session[:user_id] = @user.id
         flash[:notice] = "Account Created! Logged in as #{@user.first_name}"
-        if !session[:favorites].nil?
-          favorite_jobs_from_session(session[:favorites], current_user)
-          session[:favorites] = {}
-        end
+        UsersJob.save_users_favorites(session[:favorites], current_user) if !session[:favorites].nil?
         role_redirect
       else
         flash.now[:error] = "Invalid. Please try again."
@@ -52,7 +48,7 @@ class UsersController < ApplicationController
     render file: '/public/404' if current_user.nil?
     render 'users/platform_admin' if current_user.platform_admin?
     render 'users/store_admin' if current_user.store_admin?
-    #will default to show.html.erb (if guest)
+    # will default to show.html.erb (if guest)
   end
 
   def edit

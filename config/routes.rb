@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   get '/jobs/:company_id/jobs', to: 'jobs#store_jobs', as: :store_jobs
   get '/jobs/:id/edit', to: 'jobs#edit', as: :job_edit
   patch '/jobs/:id/jobs', to: 'jobs#update', as: :update_job
-  # get '/jobs/:title', to: 'jobs#show', as: :job
 
   get "/companies/activate/:company_name", to: 'companies#activate_company', as: :activate_company
   patch "/companies/inactivate/:company_name", to: 'companies#inactivate_company', as: :inactivate_company
@@ -33,11 +32,12 @@ Rails.application.routes.draw do
 
   get    "/favorites", to: 'favorites#show', as: :favorites
   resources :favorites, only: [:create, :destroy]
-  # get    "/favorites", to: 'favorites#show'
 
   resources :users_jobs, only: [:create]
-  get '/my-s', to: "users_jobs#show", as: :my_jobs
-  resources :saved_favorites, only: [:create]
+
+  get '/my-submissions', to: "users_jobs#show", as: :my_jobs
+  resources :saved_favorites, only: [:create, :destroy]
+
 
   get '/my-favorites', to: "saved_favorites#index", as: :my_favorites
 
@@ -57,7 +57,6 @@ Rails.application.routes.draw do
   get    "/contact_us/all", to: 'contact_us#index', as: :customer_inquiries
   get    "/contact_us/:id", to: 'contact_us#show', as: :customer_inquiry
   delete "/contact_us/:id", to: 'contact_us#delete'
-  # get    "/favorites", to: 'favorites_jobs#show', as: :favorites
 
   get    "submissions", to: 'submissions#new', as: :submissions
   post   "submissions", to: 'submissions#create'

@@ -27,4 +27,14 @@ class User < ActiveRecord::Base
   def registered_user?
     roles.exists?(name: "registered_user")
   end
+
+  def add_company(company)
+    self.company_id = company.id
+    save
+  end
+
+  def store_admin!
+    role = Role.find_by(name: "store_admin").id
+    UserRole.create(role_id:role,user_id: self.id)
+  end
 end
