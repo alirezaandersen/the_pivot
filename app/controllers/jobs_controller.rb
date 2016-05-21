@@ -28,13 +28,16 @@ class JobsController < ApplicationController
   end
 
   def create
-    if (current_user.store_admin? && (current_user.company_id == job_params[:company_id].to_i)) || current_user.platform_admin?
+    if job_authorization
       @job = Job.create(job_params)
     else
       flash[:error] = "No Trolls Allowed!"
     end
-
     redirect_to company_job_path(@job.company, @job)
+  end
+
+  def job_authorization
+    (current_user.store_admin? && (current_user.company_id == job_params[:company_id].to_i)) || current_user.platform_admin?
   end
 
   def edit

@@ -9,16 +9,20 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       flash[:notice] = "Logged in as #{@user.email}"
       if !session[:favorites].nil?
-        UsersJob.favorite_jobs_from_session(session[:favorites], current_user)
-        session[:favorites] = {}
+        saved_sessions
       end
-      role_redirect
+        role_redirect
     else
       flash.now[:error] = "Invalid. Please try again."
       render :new
     end
   end
 
+  def saved_sessions
+    UsersJob.favorite_jobs_from_session(session[:favorites], current_user)
+    session[:favorites] = {}
+  end
+  
   def destroy
     session.clear
     flash[:notice] = "Logged out!"

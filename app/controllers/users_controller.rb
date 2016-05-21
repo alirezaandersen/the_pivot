@@ -47,8 +47,8 @@ class UsersController < ApplicationController
   end
 
   def saved_sessions
-      UsersJob.favorite_jobs_from_session(session[:favorites], current_user)
-      session[:favorites] = {}
+    UsersJob.favorite_jobs_from_session(session[:favorites], current_user)
+    session[:favorites] = {}
   end
 
   def account_created
@@ -61,20 +61,20 @@ class UsersController < ApplicationController
     flash.now[:error] = "Invalid. Please try again."
     render :new
   end
-   
+
   def show
     @user = current_user
-   if current_user.nil?
-     render file: '/public/404'
-   elsif current_user.platform_admin?
-       render 'users/platform_admin'
-   elsif  current_user.store_admin?
-     render 'users/store_admin'
-   end
+    if current_user.nil?
+      render file: '/public/404'
+    elsif current_user.platform_admin?
+      render 'users/platform_admin'
+    elsif  current_user.store_admin?
+      render 'users/store_admin'
+    end
   end
 
   def resume
-     @resumes = UsersJob.where(user_id: current_user.id)
+    @resumes = UsersJob.where(user_id: current_user.id)
   end
 
   def edit

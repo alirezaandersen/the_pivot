@@ -22,6 +22,8 @@ class PermissionsService
     end
   end
 
+  
+
   private
 
   def platform_admin_permissions
