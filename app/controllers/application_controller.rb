@@ -23,6 +23,11 @@ class ApplicationController < ActionController::Base
     @current_permission ||= PermissionsService.new(current_user, params[:controller], params[:action])
   end
 
+  def saved_sessions(session,user)
+    UsersJob.favorite_jobs_from_session(session[:favorites], user)
+    session[:favorites] = {}
+  end
+
   def authorize!
     unless current_permission.allow?
       redirect_to root_url, danger: "You are not allowed to pass."

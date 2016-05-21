@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       flash[:notice] = "Logged in as #{@user.email}"
       if !session[:favorites].nil?
-        saved_sessions
+        saved_sessions(session,@user)
       end
         role_redirect
     else
@@ -18,11 +18,6 @@ class SessionsController < ApplicationController
     end
   end
 
-  def saved_sessions
-    UsersJob.favorite_jobs_from_session(session[:favorites], current_user)
-    session[:favorites] = {}
-  end
-  
   def destroy
     session.clear
     flash[:notice] = "Logged out!"

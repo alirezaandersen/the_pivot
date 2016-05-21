@@ -62,7 +62,7 @@ Rails.application.routes.draw do
   post   "submissions", to: 'submissions#create'
   get    "submissions/pending", to: 'submissions#index', as: :submissions_status
   get    "submissions/:company_name", to: 'submissions#show', as: :company_submission_status
-  get    "submissions/:company_name/approved", to: 'submissions#approved_submissions', as: :company_approved
+  get    "submissions/:id/approved", to: 'submissions#approved_submissions', as: :company_approved
   get    "submissions/:company_name/denied", to: 'submissions#denied_submissions', as: :company_denied
   get    "submissions/approved/all", to: 'submissions#approved_index', as: :companies_approved
   get    "submissions/denied/all", to: 'submissions#denied_index', as: :companies_denied

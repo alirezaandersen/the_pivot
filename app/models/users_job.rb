@@ -37,7 +37,7 @@ class UsersJob < ActiveRecord::Base
   end
 
   def self.favorite_jobs(job_id, user)
-    users_job = UsersJob.create(user_id: user.id, job_id: job_id)
+    users_job = create(user_id: user.id, job_id: job_id)
     users_job.favorited!
     users_job
   end
@@ -45,7 +45,7 @@ class UsersJob < ActiveRecord::Base
   def self.favorite_jobs_from_session(session, user)
     session.map do |job_id, _v|
       job = Job.find(job_id)
-      users_job = UsersJob.create(user_id: user.id, job_id: job.id)
+      users_job = create(user_id: user.id, job_id: job.id)
       users_job.favorited!
       users_job
     end

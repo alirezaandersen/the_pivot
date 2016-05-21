@@ -38,17 +38,12 @@ class UsersController < ApplicationController
     if @user.save
       account_created
       if !session[:favorites].nil?
-        saved_sessions
+        saved_sessions(session,@user)
       end
       role_redirect
     else
       invalid_info
     end
-  end
-
-  def saved_sessions
-    UsersJob.favorite_jobs_from_session(session[:favorites], current_user)
-    session[:favorites] = {}
   end
 
   def account_created

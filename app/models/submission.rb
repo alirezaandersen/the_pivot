@@ -25,8 +25,14 @@ class Submission < ActiveRecord::Base
     company_params
   end
 
-  def create_user
-    User.create(user_info)
+  def create_user(company)
+    user = User.create(user_info)
+    user.add_company(company)
+    user.store_admin!
+  end
+
+  def approve!
+    update(approval: 1)
   end
 
   def user_info

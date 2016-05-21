@@ -29,11 +29,9 @@ class SubmissionsController < ApplicationController
   end
 
   def approved_submissions
-    submission = Submission.find_by(company_name: params[:company_name])
+    submission = Submission.find(params[:id])
     @company = submission.create_company
-    user = submission.create_user
-    user.add_company(@company)
-    user.store_admin!
+    user = submission.create_user(@company)
     approved_status
   end
 
@@ -49,7 +47,7 @@ class SubmissionsController < ApplicationController
 
   def approved_status
     status = Submission.find_by(company_name:@company.name)
-    status.update(approval: 1) if !status.nil?
+    status.approve! if !status.nil?
     flash.now[:error] = "You can't approve the same Submission Again"
     redirect_to companies_approved_path
   end
