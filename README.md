@@ -1,40 +1,32 @@
+##Ziba
 
-## Introduction
+Ziba is an extension of a project built by other Turing School students;
 
-Habitask is a concept shop built for a Little Shop project. Base expectations for the project were directed at creating an online ordering platform. Rather than focusing on products, Habitask is based on the idea of TaskRabbit for nonprofits. Rather than placing orders on items, visitors to Habitask can make time commitments to tasks that benefit the community. Visitors can create accounts to track their commitments. There is also an Admin of the site who can create and edit tasks.
+Their repository can be found here:
 
-### Getting Started
+[Habitask Repository](https://github.com/pindell-matt/habitask)
 
-* System dependencies
-  * Rails ~> 4.2.6
-  * Ruby > 2.3.0
+Their website can be found here:
 
+[Habitask](http://habitask.herokuapp.com/)
 
-* Configuration
-  * ```git clone ```
-  * ``` bundle install ```
-  * ``` rails s ```
-  * visit ``` http://localhost:3000/ ```
+The original project guideline can be found here:
 
+[Turing School Original Assignment](https://github.com/turingschool/curriculum/blob/master/source/projects/little_shop.markdown)
 
-* Database initialization
-  * ```rake db:reset ```
+Our purpose was to inherit their codebase and expand on the project, including adding multi-tenancy and levels of authorization with a platform admin, multiple companies and administrative managers, and users. As well as a submissions to join our recruting company.
 
+The website can be found here:
 
-* How to run the test suite
-  * ``` rspec ```
+[Ziba](http://ziba.herokuapp.com/)
 
+The pivot assignment can be found here:
 
-* Deployment instructions
-  * ``` git push heroku master ```
-  * ``` heroku run bundle exec rake db:migrate ```
+[Turing School Pivot Assignment](https://github.com/alirezaandersen/the_pivot)
 
 
-### Learning Goals
-
-* Use TDD to drive all layers of Rails development including unit and integration tests
-* Design a system of models which use one-to-one, one-to-many, and many-to-many relationships
-* Practice mixing HTML, CSS, and templates to create an inviting and usable User Interface
-* Differentiate responsibilities between components of the Rails stack
-* Build a logical user-flow that moves across multiple controllers and models
-* Practice an agile workflow and improve communication skills working within a team
+To run this program:
+```
+https://github.com/alirezaandersen/the_pivot.git
+```
+Make sure you are running postgres for your database.
