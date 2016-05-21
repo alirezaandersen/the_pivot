@@ -30,22 +30,38 @@ class UsersController < ApplicationController
       role_redirect
     else
       @user = User.new(user_params)
-      if @user.save
-        @user.add_registered_user_role
-        session[:user_id] = @user.id
-        flash[:notice] = "Account Created! Logged in as #{@user.first_name}"
-        if !session[:favorites].nil?
-          UsersJob.favorite_jobs_from_session(session[:favorites], current_user)
-          session[:favorites] = {}
-        end
-        role_redirect
-      else
-        flash.now[:error] = "Invalid. Please try again."
-        render :new
-      end
+      save_user
     end
   end
 
+  def save_user
+    if @user.save
+      account_created
+      if !session[:favorites].nil?
+        saved_sessions
+      end
+      role_redirect
+    else
+      invalid_info
+    end
+  end
+
+  def saved_sessions
+      UsersJob.favorite_jobs_from_session(session[:favorites], current_user)
+      session[:favorites] = {}
+  end
+
+  def account_created
+    @user.add_registered_user_role
+    session[:user_id] = @user.id
+    flash[:notice] = "Account Created! Logged in as #{@user.first_name}"
+  end
+
+  def invalid_info
+    flash.now[:error] = "Invalid. Please try again."
+    render :new
+  end
+   
   def show
     @user = current_user
    if current_user.nil?

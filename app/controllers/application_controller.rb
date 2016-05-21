@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
   def all_cities
     @cities = City.all
   end

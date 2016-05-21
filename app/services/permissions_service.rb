@@ -28,6 +28,7 @@ class PermissionsService
     return true if everybody_permissions
     return true if user_jobs_controller_permissions
     return true if submissions_controller_platform_admin_permissions
+    return true if saved_favorites_controller_permissions
     return true if contact_us_controller_platform_admin_permissions
     return true if companies_controller_platform_admin_permissions
     return true if users_controller_platform_admin_permissions
